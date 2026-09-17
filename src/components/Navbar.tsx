@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import AriseLogo from "./AriseLogo";
 import { sound } from "@/lib/audio";
 
 interface NavbarProps {
@@ -70,7 +71,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
-        {/* Brand Logo - Exact ARISE Monospace / Geometric Typography */}
+        {/* Brand Logo - Exact ARISE Vector Wordmark */}
         <a
           href="#"
           onClick={(e) => {
@@ -80,9 +81,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
           }}
           className="flex items-center gap-3 group cursor-pointer"
         >
-          <span className="text-xl sm:text-2xl font-bold tracking-[0.25em] text-slate-900 dark:text-white font-sans transition-colors">
-            ARISE
-          </span>
+          <AriseLogo size="md" />
         </a>
 
         {/* Center Desktop Navigation with Clean Title Case & Active Underline */}

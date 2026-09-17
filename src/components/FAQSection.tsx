@@ -82,11 +82,14 @@ export default function FAQSection() {
 
       <div className="max-w-4xl mx-auto px-6 sm:px-8">
         {/* Header */}
-        <div className="text-center space-y-4 mb-16 select-none">
-          <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-[#F8FAFC]">
-            FREQUENTLY ASKED <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0A84FF] to-cyan-400">
-              QUESTIONS.
+        <div className="text-center space-y-3 mb-16 select-none">
+          <div className="text-xs font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+            TRANSPARENCY &amp; PROTOCOL
+          </div>
+          <h2 className="font-display text-4xl sm:text-6xl font-normal tracking-tight text-slate-900 dark:text-white">
+            Frequently Asked <br />
+            <span className="italic text-slate-400 dark:text-slate-400">
+              Questions.
             </span>
           </h2>
         </div>

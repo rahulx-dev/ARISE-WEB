@@ -21,12 +21,14 @@ export default function GuildWorldSection() {
 
       <div className="max-w-5xl mx-auto px-6 sm:px-8 text-center space-y-16">
         
-        {/* Section Headline */}
-        <div className="space-y-4">
-          <h2 className="text-5xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-slate-900 dark:text-[#F8FAFC] leading-[0.98]">
-            DON&apos;T LEVEL UP <br />
-            <span className="text-[#EF4444]">
-              ALONE.
+        <div className="space-y-3">
+          <div className="text-xs font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+            GUILD &amp; WORLD BOSS RAIDS
+          </div>
+          <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-[0.98]">
+            Don&apos;t Level Up <br />
+            <span className="italic text-slate-400 dark:text-slate-400">
+              Alone.
             </span>
           </h2>
         </div>

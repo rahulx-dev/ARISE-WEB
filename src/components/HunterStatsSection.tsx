@@ -62,12 +62,14 @@ export default function HunterStatsSection() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
           
-          {/* Left: Huge Editorial Headline & Minimal Stats Telemetry */}
-          <div className="lg:col-span-6 space-y-10">
-            <h2 className="text-5xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-slate-900 dark:text-[#F8FAFC] leading-[0.98]">
-              YOU ARE <br />
-              <span className="text-slate-500 dark:text-[#94A3B8]">
-                THE CHARACTER.
+          <div className="lg:col-span-6 space-y-8">
+            <div className="text-xs font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+              REAL-WORLD RPG PROGRESSION
+            </div>
+            <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-[0.98]">
+              You Are <br />
+              <span className="italic text-slate-400 dark:text-slate-400">
+                The Character.
               </span>
             </h2>
 

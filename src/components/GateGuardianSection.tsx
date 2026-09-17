@@ -106,15 +106,15 @@ export default function GateGuardianSection() {
           
           {/* Left: Editorial Headline, Flow Sequence & App Selector */}
           <div className="lg:col-span-6 space-y-8">
-            <div className="space-y-4">
-
-              <h2 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-[#F8FAFC] leading-[0.96]">
-                DISTRACTION <br />
-                <span className="text-[#EF4444]">
-                  HAS A TOLL.
+              <div className="text-xs font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+                GATE GUARDIAN PROTOCOL
+              </div>
+              <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-[0.96]">
+                Distraction <br />
+                <span className="italic text-slate-400 dark:text-slate-400">
+                  Has A Toll.
                 </span>
               </h2>
-            </div>
 
             {/* Clean Minimal Flow Sequence */}
             <div className="flex flex-wrap items-center gap-2.5 pt-1 select-none font-mono text-xs">

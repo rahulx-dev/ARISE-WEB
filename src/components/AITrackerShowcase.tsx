@@ -134,15 +134,15 @@ export default function AITrackerShowcase() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-6 space-y-8"
           >
-            <div className="space-y-4">
-
-              <h2 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-[#F8FAFC] leading-[0.96]">
-                SEE EVERY REP. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500">
-                  ZERO CHEATING.
+              <div className="text-xs font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+                BIOMECHANICAL VISION
+              </div>
+              <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-[0.96]">
+                See Every Rep. <br />
+                <span className="italic text-slate-400 dark:text-slate-400">
+                  Zero Cheating.
                 </span>
               </h2>
-            </div>
 
             {/* Exercise Selector Tabs */}
             <div className="space-y-3 pt-2 select-none">

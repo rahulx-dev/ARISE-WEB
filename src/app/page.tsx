@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import HeroVideoShowcase from "@/components/HeroVideoShowcase";
 import HeroPillarsSection from "@/components/HeroPillarsSection";
 import StorySection from "@/components/StorySection";
 import DoomscrollVsAriseComparison from "@/components/DoomscrollVsAriseComparison";
@@ -41,6 +42,9 @@ export default function Home() {
 
       {/* 01. Mockup Editorial Hero Section */}
       <Hero onOpenDownload={() => setDownloadModalOpen(true)} />
+
+      {/* 01.5 Full-Width Product Showcase Video */}
+      <HeroVideoShowcase />
 
       {/* 02. Mockup 4-Pillars Sub-Hero Matrix */}
       <HeroPillarsSection />

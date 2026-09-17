@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import AriseLogo from "./AriseLogo";
 import { sound } from "@/lib/audio";
 
 export default function FooterMinimal() {
@@ -17,10 +18,8 @@ export default function FooterMinimal() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
         
         {/* Left: Brand and Tagline */}
-        <div className="space-y-1.5 text-center md:text-left">
-          <div className="text-xl font-bold tracking-[0.25em] text-slate-900 dark:text-white font-sans">
-            ARISE
-          </div>
+        <div className="space-y-2 text-center md:text-left">
+          <AriseLogo size="md" />
           <div className="font-mono text-[9px] tracking-[0.25em] text-slate-400 uppercase">
             A BETTER YOU AWAITS.
           </div>

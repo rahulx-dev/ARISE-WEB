@@ -31,12 +31,14 @@ export default function RealCashSection({ onOpenCashout }: RealCashSectionProps)
             transition={{ duration: 0.8 }}
             className="lg:col-span-6 space-y-10"
           >
-            <div className="space-y-4">
-
-              <h2 className="text-5xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-slate-900 dark:text-[#F8FAFC] leading-[0.98]">
-                SURVEYS TO <br />
-                <span className="text-[#10B981]">
-                  REAL PAYOUTS.
+            <div className="space-y-3">
+              <div className="text-xs font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+                MANA CONVERSION &amp; PAYOUT PROTOCOL
+              </div>
+              <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-[0.98]">
+                Surveys To <br />
+                <span className="italic text-slate-400 dark:text-slate-400">
+                  Real Payouts.
                 </span>
               </h2>
             </div>
