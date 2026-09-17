@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import HeroPillarsSection from "@/components/HeroPillarsSection";
 import StorySection from "@/components/StorySection";
-import BentoGridFeatures from "@/components/BentoGridFeatures";
 import DoomscrollVsAriseComparison from "@/components/DoomscrollVsAriseComparison";
 import AITrackerShowcase from "@/components/AITrackerShowcase";
 import GateGuardianSection from "@/components/GateGuardianSection";
@@ -39,11 +39,11 @@ export default function Home() {
       {/* 00. Minimal Floating Navigation */}
       <Navbar onOpenDownload={() => setDownloadModalOpen(true)} />
 
-      {/* 01. Hero Video — High-Impact Product Showcase */}
+      {/* 01. Mockup Editorial Hero Section */}
       <Hero onOpenDownload={() => setDownloadModalOpen(true)} />
 
-      {/* 02. Bento Grid Subsystem Matrix */}
-      <BentoGridFeatures />
+      {/* 02. Mockup 4-Pillars Sub-Hero Matrix */}
+      <HeroPillarsSection />
 
       {/* 03. Section 01 — The Problem (Whitespace & Typography) */}
       <StorySection />

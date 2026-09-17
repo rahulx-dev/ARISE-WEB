@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Menu, X, ShieldCheck } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import { sound } from "@/lib/audio";
 
@@ -41,28 +41,21 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
   }, []);
 
   const navLinks = [
-    { id: "features", name: "Features", href: "#features" },
-    { id: "ai", name: "AI Tracker", href: "#ai" },
-    { id: "gate", name: "Gates", href: "#gate" },
-    { id: "quests", name: "Daily Quests", href: "#quests" },
-    { id: "rewards", name: "Rewards", href: "#rewards" },
+    { id: "hero", name: "HOME", href: "#" },
+    { id: "features", name: "FEATURES", href: "#features" },
+    { id: "rewards", name: "REWARDS", href: "#rewards" },
     { id: "faq", name: "FAQ", href: "#faq" },
   ];
 
   const handleNavClick = (href: string) => {
     sound.playClick();
     setMobileMenuOpen(false);
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
     const targetId = href.replace("#", "");
     const el = document.getElementById(targetId);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const handlePrivacyClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    sound.playClick();
-    const el = document.getElementById("privacy") || document.getElementById("faq");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
@@ -72,12 +65,12 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 select-none ${
         isScrolled
-          ? "py-3 bg-white/85 dark:bg-[#030712]/85 backdrop-blur-xl border-b border-slate-200/80 dark:border-white/[0.08] shadow-sm dark:shadow-2xl dark:shadow-black/60"
-          : "py-5 bg-transparent"
+          ? "py-3 bg-white/80 dark:bg-[#030712]/80 backdrop-blur-2xl border-b border-slate-200/60 dark:border-white/[0.06] shadow-sm dark:shadow-2xl dark:shadow-black/70"
+          : "py-6 bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
-        {/* Brand Logo with Glowing Hunter Rank Badge and micro-hover */}
+        {/* Brand Logo - Exact ARISE Wide Monospace / Geometric Typography */}
         <a
           href="#"
           onClick={(e) => {
@@ -87,27 +80,15 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
           }}
           className="flex items-center gap-3 group cursor-pointer"
         >
-          <div className="w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center shadow-md shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 border border-blue-500/30">
-            <img
-              src="/logo.png"
-              alt="ARISE Logo"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-base font-extrabold tracking-tight text-slate-900 dark:text-white font-mono group-hover:text-[#0A84FF] dark:group-hover:text-cyan-400 transition-colors">
-              ARISE
-            </span>
-            <span className="px-2 py-0.5 rounded-md bg-blue-500/10 border border-blue-500/30 text-[10px] font-mono font-bold text-[#0A84FF] uppercase tracking-wider group-hover:bg-blue-500/20 transition-all">
-              S-RANK
-            </span>
-          </div>
+          <span className="text-xl sm:text-2xl font-bold tracking-[0.3em] text-slate-900 dark:text-white font-sans transition-colors group-hover:text-[#0A84FF] dark:group-hover:text-cyan-300">
+            ARISE
+          </span>
         </a>
 
-        {/* Center Desktop Navigation with Scroll Spy Active Indicator */}
-        <nav className="hidden md:flex items-center gap-1.5 p-1 rounded-full bg-slate-100/90 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/[0.06] backdrop-blur-md">
+        {/* Center Desktop Navigation with Clean Minimal Text & Active Blue Underline */}
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
+            const isActive = activeSection === link.id || (link.id === "hero" && activeSection === "hero");
             return (
               <a
                 key={link.id}
@@ -116,49 +97,39 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all duration-200 font-sans cursor-pointer hover:text-slate-950 dark:hover:text-white ${
+                className={`relative py-1 text-xs font-mono font-medium tracking-widest transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "text-[#0A84FF] dark:text-white font-bold"
-                    : "text-slate-600 dark:text-slate-400"
+                    ? "text-slate-900 dark:text-white"
+                    : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 }`}
               >
+                {link.name}
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
-                    className="absolute inset-0 rounded-full bg-white dark:bg-white/10 shadow-sm border border-slate-200/60 dark:border-white/10 -z-10"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0A84FF] to-transparent rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
-                {link.name}
               </a>
             );
           })}
-          
-          <a
-            href="#privacy"
-            onClick={handlePrivacyClick}
-            className="px-3 py-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors tracking-tight inline-flex items-center gap-1.5 cursor-pointer font-sans hover:scale-105 duration-200"
-          >
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>100% Offline</span>
-          </a>
         </nav>
 
-        {/* Right Controls */}
-        <div className="flex items-center gap-3">
-          {/* Theme Toggle */}
+        {/* Right Controls: Theme Toggle & Exact Pill Button */}
+        <div className="flex items-center gap-4">
           <ThemeToggle />
 
-          {/* Clean 'DOWNLOAD APK' CTA Button */}
+          {/* Exact Mockup Pill Button 'Download App ->' */}
           <button
             onClick={() => {
               sound.playClick();
               onOpenDownload();
             }}
-            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-bold bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-black transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/20 active:scale-[0.98] shadow-md cursor-pointer border border-transparent dark:border-white/20"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-sans font-medium tracking-tight border border-slate-300 dark:border-white/20 bg-slate-100/60 hover:bg-slate-200/80 dark:bg-white/[0.04] dark:hover:bg-white/[0.1] text-slate-900 dark:text-white transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-sm"
           >
-            <span>DOWNLOAD APK</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <span>Download App</span>
+            <ArrowRight className="w-3.5 h-3.5 opacity-80" />
           </button>
 
           {/* Mobile Menu Toggle */}
@@ -192,26 +163,15 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className={`block text-sm font-semibold py-1.5 transition-colors ${
+                className={`block text-xs font-mono tracking-widest py-2 transition-colors ${
                   activeSection === link.id
-                    ? "text-[#0A84FF] dark:text-cyan-400 font-bold"
-                    : "text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white"
+                    ? "text-[#0A84FF] dark:text-white font-bold"
+                    : "text-slate-700 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
                 }`}
               >
                 {link.name}
               </a>
             ))}
-            <a
-              href="#privacy"
-              onClick={(e) => {
-                setMobileMenuOpen(false);
-                handlePrivacyClick(e);
-              }}
-              className="flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 py-1.5"
-            >
-              <ShieldCheck className="w-4 h-4" />
-              <span>100% Offline &amp; Privacy First</span>
-            </a>
             <div className="pt-2">
               <button
                 onClick={() => {
@@ -219,10 +179,10 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                   sound.playClick();
                   onOpenDownload();
                 }}
-                className="w-full py-3 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-black text-xs font-mono font-bold flex items-center justify-center gap-2 shadow-lg cursor-pointer transition-transform active:scale-95"
+                className="w-full py-3 rounded-full border border-slate-300 dark:border-white/20 bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white text-xs font-sans font-medium flex items-center justify-center gap-2 shadow-sm cursor-pointer transition-transform active:scale-95"
               >
-                <span>DOWNLOAD APK</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Download App</span>
+                <ArrowRight className="w-3.5 h-3.5 opacity-80" />
               </button>
             </div>
           </motion.div>
