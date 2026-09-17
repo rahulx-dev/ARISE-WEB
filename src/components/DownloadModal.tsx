@@ -16,10 +16,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
   const [downloadProgress, setDownloadProgress] = useState(0);
   const [copied, setCopied] = useState(false);
 
-  const apkUrl =
-    process.env.VITE_ARISE_APK_DOWNLOAD_URL ||
-    process.env.NEXT_PUBLIC_ARISE_APK_DOWNLOAD_URL ||
-    "https://github.com/rahulx-dev/ARISE-WEB/releases/latest/download/ARISE_Final.apk";
+  const apkUrl = "https://github.com/rahulx-dev/ARISE-WEB/releases/latest/download/ARISE_Final.apk";
 
   const hash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
 
