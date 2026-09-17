@@ -41,9 +41,9 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
   }, []);
 
   const navLinks = [
-    { id: "hero", name: "HOME", href: "#" },
-    { id: "features", name: "FEATURES", href: "#features" },
-    { id: "rewards", name: "REWARDS", href: "#rewards" },
+    { id: "hero", name: "Home", href: "#" },
+    { id: "features", name: "Features", href: "#features" },
+    { id: "rewards", name: "Rewards", href: "#rewards" },
     { id: "faq", name: "FAQ", href: "#faq" },
   ];
 
@@ -65,12 +65,12 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 select-none ${
         isScrolled
-          ? "py-3 bg-white/80 dark:bg-[#030712]/80 backdrop-blur-2xl border-b border-slate-200/60 dark:border-white/[0.06] shadow-sm dark:shadow-2xl dark:shadow-black/70"
+          ? "py-3 bg-white/80 dark:bg-black/80 backdrop-blur-2xl border-b border-slate-200/60 dark:border-white/[0.06]"
           : "py-6 bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
-        {/* Brand Logo - Exact ARISE Wide Monospace / Geometric Typography */}
+        {/* Brand Logo - Exact ARISE Monospace / Geometric Typography */}
         <a
           href="#"
           onClick={(e) => {
@@ -80,12 +80,12 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
           }}
           className="flex items-center gap-3 group cursor-pointer"
         >
-          <span className="text-xl sm:text-2xl font-bold tracking-[0.3em] text-slate-900 dark:text-white font-sans transition-colors group-hover:text-[#0A84FF] dark:group-hover:text-cyan-300">
+          <span className="text-xl sm:text-2xl font-bold tracking-[0.25em] text-slate-900 dark:text-white font-sans transition-colors">
             ARISE
           </span>
         </a>
 
-        {/* Center Desktop Navigation with Clean Minimal Text & Active Blue Underline */}
+        {/* Center Desktop Navigation with Clean Title Case & Active Underline */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id || (link.id === "hero" && activeSection === "hero");
@@ -97,9 +97,9 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className={`relative py-1 text-xs font-mono font-medium tracking-widest transition-all duration-200 cursor-pointer ${
+                className={`relative py-1 text-xs font-sans tracking-wide transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "text-slate-900 dark:text-white"
+                    ? "text-slate-900 dark:text-white font-medium"
                     : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 }`}
               >
@@ -107,7 +107,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0A84FF] to-transparent rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-slate-900 dark:bg-white rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -116,20 +116,20 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
           })}
         </nav>
 
-        {/* Right Controls: Theme Toggle & Exact Pill Button */}
+        {/* Right Controls: Theme Toggle & Solid White Pill Button */}
         <div className="flex items-center gap-4">
           <ThemeToggle />
 
-          {/* Exact Mockup Pill Button 'Download App ->' */}
+          {/* Exact Mockup Pill Button: Solid White with Black Text */}
           <button
             onClick={() => {
               sound.playClick();
               onOpenDownload();
             }}
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-sans font-medium tracking-tight border border-slate-300 dark:border-white/20 bg-slate-100/60 hover:bg-slate-200/80 dark:bg-white/[0.04] dark:hover:bg-white/[0.1] text-slate-900 dark:text-white transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-sm"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-sans font-semibold bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-slate-100 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-lg"
           >
             <span>Download App</span>
-            <ArrowRight className="w-3.5 h-3.5 opacity-80" />
+            <ArrowRight className="w-3.5 h-3.5" />
           </button>
 
           {/* Mobile Menu Toggle */}
