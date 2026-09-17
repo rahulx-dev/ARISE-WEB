@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-subtle: #f1f5f9;
+  --border-hairline: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --accent-blue: #0066cc;
+  --accent-crimson: #dc2626;
+  --accent-emerald: #059669;
+}
+
+.dark {
+  --background: #030712;
+  --surface: #070b16;
+  --surface-subtle: #040711;
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(10, 132, 255, 0.3);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-blue: #0a84ff;
+  --accent-crimson: #ef4444;
+  --accent-emerald: #10b981;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--text-primary);
+  background-color: var(--background);
+  overflow-x: hidden;
+  min-height: 100vh;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  letter-spacing: -0.011em;
+}
+
+/* Smooth Global Theme Color Interpolation */
+body, 
+header, 
+nav, 
+footer, 
+section, 
+div:not([data-projection-id]), 
+p, 
+span, 
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6, 
+a, 
+button {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 350ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modern View Transition Animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 380ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Apple & Linear Hairline Surface Cards */
+.hairline-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border-hairline);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .hairline-card {
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.6);
+}
+
+.light .hairline-card {
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
+}
+
+.hairline-card:hover {
+  border-color: var(--border-strong);
+}
+
+/* Subtle Physical Hardware Bezel */
+.hardware-chassis {
+  background: linear-gradient(145deg, #1e293b, #0f172a, #020617);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 30px 70px -20px rgba(0, 0, 0, 0.8),
+    0 0 50px -15px rgba(10, 132, 255, 0.15);
+}
+
+.light .hardware-chassis {
+  background: linear-gradient(145deg, #e2e8f0, #cbd5e1, #94a3b8);
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 30px 60px -20px rgba(0, 0, 0, 0.12),
+    0 0 35px -10px rgba(0, 102, 204, 0.1);
+}
+
+/* Apple & Linear Refined Typography Gradients */
+.hero-gradient-text {
+  background: linear-gradient(180deg, #ffffff 20%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.light .hero-gradient-text {
+  background: linear-gradient(180deg, #0f172a 20%, #475569 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Minimal Lenis Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
