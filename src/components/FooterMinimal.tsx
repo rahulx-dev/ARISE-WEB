@@ -26,11 +26,12 @@ export default function FooterMinimal() {
           {/* Brand Col */}
           <div className="md:col-span-2 space-y-3">
             <div className="flex items-center gap-2.5 group">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#0A84FF] via-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform">
-                <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.5L3.5 18h4.5l4-7.5 4 7.5h4.5L12 2.5z" />
-                  <path d="M12 12.5l-2 3.5h4l-2-3.5z" fill="#00D2EE" />
-                </svg>
+              <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform border border-blue-500/30">
+                <img
+                  src="/logo.png"
+                  alt="ARISE Logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="text-base font-extrabold tracking-tight text-slate-900 dark:text-white font-mono">
                 ARISE // HUNTER OS

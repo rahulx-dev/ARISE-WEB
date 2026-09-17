@@ -54,6 +54,10 @@ export const metadata: Metadata = {
     title: "ARISE — Build Discipline. Earn Your Time.",
     description:
       "The world's first AI-powered hunter system. Burn calories to unlock locked apps, complete daily quests with real-time camera tracking, and convert discipline into real wealth.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/logo.png",
   },
 };
 
