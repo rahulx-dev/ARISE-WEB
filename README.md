@@ -43,24 +43,6 @@
 
 ---
 
-## 🚀 Running Locally
+## 📄 License & Rights
 
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm run start
-```
-
----
-
-## 📄 License
-
-Proprietary © 2026 ARISE Protocol. All Rights Reserved.
+Proprietary © 2026. All rights reserved to **ARISE & Developers**.
