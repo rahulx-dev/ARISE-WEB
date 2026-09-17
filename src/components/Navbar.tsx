@@ -207,7 +207,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                 setMobileMenuOpen(false);
                 handlePrivacyClick(e);
               }}
-              className="block text-sm font-semibold text-emerald-600 dark:text-emerald-400 py-1.5 flex items-center gap-2"
+              className="flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 py-1.5"
             >
               <ShieldCheck className="w-4 h-4" />
               <span>100% Offline &amp; Privacy First</span>

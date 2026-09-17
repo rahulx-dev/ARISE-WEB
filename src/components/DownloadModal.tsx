@@ -75,7 +75,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-xl glass-panel border border-slate-200 dark:border-white/[0.12] rounded-3xl p-6 sm:p-8 bg-white dark:bg-[#070B16] text-slate-900 dark:text-slate-100 shadow-2xl shadow-slate-300/60 dark:shadow-cyan-950/50 z-10 overflow-hidden"
+            className="relative w-full max-w-xl border border-slate-200 dark:border-white/[0.12] rounded-3xl p-6 sm:p-8 bg-white dark:bg-[#070B16] text-slate-900 dark:text-slate-100 shadow-2xl shadow-slate-300/60 dark:shadow-cyan-950/50 z-10 overflow-hidden"
           >
             {/* Top Glowing Laser Accent */}
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0A84FF] to-transparent" />
@@ -113,9 +113,9 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => sound.playClick()}
-                className="flex flex-col items-center justify-center p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-white/10 text-center relative group hover:border-blue-500/60 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                className="flex flex-col items-center justify-center p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-white/10 text-center relative group hover:border-blue-500/60 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer"
               >
-                <div className="relative p-3 bg-white rounded-xl shadow-sm mb-3">
+                <div className="relative p-3 bg-white rounded-xl shadow-md mb-3 border border-slate-200 dark:border-white/20">
                   <svg
                     className="w-32 h-32"
                     viewBox="0 0 100 100"

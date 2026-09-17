@@ -73,7 +73,7 @@ export default function CashoutModal({ isOpen, onClose, initialCrystals = 1500 }
             initial={{ opacity: 0, scale: 0.94, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
-            className="relative w-full max-w-lg glass-panel border border-slate-200 dark:border-white/[0.12] rounded-2xl p-6 sm:p-8 bg-white dark:bg-[#050811]/98 text-slate-900 dark:text-slate-100 shadow-2xl shadow-slate-300/60 dark:shadow-emerald-950/40 z-10 overflow-hidden"
+            className="relative w-full max-w-lg border border-slate-200 dark:border-white/[0.12] rounded-2xl p-6 sm:p-8 bg-white dark:bg-[#070B16] text-slate-900 dark:text-slate-100 shadow-2xl shadow-slate-300/60 dark:shadow-emerald-950/40 z-10 overflow-hidden"
           >
             {/* Top Accent Line */}
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-arise-emerald to-transparent" />
