@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
 import AriseLogo from "./AriseLogo";
 import { sound } from "@/lib/audio";
 
@@ -66,7 +65,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 select-none ${
         isScrolled
-          ? "py-3 bg-white/80 dark:bg-black/80 backdrop-blur-2xl border-b border-slate-200/60 dark:border-white/[0.06]"
+          ? "py-3 bg-black/85 backdrop-blur-2xl border-b border-white/[0.06]"
           : "py-6 bg-transparent"
       }`}
     >
@@ -98,15 +97,15 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                 }}
                 className={`relative py-1 text-xs font-sans tracking-wide transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "text-slate-900 dark:text-white font-medium"
-                    : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                    ? "text-white font-medium"
+                    : "text-white/60 hover:text-white"
                 }`}
               >
                 {link.name}
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-slate-900 dark:bg-white rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-white rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -115,17 +114,15 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
           })}
         </nav>
 
-        {/* Right Controls: Theme Toggle & Solid White Pill Button */}
+        {/* Right Controls: Solid White Pill Button */}
         <div className="flex items-center gap-4">
-          <ThemeToggle />
-
           {/* Exact Mockup Pill Button: Solid White with Black Text */}
           <button
             onClick={() => {
               sound.playClick();
               onOpenDownload();
             }}
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-sans font-semibold bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-black dark:hover:bg-slate-100 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-lg"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-sans font-semibold bg-white text-black hover:bg-slate-100 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-lg shadow-white/10"
           >
             <span>Download App</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -137,7 +134,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
               sound.playClick();
               setMobileMenuOpen(!mobileMenuOpen);
             }}
-            className="md:hidden p-2 text-slate-600 dark:text-slate-400 hover:text-black dark:hover:text-white rounded-lg cursor-pointer transition-colors"
+            className="md:hidden p-2 text-white/70 hover:text-white rounded-lg cursor-pointer transition-colors"
             aria-label="Toggle Navigation"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
