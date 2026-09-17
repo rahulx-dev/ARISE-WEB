@@ -120,8 +120,8 @@ export default function AITrackerShowcase() {
 
   return (
     <section id="ai" className="py-28 sm:py-40 relative overflow-hidden select-none">
-      {/* Subtle ambient cyan light */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[550px] bg-[#0A84FF]/[0.04] rounded-full blur-[220px] pointer-events-none -z-10" />
+      {/* Subtle ambient light */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[550px] bg-white/[0.02] rounded-full blur-[220px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
@@ -134,12 +134,12 @@ export default function AITrackerShowcase() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-6 space-y-8"
           >
-              <div className="text-xs font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+              <div className="text-xs font-mono tracking-[0.25em] text-slate-400 uppercase">
                 BIOMECHANICAL VISION
               </div>
-              <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-[0.96]">
+              <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-white leading-[0.96]">
                 See Every Rep. <br />
-                <span className="italic text-slate-400 dark:text-slate-400">
+                <span className="italic text-slate-400">
                   Zero Cheating.
                 </span>
               </h2>
@@ -157,13 +157,13 @@ export default function AITrackerShowcase() {
                       key={ex.id}
                       onClick={() => handleModeChange(ex.id as ExerciseMode)}
                       className={`relative py-3 px-3 rounded-xl text-xs font-mono transition-all text-center flex flex-col items-center gap-0.5 cursor-pointer z-10 ${
-                        isActive ? "text-cyan-400 font-bold" : "text-white/60 hover:text-white"
+                        isActive ? "text-white font-bold" : "text-white/60 hover:text-white"
                       }`}
                     >
                       {isActive && (
                         <motion.div
                           layoutId="activeExercisePill"
-                          className="absolute inset-0 rounded-xl bg-cyan-500/20 border border-cyan-400/40 shadow-sm shadow-cyan-950/40 -z-10"
+                          className="absolute inset-0 rounded-xl bg-white/[0.12] border border-white/20 shadow-sm -z-10"
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -176,17 +176,17 @@ export default function AITrackerShowcase() {
             </div>
 
             {/* Simulator Interactive Action Buttons Bar */}
-            <div className="p-4 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 space-y-3">
+            <div className="p-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] space-y-3">
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="text-slate-400">
-                  SIMULATOR STATUS: <span className="font-bold text-cyan-400">{isAutoSimulating ? "AUTO RUNNING (30 FPS)" : questCleared ? "QUEST COMPLETED" : "READY"}</span>
+                  SIMULATOR STATUS: <span className="font-bold text-white">{isAutoSimulating ? "AUTO RUNNING (30 FPS)" : questCleared ? "QUEST COMPLETED" : "READY"}</span>
                 </span>
                 <button
                   onClick={toggleSound}
                   className="flex items-center gap-1 text-slate-400 hover:text-white cursor-pointer"
                   title={isMuted ? "Unmute sound" : "Mute sound"}
                 >
-                  {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-cyan-400" />}
+                  {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
                   <span className="text-[10px]">{isMuted ? "MUTED" : "AUDIO ON"}</span>
                 </button>
               </div>
@@ -195,7 +195,7 @@ export default function AITrackerShowcase() {
                 <button
                   onClick={handleSingleRep}
                   disabled={reps >= targetReps}
-                  className="flex-1 py-2.5 px-4 rounded-xl font-mono text-xs font-bold bg-[#0A84FF] hover:bg-blue-500 text-white transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+                  className="flex-1 py-2.5 px-4 rounded-xl font-mono text-xs font-bold bg-white text-black hover:bg-slate-100 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
                 >
                   <Activity className="w-3.5 h-3.5" />
                   <span>Tap to Rep (+1)</span>
@@ -206,7 +206,7 @@ export default function AITrackerShowcase() {
                   className={`py-2.5 px-4 rounded-xl font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer border ${
                     isAutoSimulating
                       ? "bg-amber-500/20 border-amber-500/50 text-amber-400"
-                      : "bg-white/[0.06] border-white/10 text-white hover:border-cyan-500"
+                      : "bg-white/[0.06] border-white/10 text-white hover:border-white/30"
                   }`}
                 >
                   {isAutoSimulating ? <Square className="w-3.5 h-3.5 fill-current" /> : <Play className="w-3.5 h-3.5 fill-current" />}
@@ -227,14 +227,14 @@ export default function AITrackerShowcase() {
             <div className="grid grid-cols-3 gap-4 pt-2 border-t border-white/[0.08] font-mono text-xs select-none">
               <div className="p-3 rounded-xl border border-white/[0.06] bg-white/[0.02] space-y-1">
                 <div className="text-slate-400 text-[10px] flex items-center gap-1">
-                  <Scan className="w-3 h-3 text-cyan-400" />
+                  <Scan className="w-3 h-3 text-white" />
                   <span>TRACKING</span>
                 </div>
                 <div className="font-bold text-white">33 Keypoints</div>
               </div>
               <div className="p-3 rounded-xl border border-white/[0.06] bg-white/[0.02] space-y-1">
                 <div className="text-slate-400 text-[10px] flex items-center gap-1">
-                  <Cpu className="w-3 h-3 text-cyan-400" />
+                  <Cpu className="w-3 h-3 text-white" />
                   <span>LATENCY</span>
                 </div>
                 <div className="font-bold text-white">&lt; 16ms Local</div>
@@ -275,8 +275,8 @@ export default function AITrackerShowcase() {
 
                   {/* Top Essential Telemetry Overlay */}
                   <div className="relative z-10 flex items-center justify-between">
-                    <div className="px-3 py-1.5 rounded-xl bg-black/75 border border-cyan-500/30 backdrop-blur-md shadow-lg">
-                      <div className="text-xs font-mono font-bold text-cyan-400">
+                    <div className="px-3 py-1.5 rounded-xl bg-black/75 border border-white/20 backdrop-blur-md shadow-lg">
+                      <div className="text-xs font-mono font-bold text-white">
                         {activeExercise.targetAngle}
                       </div>
                       <div className="text-[8px] font-mono text-slate-300">
@@ -334,7 +334,7 @@ export default function AITrackerShowcase() {
                               cy="50"
                               r="42"
                               fill="none"
-                              stroke="#00D2EE"
+                              stroke="#FFFFFF"
                               strokeWidth="8"
                               strokeDasharray="264"
                               strokeDashoffset={264 - (264 * progressPercent) / 100}
@@ -347,7 +347,7 @@ export default function AITrackerShowcase() {
                             <div className="text-3xl font-black font-mono text-white tracking-tight">
                               {reps}
                             </div>
-                            <div className="text-[9px] font-mono text-cyan-400 font-bold">
+                            <div className="text-[9px] font-mono text-slate-300 font-bold">
                               / {targetReps} REPS
                             </div>
                           </div>

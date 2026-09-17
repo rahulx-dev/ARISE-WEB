@@ -56,8 +56,8 @@ export default function HunterStatsSection() {
 
   return (
     <section ref={sectionRef} id="ranks" className="py-36 sm:py-48 relative overflow-hidden">
-      {/* Subtle Blue Ambience */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#0A84FF]/[0.04] rounded-full blur-[180px] pointer-events-none -z-10" />
+      {/* Subtle Monochrome Ambience */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-white/[0.02] rounded-full blur-[180px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">

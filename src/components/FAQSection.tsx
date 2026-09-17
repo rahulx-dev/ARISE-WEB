@@ -77,8 +77,8 @@ export default function FAQSection() {
       {/* Anchor for Privacy Navigation */}
       <div id="privacy" className="absolute -top-24 left-0" />
 
-      {/* Subtle Blue Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#0A84FF]/[0.03] rounded-full blur-[180px] pointer-events-none -z-10" />
+      {/* Subtle Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-white/[0.02] rounded-full blur-[180px] pointer-events-none -z-10" />
 
       <div className="max-w-4xl mx-auto px-6 sm:px-8">
         {/* Header */}

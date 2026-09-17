@@ -74,21 +74,21 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-xl border border-white/[0.12] rounded-3xl p-6 sm:p-8 bg-[#070B16] text-white shadow-2xl shadow-cyan-950/50 z-10 overflow-hidden"
+            className="relative w-full max-w-xl border border-white/[0.12] rounded-3xl p-6 sm:p-8 bg-[#070B16] text-white shadow-2xl shadow-black/80 z-10 overflow-hidden"
           >
             {/* Top Glowing Laser Accent */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0A84FF] to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 
             {/* Header */}
             <div className="flex items-start justify-between mb-6">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="w-2 h-2 rounded-full bg-[#0A84FF] animate-ping" />
-                  <span className="text-xs font-mono tracking-widest text-cyan-400 font-bold uppercase">
+                  <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+                  <span className="text-xs font-mono tracking-widest text-slate-300 font-bold uppercase">
                     SYSTEM PROTOCOL // CLIENT INSTALL
                   </span>
                 </div>
-                <h3 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                <h3 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2 font-display">
                   ARISE Hunter Client v1.0.4
                 </h3>
               </div>
@@ -112,7 +112,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => sound.playClick()}
-                className="flex flex-col items-center justify-center p-5 rounded-2xl bg-white/[0.03] border border-white/10 text-center relative group hover:border-blue-500/60 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                className="flex flex-col items-center justify-center p-5 rounded-2xl bg-white/[0.03] border border-white/10 text-center relative group hover:border-white/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer"
               >
                 <div className="relative p-2 bg-white rounded-xl shadow-md mb-3 border border-white/20 overflow-hidden">
                   <img
@@ -120,10 +120,10 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
                     alt="Scan to Download ARISE App"
                     className="w-32 h-32 object-contain"
                   />
-                  <div className="absolute inset-0 border border-blue-500/40 rounded-xl pointer-events-none group-hover:border-blue-500 transition-colors" />
+                  <div className="absolute inset-0 border border-white/20 rounded-xl pointer-events-none group-hover:border-white/50 transition-colors" />
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-cyan-400 font-mono font-bold">
-                  <QrCode className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-1.5 text-xs text-white font-mono font-bold">
+                  <QrCode className="w-3.5 h-3.5 text-slate-300" />
                   <span>SCAN WITH PHONE</span>
                 </div>
                 <p className="text-[11px] text-slate-400 mt-1">
@@ -136,13 +136,13 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-xs py-1.5 border-b border-white/10">
                     <span className="text-slate-400 flex items-center gap-1.5">
-                      <Smartphone className="w-3.5 h-3.5 text-cyan-400" /> Supported OS
+                      <Smartphone className="w-3.5 h-3.5 text-slate-300" /> Supported OS
                     </span>
                     <span className="font-mono text-white font-bold">Android 8.0+</span>
                   </div>
                   <div className="flex items-center justify-between text-xs py-1.5 border-b border-white/10">
                     <span className="text-slate-400 flex items-center gap-1.5">
-                      <Cpu className="w-3.5 h-3.5 text-blue-400" /> Target Arch
+                      <Cpu className="w-3.5 h-3.5 text-slate-300" /> Target Arch
                     </span>
                     <span className="font-mono text-white font-bold">arm64-v8a</span>
                   </div>

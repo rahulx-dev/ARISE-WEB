@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -40,10 +40,10 @@ export default function StorySection() {
         {/* Phase 2: The Resolution */}
         <motion.div
           style={{ opacity: opacity2, y: y2, scale: scale2 }}
-          className="text-5xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-slate-900 dark:text-[#F8FAFC] leading-[0.98]"
+          className="text-5xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-white leading-[0.98]"
         >
           ARISE <br />
-          <span className="text-[#0A84FF]">
+          <span className="text-white">
             WANTS YOUR DISCIPLINE.
           </span>
         </motion.div>

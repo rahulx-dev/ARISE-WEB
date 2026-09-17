@@ -63,7 +63,7 @@ export default function FooterMinimal() {
               target="_blank"
               rel="noreferrer"
               onClick={() => sound.playClick()}
-              className="hover:text-[#0A84FF] transition-colors"
+              className="hover:text-white transition-colors"
               aria-label="Discord"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">

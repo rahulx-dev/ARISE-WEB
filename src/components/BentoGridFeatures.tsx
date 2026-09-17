@@ -9,14 +9,14 @@ export default function BentoGridFeatures() {
   return (
     <section id="features" className="py-24 sm:py-36 relative overflow-hidden select-none">
       {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-blue-500/[0.03] rounded-full blur-[200px] pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-white/[0.02] rounded-full blur-[200px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 sm:mb-20">
-          <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.05]">
+          <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.05]">
             ENGINEERED FOR <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0A84FF] to-cyan-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
               UNBREAKABLE DISCIPLINE.
             </span>
           </h2>
@@ -31,35 +31,35 @@ export default function BentoGridFeatures() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="group relative rounded-3xl border border-slate-200 dark:border-white/[0.08] bg-white/95 dark:bg-[#070B16]/90 backdrop-blur-2xl p-7 sm:p-9 shadow-xl shadow-slate-200/50 dark:shadow-black/60 overflow-hidden flex flex-col justify-between hover:border-blue-500/50 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-blue-500/15 transition-all duration-300 cursor-pointer"
+            className="group relative rounded-3xl border border-white/[0.08] bg-[#070B16]/90 backdrop-blur-2xl p-7 sm:p-9 shadow-xl shadow-black/60 overflow-hidden flex flex-col justify-between hover:border-white/30 hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-300 cursor-pointer"
           >
             {/* Top Accent Light */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0A84FF] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
             <div className="space-y-4 relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-[#0A84FF] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-2xl bg-white/[0.06] border border-white/15 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                 <Eye className="w-6 h-6" />
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-[#0A84FF] dark:group-hover:text-cyan-400 transition-colors">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight group-hover:text-slate-200 transition-colors">
                 30 FPS On-Device AI
               </h3>
 
-              <p className="text-sm text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
+              <p className="text-sm text-slate-400 font-sans leading-relaxed">
                 On-device BlazePose neural tracking in volatile RAM. 100% private with zero video cloud uploads.
               </p>
             </div>
 
             {/* Interactive Visual Element */}
-            <div className="mt-8 pt-6 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between font-mono text-xs text-slate-500 dark:text-slate-400">
+            <div className="mt-8 pt-6 border-t border-white/[0.06] flex items-center justify-between font-mono text-xs text-slate-400">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
                 <span>Zero Cloud Telemetry</span>
               </div>
               <a
                 href="#ai"
                 onClick={() => sound.playClick()}
-                className="inline-flex items-center gap-1 text-[#0A84FF] dark:text-cyan-400 font-bold hover:underline"
+                className="inline-flex items-center gap-1 text-white font-bold hover:underline"
               >
                 <span>Explore AI</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

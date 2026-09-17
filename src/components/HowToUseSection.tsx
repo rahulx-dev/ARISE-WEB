@@ -50,17 +50,17 @@ export default function HowToUseSection() {
             whileHover={{ y: -4, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => handleOpen("en")}
-            className="w-full sm:w-1/2 p-6 rounded-3xl border border-white/[0.08] bg-[#070B16]/90 hover:border-blue-500/40 hover:shadow-xl hover:shadow-blue-950/30 transition-all text-left space-y-3 group cursor-pointer"
+            className="w-full sm:w-1/2 p-6 rounded-3xl border border-white/[0.08] bg-[#070B16]/90 hover:border-white/30 hover:shadow-xl transition-all text-left space-y-3 group cursor-pointer"
           >
             <div className="flex items-center justify-between">
               <div className="text-xl font-semibold text-white">
                 ENGLISH
               </div>
-              <div className="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-cyan-400 group-hover:bg-white group-hover:text-black transition-all">
+              <div className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/15 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-all">
                 <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
               </div>
             </div>
-            <div className="text-xs font-medium text-cyan-400 flex items-center gap-1.5">
+            <div className="text-xs font-medium text-slate-400 group-hover:text-white flex items-center gap-1.5 transition-colors">
               <span>Watch the guide</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
             </div>
@@ -71,17 +71,17 @@ export default function HowToUseSection() {
             whileHover={{ y: -4, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => handleOpen("hi")}
-            className="w-full sm:w-1/2 p-6 rounded-3xl border border-white/[0.08] bg-[#070B16]/90 hover:border-blue-500/40 hover:shadow-xl hover:shadow-blue-950/30 transition-all text-left space-y-3 group cursor-pointer"
+            className="w-full sm:w-1/2 p-6 rounded-3xl border border-white/[0.08] bg-[#070B16]/90 hover:border-white/30 hover:shadow-xl transition-all text-left space-y-3 group cursor-pointer"
           >
             <div className="flex items-center justify-between">
               <div className="text-xl font-semibold text-white">
                 हिन्दी
               </div>
-              <div className="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-cyan-400 group-hover:bg-white group-hover:text-black transition-all">
+              <div className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/15 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-all">
                 <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
               </div>
             </div>
-            <div className="text-xs font-medium text-cyan-400 flex items-center gap-1.5">
+            <div className="text-xs font-medium text-slate-400 group-hover:text-white flex items-center gap-1.5 transition-colors">
               <span>गाइड देखें</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
             </div>

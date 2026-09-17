@@ -83,7 +83,7 @@ export default function TutorialVideoModal({
             {/* Top Bar with Language Tabs & Close Button */}
             <div className="w-full flex items-center justify-between px-2 bg-slate-900/80 p-2.5 rounded-2xl border border-white/10 backdrop-blur-md">
               <div className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-[#0A84FF] dark:text-cyan-400" />
+                <Globe className="w-4 h-4 text-white" />
                 <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
                   SYSTEM WALKTHROUGH //
                 </span>
@@ -94,7 +94,7 @@ export default function TutorialVideoModal({
                     onClick={() => handleTabChange("en")}
                     className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
                       currentLang === "en"
-                        ? "bg-[#0A84FF] text-white font-bold shadow-sm"
+                        ? "bg-white text-black font-bold shadow-sm"
                         : "text-slate-400 hover:text-white"
                     }`}
                   >
@@ -104,7 +104,7 @@ export default function TutorialVideoModal({
                     onClick={() => handleTabChange("hi")}
                     className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
                       currentLang === "hi"
-                        ? "bg-[#0A84FF] text-white font-bold shadow-sm"
+                        ? "bg-white text-black font-bold shadow-sm"
                         : "text-slate-400 hover:text-white"
                     }`}
                   >

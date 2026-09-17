@@ -62,7 +62,7 @@ export default function ManaCurrencyConverter({ onOpenCashout }: { onOpenCashout
           step={500}
           value={manaAmount}
           onChange={(e) => handleSliderChange(Number(e.target.value))}
-          className="w-full h-2 rounded-lg bg-white/10 accent-[#0A84FF] cursor-pointer"
+          className="w-full h-2 rounded-lg bg-white/10 accent-emerald-400 cursor-pointer"
         />
 
         {/* Quick Presets */}
@@ -73,7 +73,7 @@ export default function ManaCurrencyConverter({ onOpenCashout }: { onOpenCashout
               onClick={() => handlePreset(preset)}
               className={`px-2.5 py-1 rounded-lg border text-[11px] transition-all cursor-pointer ${
                 manaAmount === preset
-                  ? "bg-blue-500/20 border-blue-500/40 text-cyan-400 font-bold"
+                  ? "bg-white text-black font-bold border-white"
                   : "bg-white/[0.03] border-white/10 text-slate-400 hover:border-white/20 hover:text-white"
               }`}
             >

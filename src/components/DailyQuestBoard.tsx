@@ -72,7 +72,7 @@ export default function DailyQuestBoard() {
         particleCount: 80,
         spread: 80,
         origin: { y: 0.6 },
-        colors: ["#00D2EE", "#0A84FF", "#10B981", "#F59E0B"],
+        colors: ["#FFFFFF", "#10B981", "#E2E8F0", "#F59E0B"],
       });
     } catch {
       // Confetti fallback
@@ -82,8 +82,7 @@ export default function DailyQuestBoard() {
   return (
     <div className="w-full max-w-4xl mx-auto rounded-3xl border border-white/[0.08] bg-[#070B16]/95 backdrop-blur-2xl p-6 sm:p-10 shadow-2xl shadow-black/70 relative overflow-hidden select-none space-y-8">
       {/* Specular Ambient Glow */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0A84FF] to-transparent opacity-80" />
-      <div className="absolute -top-32 -right-32 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
       {/* Solo Leveling System Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
@@ -117,8 +116,8 @@ export default function DailyQuestBoard() {
           <motion.div
             className={`h-full rounded-full transition-all duration-500 ${
               totalProgress === 100
-                ? "bg-gradient-to-r from-emerald-500 to-[#0A84FF] shadow-[0_0_12px_rgba(10,132,255,0.6)]"
-                : "bg-gradient-to-r from-[#0A84FF] to-cyan-400"
+                ? "bg-gradient-to-r from-emerald-500 to-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.4)]"
+                : "bg-white"
             }`}
             animate={{ width: `${totalProgress}%` }}
             transition={{ type: "spring", stiffness: 120, damping: 20 }}
@@ -147,7 +146,7 @@ export default function DailyQuestBoard() {
                     className={`w-8 h-8 rounded-xl flex items-center justify-center font-mono text-xs font-bold ${
                       isDone
                         ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40"
-                        : "bg-blue-500/10 text-cyan-400 border border-blue-500/20"
+                        : "bg-white/[0.06] text-white border border-white/10"
                     }`}
                   >
                     {isDone ? <CheckCircle2 className="w-4 h-4" /> : <Flame className="w-4 h-4" />}
@@ -175,7 +174,7 @@ export default function DailyQuestBoard() {
                 <div className="flex-1 h-2 rounded-full bg-white/10 overflow-hidden">
                   <div
                     className={`h-full transition-all duration-300 ${
-                      isDone ? "bg-emerald-500" : "bg-[#0A84FF]"
+                      isDone ? "bg-emerald-500" : "bg-white"
                     }`}
                     style={{ width: `${percent}%` }}
                   />
@@ -184,7 +183,7 @@ export default function DailyQuestBoard() {
                 {!isDone ? (
                   <button
                     onClick={() => incrementQuest(quest.id)}
-                    className="px-3 py-1 rounded-xl bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/30 text-cyan-400 font-mono text-xs font-bold cursor-pointer transition-all active:scale-95 whitespace-nowrap"
+                    className="px-3 py-1 rounded-xl bg-white/[0.08] hover:bg-white/20 border border-white/15 text-white font-mono text-xs font-bold cursor-pointer transition-all active:scale-95 whitespace-nowrap"
                   >
                     +{quest.step} {quest.unit}
                   </button>
@@ -204,9 +203,9 @@ export default function DailyQuestBoard() {
         <div className="flex items-center gap-2 w-full sm:w-auto">
           <button
             onClick={completeAll}
-            className="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-white/[0.04] border border-white/10 hover:border-blue-500/40 text-xs font-mono text-slate-300 transition-all cursor-pointer flex items-center justify-center gap-1.5"
+            className="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/30 text-xs font-mono text-slate-300 hover:text-white transition-all cursor-pointer flex items-center justify-center gap-1.5"
           >
-            <Zap className="w-3.5 h-3.5 text-cyan-400" />
+            <Zap className="w-3.5 h-3.5 text-white" />
             <span>Simulate 100% Reps</span>
           </button>
           <button
@@ -224,13 +223,13 @@ export default function DailyQuestBoard() {
             onClick={handleClaim}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full sm:w-auto px-6 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-500 via-[#0A84FF] to-blue-600 text-white font-mono font-bold text-xs tracking-wider uppercase shadow-lg shadow-blue-500/25 cursor-pointer flex items-center justify-center gap-2 animate-pulse"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-2xl bg-white text-black hover:bg-slate-100 font-mono font-bold text-xs tracking-wider uppercase shadow-xl cursor-pointer flex items-center justify-center gap-2"
           >
-            <Trophy className="w-4 h-4" />
+            <Trophy className="w-4 h-4 text-black" />
             <span>CLAIM REWARD // +500 MANA CRYSTALS</span>
           </motion.button>
         ) : claimed ? (
-          <div className="w-full sm:w-auto px-5 py-2 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-600 dark:text-emerald-400 font-mono text-xs font-bold flex items-center justify-center gap-2">
+          <div className="w-full sm:w-auto px-5 py-2 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-mono text-xs font-bold flex items-center justify-center gap-2">
             <CheckCircle2 className="w-4 h-4" />
             <span>REWARD CLAIMED // +500 MANA (₹50.00)</span>
           </div>
@@ -248,16 +247,16 @@ export default function DailyQuestBoard() {
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="p-5 rounded-2xl bg-gradient-to-r from-blue-600/20 via-emerald-600/20 to-blue-600/20 border border-[#0A84FF]/40 text-center space-y-2"
+            className="p-5 rounded-2xl bg-emerald-950/30 border border-emerald-500/40 text-center space-y-2"
           >
             <div className="inline-flex items-center gap-2 text-emerald-400 font-mono text-xs font-bold uppercase">
               <Sparkles className="w-4 h-4 text-emerald-400" />
               <span>[QUEST CLEARED // LEVEL UP!]</span>
             </div>
-            <div className="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-mono">
+            <div className="text-base sm:text-lg font-bold text-white font-mono">
               You earned +500 Mana Crystals &amp; +1,000 Hunter EXP
             </div>
-            <div className="text-xs text-slate-500 dark:text-slate-400 font-sans">
+            <div className="text-xs text-slate-400 font-sans">
               Mana Crystals are redeemable for direct UPI / Amazon Cashout (24–48h verified delivery).
             </div>
           </motion.div>

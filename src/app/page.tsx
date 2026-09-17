@@ -33,7 +33,7 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen bg-black text-white selection:bg-[#0A84FF]/25 selection:text-white">
+    <main className="relative min-h-screen bg-black text-white selection:bg-white/20 selection:text-white">
       {/* Linear-Style Mouse Spotlight Glow */}
       <SpotlightGlow />
 

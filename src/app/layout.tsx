@@ -83,7 +83,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark scroll-smooth">
       <body
-        className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased bg-black text-white selection:bg-[#0A84FF]/30 selection:text-white`}
+        className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased bg-black text-white selection:bg-white/20 selection:text-white`}
       >
         <ThemeProvider
           attribute="class"

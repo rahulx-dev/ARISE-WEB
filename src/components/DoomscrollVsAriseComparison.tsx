@@ -16,7 +16,7 @@ export default function DoomscrollVsAriseComparison() {
   return (
     <div className="w-full max-w-5xl mx-auto rounded-3xl border border-white/[0.08] bg-[#070B16]/95 backdrop-blur-2xl p-6 sm:p-10 shadow-2xl shadow-black/80 relative overflow-hidden select-none space-y-8">
       {/* Specular Top Glow */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-red-500 via-[#0A84FF] to-emerald-500 opacity-70" />
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-red-500/60 via-white/40 to-emerald-500/60" />
 
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
@@ -158,7 +158,7 @@ export default function DoomscrollVsAriseComparison() {
               max={85}
               value={sliderPosition}
               onChange={(e) => setSliderPosition(Number(e.target.value))}
-              className="w-full h-2 rounded-lg bg-white/10 accent-[#0A84FF] cursor-pointer"
+              className="w-full h-2 rounded-lg bg-white/10 accent-white cursor-pointer"
             />
           </div>
         </div>
