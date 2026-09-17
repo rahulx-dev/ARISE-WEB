@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Resolves a Cloudinary player embed URL or direct video URL to a direct MP4 stream URL.
  *
  * Example Cloudinary Embed input:
@@ -17,13 +17,13 @@ export function resolveCloudinaryVideoUrl(rawUrl?: string): string {
       const cloudName = urlObj.searchParams.get("cloud_name");
       const publicId = urlObj.searchParams.get("public_id");
       if (cloudName && publicId) {
-        return `https://res.cloudinary.com/${cloudName}/video/upload/${publicId}.mp4`;
+        return `https://res.cloudinary.com/${cloudName}/video/upload/q_auto:good,f_auto/${publicId}.mp4`;
       }
     } catch {
       const cloudMatch = trimmed.match(/cloud_name=([^&]+)/);
       const idMatch = trimmed.match(/public_id=([^&]+)/);
       if (cloudMatch && idMatch) {
-        return `https://res.cloudinary.com/${cloudMatch[1]}/video/upload/${idMatch[1]}.mp4`;
+        return `https://res.cloudinary.com/${cloudMatch[1]}/video/upload/q_auto:good,f_auto/${idMatch[1]}.mp4`;
       }
     }
   }

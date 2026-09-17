@@ -12,6 +12,15 @@ const nextConfig = {
     NEXT_PUBLIC_ARISE_TUTORIAL_EN_URL: process.env.NEXT_PUBLIC_ARISE_TUTORIAL_EN_URL || process.env.VITE_ARISE_TUTORIAL_EN_URL || "",
     NEXT_PUBLIC_ARISE_TUTORIAL_HI_URL: process.env.NEXT_PUBLIC_ARISE_TUTORIAL_HI_URL || process.env.VITE_ARISE_TUTORIAL_HI_URL || "",
   },
+  swcMinify: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
+  },
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
 };
 
 export default nextConfig;

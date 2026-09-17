@@ -47,26 +47,23 @@ body {
   letter-spacing: -0.011em;
 }
 
-/* Smooth Global Theme Color Interpolation */
-body, 
-header, 
-nav, 
-footer, 
-section, 
-div:not([data-projection-id]), 
-p, 
-span, 
-h1, 
-h2, 
-h3, 
-h4, 
-h5, 
-h6, 
-a, 
-button {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-duration: 350ms;
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+/* Smooth Theme Transition for Background and Surface Only */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* GPU Hardware Acceleration for Animated Layers */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+/* Offscreen Rendering Optimization */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
 }
 
 /* Modern View Transition Animation */

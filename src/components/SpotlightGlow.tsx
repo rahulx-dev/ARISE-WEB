@@ -1,55 +1,65 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 export default function SpotlightGlow() {
-  const [pos, setPos] = useState({ x: -500, y: -500 });
-  const [isHovering, setIsHovering] = useState(false);
+  const spotlightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Only enable on devices with hover/pointer capability
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
+
+    const spotlight = spotlightRef.current;
+    if (!spotlight) return;
+
+    let rafId: number | null = null;
+    let targetX = -500;
+    let targetY = -500;
+    let currentX = -500;
+    let currentY = -500;
+
     const handleMouseMove = (e: MouseEvent) => {
-      setPos({ x: e.clientX, y: e.clientY });
-      setIsHovering(true);
+      targetX = e.clientX;
+      targetY = e.clientY;
+      if (!rafId) {
+        rafId = requestAnimationFrame(updatePosition);
+      }
     };
 
-    const handleMouseLeave = () => {
-      setIsHovering(false);
+    const updatePosition = () => {
+      // Smooth linear interpolation
+      currentX += (targetX - currentX) * 0.15;
+      currentY += (targetY - currentY) * 0.15;
+
+      if (spotlight) {
+        spotlight.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+      }
+
+      if (Math.abs(targetX - currentX) > 0.5 || Math.abs(targetY - currentY) > 0.5) {
+        rafId = requestAnimationFrame(updatePosition);
+      } else {
+        rafId = null;
+      }
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseleave", handleMouseLeave);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 
-  if (!isHovering) return null;
-
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-500 overflow-hidden"
-      style={{ opacity: isHovering ? 1 : 0 }}
+      className="pointer-events-none fixed inset-0 z-30 overflow-hidden select-none gpu-layer"
       aria-hidden="true"
     >
-      {/* Dark Theme Spotlight */}
       <div
-        className="absolute w-[600px] h-[600px] rounded-full blur-[140px] -translate-x-1/2 -translate-y-1/2 dark:block hidden"
-        style={{
-          left: `${pos.x}px`,
-          top: `${pos.y}px`,
-          background: "radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, rgba(10, 132, 255, 0.015) 40%, transparent 70%)",
-        }}
-      />
-      {/* Light Theme Spotlight */}
-      <div
-        className="absolute w-[600px] h-[600px] rounded-full blur-[140px] -translate-x-1/2 -translate-y-1/2 dark:hidden block"
-        style={{
-          left: `${pos.x}px`,
-          top: `${pos.y}px`,
-          background: "radial-gradient(circle, rgba(0, 102, 204, 0.025) 0%, transparent 70%)",
-        }}
+        ref={spotlightRef}
+        className="absolute -top-[300px] -left-[300px] w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none will-change-transform dark:bg-[radial-gradient(circle,rgba(10,132,255,0.04)_0%,transparent_70%)] bg-[radial-gradient(circle,rgba(0,102,204,0.025)_0%,transparent_70%)]"
       />
     </div>
   );
