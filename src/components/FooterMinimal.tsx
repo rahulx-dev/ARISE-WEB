@@ -98,9 +98,8 @@ export default function FooterMinimal() {
               </li>
               <li>
                 <a
-                  href="https://www.mediafire.com/file/xpwp1ju21tcu8oz/ARISE_Final.apk/file"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="https://github.com/rahulx-dev/ARISE-WEB/releases/latest/download/ARISE_Final.apk"
+                  download="ARISE_Final.apk"
                   onClick={() => sound.playClick()}
                   className="hover:text-slate-900 dark:hover:text-white hover:translate-x-1 transition-all inline-flex items-center gap-1"
                 >
