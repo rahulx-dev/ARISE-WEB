@@ -106,8 +106,8 @@ export default function FAQSection() {
                 initial={false}
                 className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                   isOpen
-                    ? "bg-white/95 dark:bg-[#070B16] border-blue-500/40 dark:border-cyan-500/30 shadow-lg shadow-slate-200/50 dark:shadow-cyan-950/20"
-                    : "bg-white/80 dark:bg-[#070B16]/60 border-slate-200 dark:border-white/[0.06] hover:border-slate-300 dark:hover:border-white/[0.12]"
+                    ? "bg-[#070B16] border-cyan-500/40 shadow-lg shadow-cyan-950/20"
+                    : "bg-[#070B16]/70 border-white/[0.08] hover:border-white/20"
                 }`}
               >
                 <button
@@ -118,8 +118,8 @@ export default function FAQSection() {
                     <div
                       className={`p-2 rounded-xl shrink-0 mt-0.5 transition-colors ${
                         isOpen
-                          ? "bg-blue-500/10 dark:bg-cyan-500/10 text-[#0A84FF] dark:text-cyan-400"
-                          : "bg-slate-100 dark:bg-slate-800/80 text-slate-400"
+                          ? "bg-cyan-500/10 text-cyan-400"
+                          : "bg-white/[0.04] text-slate-400"
                       }`}
                     >
                       <Icon className="w-4 h-4" />
@@ -128,15 +128,15 @@ export default function FAQSection() {
                       <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-semibold block mb-1">
                         {faq.tag}
                       </span>
-                      <h3 className="text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white font-sans">
+                      <h3 className="text-base sm:text-lg font-bold tracking-tight text-white font-sans">
                         {faq.question}
                       </h3>
                     </div>
                   </div>
 
                   <div
-                    className={`p-1.5 rounded-lg border border-slate-200 dark:border-white/[0.08] text-slate-400 transition-transform duration-300 shrink-0 ${
-                      isOpen ? "rotate-180 text-[#0A84FF] dark:text-cyan-400 border-blue-500/30" : ""
+                    className={`p-1.5 rounded-lg border border-white/[0.08] text-slate-400 transition-transform duration-300 shrink-0 ${
+                      isOpen ? "rotate-180 text-cyan-400 border-cyan-500/30" : ""
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -151,7 +151,7 @@ export default function FAQSection() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans border-t border-slate-100 dark:border-white/[0.04] mt-2">
+                      <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans border-t border-white/[0.04] mt-2">
                         {faq.answer}
                       </div>
                     </motion.div>

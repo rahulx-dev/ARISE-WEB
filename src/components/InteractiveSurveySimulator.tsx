@@ -43,24 +43,24 @@ export default function InteractiveSurveySimulator({ onOpenCashout }: { onOpenCa
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto rounded-3xl border border-emerald-500/30 bg-white/95 dark:bg-slate-900/90 backdrop-blur-xl p-6 sm:p-7 shadow-2xl shadow-slate-200/80 dark:shadow-emerald-950/40 relative overflow-hidden select-none">
+    <div className="w-full max-w-xl mx-auto rounded-3xl border border-white/[0.08] bg-[#070B16]/90 backdrop-blur-xl p-6 sm:p-7 shadow-2xl shadow-black/40 relative overflow-hidden select-none">
       {/* Top Banner */}
-      <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/[0.08]">
+      <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping" />
-          <span className="text-[11px] font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-bold uppercase">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+          <span className="text-[11px] font-mono tracking-widest text-emerald-400 font-bold uppercase">
             LIVE INTERACTIVE REWARD SIMULATOR
           </span>
         </div>
-        <div className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-700 dark:text-emerald-300 font-semibold flex items-center gap-1">
-          <Clock className="w-3 h-3 text-amber-500 dark:text-amber-400" />
+        <div className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-300 font-semibold flex items-center gap-1">
+          <Clock className="w-3 h-3 text-amber-400" />
           <span>Payouts in 24–48h</span>
         </div>
       </div>
 
       {/* Survey Prompt */}
       <div className="py-4">
-        <h4 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white leading-snug">
+        <h4 className="text-base sm:text-lg font-semibold text-white leading-snug">
           {question}
         </h4>
       </div>
@@ -79,25 +79,25 @@ export default function InteractiveSurveySimulator({ onOpenCashout }: { onOpenCa
               disabled={isCompleted}
               className={`w-full p-3.5 rounded-2xl border text-left text-xs font-mono transition-all flex items-center justify-between cursor-pointer ${
                 isSelected
-                  ? "border-emerald-500 bg-emerald-500/15 dark:bg-emerald-500/20 text-slate-950 dark:text-white shadow-lg shadow-emerald-500/10 dark:shadow-emerald-950/50 font-bold"
+                  ? "border-emerald-500 bg-emerald-500/20 text-white shadow-lg shadow-emerald-950/50 font-bold"
                   : isCompleted
-                  ? "border-slate-100 dark:border-white/[0.04] bg-slate-100/50 dark:bg-slate-900/40 text-slate-400 dark:text-slate-500 cursor-default"
-                  : "border-slate-200 dark:border-white/[0.08] bg-slate-50/80 dark:bg-slate-950/60 text-slate-700 dark:text-slate-300 hover:border-emerald-500/40 hover:bg-white dark:hover:bg-slate-900/80"
+                  ? "border-white/[0.04] bg-white/[0.02] text-slate-500 cursor-default"
+                  : "border-white/[0.08] bg-white/[0.03] text-slate-300 hover:border-emerald-500/40 hover:bg-white/[0.06]"
               }`}
             >
               <div className="flex items-center gap-3">
-                <div className={`p-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 ${opt.color}`}>
+                <div className={`p-1.5 rounded-lg bg-white/10 ${opt.color}`}>
                   <IconComponent className="w-4 h-4" />
                 </div>
-                <span className="font-sans font-medium text-slate-800 dark:text-slate-200 text-xs sm:text-sm">
+                <span className="font-sans font-medium text-slate-200 text-xs sm:text-sm">
                   {opt.label}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-bold">
+                <span className="text-[11px] font-mono text-emerald-400 font-bold">
                   {opt.bonus}
                 </span>
-                {isSelected && <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />}
+                {isSelected && <CheckCircle2 className="w-4 h-4 text-emerald-400" />}
               </div>
             </motion.button>
           );
@@ -112,18 +112,18 @@ export default function InteractiveSurveySimulator({ onOpenCashout }: { onOpenCa
             animate={{ opacity: 1, height: "auto", y: 0 }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4 }}
-            className="mt-5 pt-4 border-t border-slate-200 dark:border-white/[0.08] space-y-4"
+            className="mt-5 pt-4 border-t border-white/[0.08] space-y-4"
           >
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-blue-500/10 dark:from-emerald-500/15 dark:via-teal-500/10 dark:to-blue-500/15 border border-emerald-500/40 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-blue-500/15 border border-emerald-500/40 flex flex-col sm:flex-row items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/15 dark:bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
                   <Sparkles className="w-5 h-5 animate-spin" />
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2 font-mono">
+                  <div className="text-sm font-bold text-white flex items-center gap-2 font-mono">
                     <span>+{manaEarned} MANA ADDED (₹5.00 INR)</span>
                   </div>
-                  <div className="text-[11px] text-slate-600 dark:text-slate-300 font-sans">
+                  <div className="text-[11px] text-slate-300 font-sans">
                     Survey audited & approved • Redeemable in 24–48 Hours
                   </div>
                 </div>
@@ -132,7 +132,7 @@ export default function InteractiveSurveySimulator({ onOpenCashout }: { onOpenCa
               <div className="flex items-center gap-2 w-full sm:w-auto">
                 <button
                   onClick={handleReset}
-                  className="p-2 rounded-xl border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-colors"
+                  className="p-2 rounded-xl border border-white/10 hover:bg-white/10 text-slate-300 transition-colors"
                   title="Try Again"
                 >
                   <RotateCcw className="w-4 h-4" />
@@ -140,7 +140,7 @@ export default function InteractiveSurveySimulator({ onOpenCashout }: { onOpenCa
                 {onOpenCashout && (
                   <button
                     onClick={onOpenCashout}
-                    className="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer"
+                    className="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-black font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer"
                   >
                     <span>Simulate Cashout</span>
                     <ArrowRight className="w-3.5 h-3.5" />

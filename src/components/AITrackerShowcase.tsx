@@ -149,7 +149,7 @@ export default function AITrackerShowcase() {
               <span className="text-xs font-mono text-slate-400 tracking-wider uppercase block font-semibold">
                 Select Biomechanical Target
               </span>
-              <div className="grid grid-cols-3 gap-2 p-1.5 rounded-2xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-white/[0.08] backdrop-blur-md">
+              <div className="grid grid-cols-3 gap-2 p-1.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md">
                 {exercises.map((ex) => {
                   const isActive = mode === ex.id;
                   return (
@@ -157,13 +157,13 @@ export default function AITrackerShowcase() {
                       key={ex.id}
                       onClick={() => handleModeChange(ex.id as ExerciseMode)}
                       className={`relative py-3 px-3 rounded-xl text-xs font-mono transition-all text-center flex flex-col items-center gap-0.5 cursor-pointer z-10 ${
-                        isActive ? "text-[#0A84FF] dark:text-cyan-400 font-bold" : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                        isActive ? "text-cyan-400 font-bold" : "text-white/60 hover:text-white"
                       }`}
                     >
                       {isActive && (
                         <motion.div
                           layoutId="activeExercisePill"
-                          className="absolute inset-0 rounded-xl bg-white dark:bg-cyan-500/15 border border-slate-200 dark:border-cyan-400/40 shadow-sm dark:shadow-cyan-950/40 -z-10"
+                          className="absolute inset-0 rounded-xl bg-cyan-500/20 border border-cyan-400/40 shadow-sm shadow-cyan-950/40 -z-10"
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -176,14 +176,14 @@ export default function AITrackerShowcase() {
             </div>
 
             {/* Simulator Interactive Action Buttons Bar */}
-            <div className="p-4 rounded-2xl border border-cyan-500/30 bg-cyan-500/5 space-y-3">
+            <div className="p-4 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 space-y-3">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-500 dark:text-slate-400">
-                  SIMULATOR STATUS: <span className="font-bold text-[#0A84FF] dark:text-cyan-400">{isAutoSimulating ? "AUTO RUNNING (30 FPS)" : questCleared ? "QUEST COMPLETED" : "READY"}</span>
+                <span className="text-slate-400">
+                  SIMULATOR STATUS: <span className="font-bold text-cyan-400">{isAutoSimulating ? "AUTO RUNNING (30 FPS)" : questCleared ? "QUEST COMPLETED" : "READY"}</span>
                 </span>
                 <button
                   onClick={toggleSound}
-                  className="flex items-center gap-1 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+                  className="flex items-center gap-1 text-slate-400 hover:text-white cursor-pointer"
                   title={isMuted ? "Unmute sound" : "Mute sound"}
                 >
                   {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-cyan-400" />}
@@ -205,8 +205,8 @@ export default function AITrackerShowcase() {
                   onClick={toggleAutoSimulate}
                   className={`py-2.5 px-4 rounded-xl font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer border ${
                     isAutoSimulating
-                      ? "bg-amber-500/20 border-amber-500/50 text-amber-500"
-                      : "bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 hover:border-cyan-500"
+                      ? "bg-amber-500/20 border-amber-500/50 text-amber-400"
+                      : "bg-white/[0.06] border-white/10 text-white hover:border-cyan-500"
                   }`}
                 >
                   {isAutoSimulating ? <Square className="w-3.5 h-3.5 fill-current" /> : <Play className="w-3.5 h-3.5 fill-current" />}
@@ -215,7 +215,7 @@ export default function AITrackerShowcase() {
 
                 <button
                   onClick={handleReset}
-                  className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer transition-all"
+                  className="p-2.5 rounded-xl bg-white/[0.06] border border-white/10 text-slate-400 hover:text-white cursor-pointer transition-all"
                   title="Reset counter"
                 >
                   <RotateCcw className="w-4 h-4" />
@@ -224,27 +224,27 @@ export default function AITrackerShowcase() {
             </div>
 
             {/* Architecture Metrics Strip */}
-            <div className="grid grid-cols-3 gap-4 pt-2 border-t border-slate-200 dark:border-white/[0.08] font-mono text-xs select-none">
-              <div className="p-3 rounded-xl border border-slate-200 dark:border-white/[0.06] bg-slate-50 dark:bg-white/[0.02] space-y-1">
+            <div className="grid grid-cols-3 gap-4 pt-2 border-t border-white/[0.08] font-mono text-xs select-none">
+              <div className="p-3 rounded-xl border border-white/[0.06] bg-white/[0.02] space-y-1">
                 <div className="text-slate-400 text-[10px] flex items-center gap-1">
-                  <Scan className="w-3 h-3 text-[#0A84FF] dark:text-cyan-400" />
+                  <Scan className="w-3 h-3 text-cyan-400" />
                   <span>TRACKING</span>
                 </div>
-                <div className="font-bold text-slate-900 dark:text-white">33 Keypoints</div>
+                <div className="font-bold text-white">33 Keypoints</div>
               </div>
-              <div className="p-3 rounded-xl border border-slate-200 dark:border-white/[0.06] bg-slate-50 dark:bg-white/[0.02] space-y-1">
+              <div className="p-3 rounded-xl border border-white/[0.06] bg-white/[0.02] space-y-1">
                 <div className="text-slate-400 text-[10px] flex items-center gap-1">
-                  <Cpu className="w-3 h-3 text-[#0A84FF] dark:text-cyan-400" />
+                  <Cpu className="w-3 h-3 text-cyan-400" />
                   <span>LATENCY</span>
                 </div>
-                <div className="font-bold text-slate-900 dark:text-white">&lt; 16ms Local</div>
+                <div className="font-bold text-white">&lt; 16ms Local</div>
               </div>
-              <div className="p-3 rounded-xl border border-slate-200 dark:border-white/[0.06] bg-slate-50 dark:bg-white/[0.02] space-y-1">
+              <div className="p-3 rounded-xl border border-white/[0.06] bg-white/[0.02] space-y-1">
                 <div className="text-slate-400 text-[10px] flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3 text-emerald-500" />
+                  <ShieldCheck className="w-3 h-3 text-emerald-400" />
                   <span>PRIVACY</span>
                 </div>
-                <div className="font-bold text-emerald-600 dark:text-emerald-400">100% On-Device</div>
+                <div className="font-bold text-emerald-400">100% On-Device</div>
               </div>
             </div>
           </motion.div>

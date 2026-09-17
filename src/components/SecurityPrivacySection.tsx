@@ -40,9 +40,9 @@ export default function SecurityPrivacySection() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.05]">
+          <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.05]">
             YOUR BIOMETRICS. <br />
-            <span className="text-emerald-500">
+            <span className="text-emerald-400">
               STRICTLY YOURS.
             </span>
           </h2>
@@ -59,28 +59,28 @@ export default function SecurityPrivacySection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="p-7 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/[0.08] bg-white/95 dark:bg-[#070B16]/90 backdrop-blur-2xl shadow-xl shadow-slate-200/50 dark:shadow-black/60 flex flex-col justify-between space-y-6 hover:border-emerald-500/30 transition-all duration-300"
+                className="p-7 sm:p-8 rounded-3xl border border-white/[0.08] bg-[#070B16]/90 backdrop-blur-2xl shadow-xl shadow-black/60 flex flex-col justify-between space-y-6 hover:border-emerald-500/30 transition-all duration-300"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500">
+                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400 tracking-wider">
+                    <span className="px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 font-mono text-[10px] font-bold text-emerald-400 tracking-wider">
                       {item.badge}
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                     {item.title}
                   </h3>
 
-                  <p className="text-sm text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
+                  <p className="text-sm text-slate-400 font-sans leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 pt-2 text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold border-t border-slate-100 dark:border-white/[0.04]">
+                <div className="flex items-center gap-2 pt-2 text-xs font-mono text-emerald-400 font-semibold border-t border-white/[0.04]">
                   <CheckCircle2 className="w-4 h-4" />
                   <span>VERIFIED LOCAL ENFORCEMENT</span>
                 </div>

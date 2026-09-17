@@ -11,7 +11,7 @@ interface HeroProps {
 
 export default function Hero({ onOpenDownload }: HeroProps) {
   return (
-    <section className="relative min-h-[92vh] sm:min-h-screen pt-28 sm:pt-36 pb-12 flex flex-col justify-between overflow-hidden select-none bg-black">
+    <section id="hero" className="relative min-h-[92vh] sm:min-h-screen pt-28 sm:pt-36 pb-12 flex flex-col justify-between overflow-hidden select-none bg-black">
       {/* Seamless Panoramic Archway Background on the Right */}
       <div className="absolute top-0 right-0 bottom-0 w-full lg:w-[62%] z-0 pointer-events-none overflow-hidden">
         <img

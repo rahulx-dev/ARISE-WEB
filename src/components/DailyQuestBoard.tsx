@@ -80,24 +80,24 @@ export default function DailyQuestBoard() {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto rounded-3xl border border-blue-500/30 bg-white/95 dark:bg-[#070B16]/95 backdrop-blur-2xl p-6 sm:p-10 shadow-2xl shadow-blue-500/10 dark:shadow-black/70 relative overflow-hidden select-none space-y-8">
+    <div className="w-full max-w-4xl mx-auto rounded-3xl border border-white/[0.08] bg-[#070B16]/95 backdrop-blur-2xl p-6 sm:p-10 shadow-2xl shadow-black/70 relative overflow-hidden select-none space-y-8">
       {/* Specular Ambient Glow */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0A84FF] to-transparent opacity-80" />
       <div className="absolute -top-32 -right-32 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Solo Leveling System Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-white/[0.08]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
         <div>
-          <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white font-sans">
+          <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white font-sans">
             DAILY QUESTS
           </h3>
         </div>
 
         {/* Penalty Timer Warning */}
-        <div className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 font-mono text-xs self-start sm:self-auto shrink-0">
+        <div className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-xs self-start sm:self-auto shrink-0">
           <Clock className="w-4 h-4 animate-spin" style={{ animationDuration: "12s" }} />
           <div>
-            <div className="text-[10px] text-amber-500 uppercase tracking-wider">PENALTY ZONE IN</div>
+            <div className="text-[10px] text-amber-400 uppercase tracking-wider">PENALTY ZONE IN</div>
             <div className="font-bold text-xs">04H : 18M : 42S</div>
           </div>
         </div>
@@ -106,14 +106,14 @@ export default function DailyQuestBoard() {
       {/* Progress Metric Bar */}
       <div className="space-y-2">
         <div className="flex items-center justify-between text-xs font-mono">
-          <span className="text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+          <span className="text-slate-400 uppercase tracking-wider">
             OVERALL COMPLETION STATUS
           </span>
-          <span className="font-bold text-slate-900 dark:text-white">
+          <span className="font-bold text-white">
             {totalProgress}% COMPLETED
           </span>
         </div>
-        <div className="w-full h-3 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10 overflow-hidden p-0.5">
+        <div className="w-full h-3 rounded-full bg-white/[0.04] border border-white/10 overflow-hidden p-0.5">
           <motion.div
             className={`h-full rounded-full transition-all duration-500 ${
               totalProgress === 100
@@ -137,8 +137,8 @@ export default function DailyQuestBoard() {
               key={quest.id}
               className={`p-4 sm:p-5 rounded-2xl border transition-all flex flex-col justify-between gap-3 ${
                 isDone
-                  ? "bg-emerald-500/5 dark:bg-emerald-950/20 border-emerald-500/30"
-                  : "bg-slate-50/80 dark:bg-slate-900/50 border-slate-200 dark:border-white/[0.08] hover:border-slate-300 dark:hover:border-white/20"
+                  ? "bg-emerald-950/20 border-emerald-500/30"
+                  : "bg-white/[0.03] border-white/[0.08] hover:border-white/20"
               }`}
             >
               <div className="flex items-center justify-between">
@@ -146,14 +146,14 @@ export default function DailyQuestBoard() {
                   <div
                     className={`w-8 h-8 rounded-xl flex items-center justify-center font-mono text-xs font-bold ${
                       isDone
-                        ? "bg-emerald-500/20 text-emerald-500 border border-emerald-500/40"
-                        : "bg-blue-500/10 text-[#0A84FF] border border-blue-500/20"
+                        ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40"
+                        : "bg-blue-500/10 text-cyan-400 border border-blue-500/20"
                     }`}
                   >
                     {isDone ? <CheckCircle2 className="w-4 h-4" /> : <Flame className="w-4 h-4" />}
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-slate-900 dark:text-white font-mono">
+                    <div className="text-sm font-bold text-white font-mono">
                       {quest.name}
                     </div>
                     <div className="text-[11px] font-mono text-slate-400">
@@ -163,7 +163,7 @@ export default function DailyQuestBoard() {
                 </div>
 
                 <div className="text-right font-mono">
-                  <div className={`text-base font-bold ${isDone ? "text-emerald-500" : "text-slate-900 dark:text-white"}`}>
+                  <div className={`text-base font-bold ${isDone ? "text-emerald-400" : "text-white"}`}>
                     [{quest.current}/{quest.target}]
                   </div>
                   <div className="text-[10px] text-slate-400">{percent}%</div>
@@ -172,7 +172,7 @@ export default function DailyQuestBoard() {
 
               {/* Incremental Rep Tap Button */}
               <div className="flex items-center gap-2 pt-1">
-                <div className="flex-1 h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                <div className="flex-1 h-2 rounded-full bg-white/10 overflow-hidden">
                   <div
                     className={`h-full transition-all duration-300 ${
                       isDone ? "bg-emerald-500" : "bg-[#0A84FF]"
@@ -184,12 +184,12 @@ export default function DailyQuestBoard() {
                 {!isDone ? (
                   <button
                     onClick={() => incrementQuest(quest.id)}
-                    className="px-3 py-1 rounded-xl bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/30 text-[#0A84FF] font-mono text-xs font-bold cursor-pointer transition-all active:scale-95 whitespace-nowrap"
+                    className="px-3 py-1 rounded-xl bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/30 text-cyan-400 font-mono text-xs font-bold cursor-pointer transition-all active:scale-95 whitespace-nowrap"
                   >
                     +{quest.step} {quest.unit}
                   </button>
                 ) : (
-                  <span className="px-2.5 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-mono text-[10px] font-bold">
+                  <span className="px-2.5 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-400 font-mono text-[10px] font-bold">
                     COMPLETED
                   </span>
                 )}
@@ -200,18 +200,18 @@ export default function DailyQuestBoard() {
       </div>
 
       {/* Interactive Controls & Claim Rewards */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-200 dark:border-white/[0.08]">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/[0.08]">
         <div className="flex items-center gap-2 w-full sm:w-auto">
           <button
             onClick={completeAll}
-            className="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10 hover:border-blue-500/40 text-xs font-mono text-slate-700 dark:text-slate-300 transition-all cursor-pointer flex items-center justify-center gap-1.5"
+            className="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-white/[0.04] border border-white/10 hover:border-blue-500/40 text-xs font-mono text-slate-300 transition-all cursor-pointer flex items-center justify-center gap-1.5"
           >
-            <Zap className="w-3.5 h-3.5 text-[#0A84FF]" />
+            <Zap className="w-3.5 h-3.5 text-cyan-400" />
             <span>Simulate 100% Reps</span>
           </button>
           <button
             onClick={resetQuests}
-            className="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10 hover:border-slate-400 text-xs font-mono text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all cursor-pointer"
+            className="px-3 py-2 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/30 text-xs font-mono text-slate-400 hover:text-white transition-all cursor-pointer"
             title="Reset simulation"
           >
             <RefreshCw className="w-3.5 h-3.5" />

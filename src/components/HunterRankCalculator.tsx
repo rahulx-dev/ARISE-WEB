@@ -50,12 +50,12 @@ export default function HunterRankCalculator() {
   const currentRank = ranks[pushups] || ranks["10-25"];
 
   return (
-    <div className="w-full max-w-xl mx-auto rounded-3xl border border-slate-200 dark:border-white/[0.08] bg-white/95 dark:bg-slate-900/80 backdrop-blur-xl p-6 sm:p-7 shadow-2xl shadow-slate-200/80 dark:shadow-black/40 space-y-6 select-none">
+    <div className="w-full max-w-xl mx-auto rounded-3xl border border-white/[0.08] bg-[#070B16]/90 backdrop-blur-xl p-6 sm:p-7 shadow-2xl shadow-black/40 space-y-6 select-none">
       {/* Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.08]">
+      <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
         <div className="flex items-center gap-2">
-          <Shield className="w-4 h-4 text-[#0A84FF]" />
-          <span className="text-xs font-mono font-bold tracking-wider text-slate-900 dark:text-white uppercase">
+          <Shield className="w-4 h-4 text-cyan-400" />
+          <span className="text-xs font-mono font-bold tracking-wider text-white uppercase">
             HUNTER RANK EVALUATOR
           </span>
         </div>
@@ -65,7 +65,7 @@ export default function HunterRankCalculator() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Pushups */}
         <div className="space-y-2">
-          <label className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase block">
+          <label className="text-xs font-mono text-slate-400 uppercase block">
             Daily Pushups Capacity
           </label>
           <div className="grid grid-cols-2 gap-1.5 font-mono text-xs">
@@ -75,8 +75,8 @@ export default function HunterRankCalculator() {
                 onClick={() => setPushups(lvl)}
                 className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
                   pushups === lvl
-                    ? "border-blue-500 bg-blue-500/15 dark:bg-blue-500/20 text-blue-900 dark:text-white font-bold shadow-sm"
-                    : "border-slate-200 dark:border-white/[0.06] bg-slate-50 dark:bg-slate-950/60 text-slate-700 dark:text-slate-400 hover:border-blue-300 dark:hover:border-white/20"
+                    ? "border-blue-500 bg-blue-500/20 text-white font-bold shadow-sm"
+                    : "border-white/[0.06] bg-white/[0.03] text-slate-400 hover:border-white/20 hover:text-white"
                 }`}
               >
                 {lvl}
@@ -87,7 +87,7 @@ export default function HunterRankCalculator() {
 
         {/* Screen Time */}
         <div className="space-y-2">
-          <label className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase block">
+          <label className="text-xs font-mono text-slate-400 uppercase block">
             Daily Distraction Screen Time
           </label>
           <div className="grid grid-cols-2 gap-1.5 font-mono text-xs">
@@ -97,8 +97,8 @@ export default function HunterRankCalculator() {
                 onClick={() => setScreentime(st)}
                 className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
                   screentime === st
-                    ? "border-emerald-500 bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-900 dark:text-white font-bold shadow-sm"
-                    : "border-slate-200 dark:border-white/[0.06] bg-slate-50 dark:bg-slate-950/60 text-slate-700 dark:text-slate-400 hover:border-emerald-300 dark:hover:border-white/20"
+                    ? "border-emerald-500 bg-emerald-500/20 text-white font-bold shadow-sm"
+                    : "border-white/[0.06] bg-white/[0.03] text-slate-400 hover:border-white/20 hover:text-white"
                 }`}
               >
                 {st}
@@ -116,35 +116,35 @@ export default function HunterRankCalculator() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.3 }}
-          className={`p-5 rounded-2xl border ${currentRank.border} bg-slate-50/90 dark:bg-slate-950/80 shadow-xl ${currentRank.glow} space-y-4`}
+          className={`p-5 rounded-2xl border ${currentRank.border} bg-white/[0.03] shadow-xl ${currentRank.glow} space-y-4`}
         >
           <div className="flex items-start justify-between">
             <div className="space-y-1">
-              <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+              <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
                 CURRENT EVALUATED STATUS
               </div>
               <div className={`text-3xl font-extrabold font-mono tracking-tight ${currentRank.color}`}>
                 {currentRank.rank}
               </div>
-              <div className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-1.5">
-                <Trophy className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
+              <div className="text-sm font-semibold text-white flex items-center gap-1.5">
+                <Trophy className="w-3.5 h-3.5 text-amber-400" />
                 <span>{currentRank.title}</span>
               </div>
             </div>
 
-            <div className="px-3 py-1.5 rounded-xl bg-slate-200/70 dark:bg-white/[0.05] border border-slate-300/60 dark:border-white/10 text-right font-mono">
-              <div className="text-[10px] text-slate-600 dark:text-slate-400">30-DAY POTENTIAL</div>
-              <div className="text-xs font-bold text-amber-600 dark:text-amber-400">S-RANK MONARCH</div>
+            <div className="px-3 py-1.5 rounded-xl bg-white/[0.05] border border-white/10 text-right font-mono">
+              <div className="text-[10px] text-slate-400">30-DAY POTENTIAL</div>
+              <div className="text-xs font-bold text-amber-400">S-RANK MONARCH</div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200 dark:border-white/[0.06] text-xs font-mono">
-            <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
-              <Zap className="w-3.5 h-3.5 text-[#0A84FF] dark:text-arise-cyan" />
+          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/[0.06] text-xs font-mono">
+            <div className="flex items-center gap-1.5 text-slate-300">
+              <Zap className="w-3.5 h-3.5 text-cyan-400" />
               <span>Yield: {currentRank.xpGain}</span>
             </div>
-            <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
-              <Sparkles className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+            <div className="flex items-center gap-1.5 text-slate-300">
+              <Sparkles className="w-3.5 h-3.5 text-purple-400" />
               <span>Skill: {currentRank.shadowPower}</span>
             </div>
           </div>

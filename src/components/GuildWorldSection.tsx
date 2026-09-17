@@ -22,12 +22,12 @@ export default function GuildWorldSection() {
       <div className="max-w-5xl mx-auto px-6 sm:px-8 text-center space-y-16">
         
         <div className="space-y-3">
-          <div className="text-xs font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+          <div className="text-xs font-mono tracking-[0.25em] text-slate-400 uppercase">
             GUILD &amp; WORLD BOSS RAIDS
           </div>
-          <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-[0.98]">
+          <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-white leading-[0.98]">
             Don&apos;t Level Up <br />
-            <span className="italic text-slate-400 dark:text-slate-400">
+            <span className="italic text-slate-400">
               Alone.
             </span>
           </h2>
@@ -68,7 +68,7 @@ export default function GuildWorldSection() {
               </div>
 
               {/* Health Bar with Pulse */}
-              <div className="w-full h-2.5 bg-slate-800/80 rounded-full overflow-hidden p-0.5 border border-red-500/30">
+              <div className="w-full h-2.5 bg-white/10 rounded-full overflow-hidden p-0.5 border border-red-500/30">
                 <div className="h-full w-[34%] bg-gradient-to-r from-rose-600 to-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
               </div>
             </div>
@@ -77,30 +77,30 @@ export default function GuildWorldSection() {
 
         {/* Global Hunter Standings (Clean Editorial List) */}
         <div className="max-w-xl mx-auto space-y-3 pt-4">
-          <div className="flex items-center justify-between text-[10px] font-mono tracking-widest text-slate-500 dark:text-slate-400 uppercase pb-2 border-b border-slate-200 dark:border-white/[0.08]">
+          <div className="flex items-center justify-between text-[10px] font-mono tracking-widest text-slate-400 uppercase pb-2 border-b border-white/[0.08]">
             <span className="flex items-center gap-1.5">
-              <Trophy className="w-3.5 h-3.5 text-amber-500 dark:text-arise-gold" />
+              <Trophy className="w-3.5 h-3.5 text-amber-400" />
               <span>GLOBAL GUILD RANKINGS</span>
             </span>
             <span>TOTAL DAMAGE</span>
           </div>
 
-          <div className="divide-y divide-slate-200 dark:divide-white/[0.05]">
+          <div className="divide-y divide-white/[0.05]">
             {demoRankings.map((h) => (
               <div
                 key={h.rank}
-                className="py-3.5 flex items-center justify-between text-xs font-mono hover:bg-slate-100/70 dark:hover:bg-white/[0.02] px-3 rounded-xl transition-colors"
+                className="py-3.5 flex items-center justify-between text-xs font-mono hover:bg-white/[0.02] px-3 rounded-xl transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-slate-500 dark:text-slate-400 font-bold">{h.rank}</span>
+                  <span className="text-slate-400 font-bold">{h.rank}</span>
                   <div className="text-left">
-                    <span className="text-slate-900 dark:text-white font-semibold">{h.name}</span>
-                    <span className="text-[10px] text-slate-500 dark:text-slate-400 ml-2">{h.title}</span>
+                    <span className="text-white font-semibold">{h.name}</span>
+                    <span className="text-[10px] text-slate-400 ml-2">{h.title}</span>
                   </div>
                 </div>
                 <div className="text-right">
-                  <span className="text-rose-600 dark:text-red-400 font-semibold block">{h.raidContribution}</span>
-                  <span className="text-[10px] text-slate-500 dark:text-slate-500">{h.streak}</span>
+                  <span className="text-red-400 font-semibold block">{h.raidContribution}</span>
+                  <span className="text-[10px] text-slate-500">{h.streak}</span>
                 </div>
               </div>
             ))}

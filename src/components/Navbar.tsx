@@ -50,14 +50,20 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
   const handleNavClick = (href: string) => {
     sound.playClick();
     setMobileMenuOpen(false);
-    if (href === "#") {
+    if (href === "#" || href === "#hero") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
     const targetId = href.replace("#", "");
     const el = document.getElementById(targetId);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      const headerOffset = 70;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
   };
 
@@ -65,7 +71,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 select-none ${
         isScrolled
-          ? "py-3 bg-black/85 backdrop-blur-2xl border-b border-white/[0.06]"
+          ? "py-3 bg-black/90 backdrop-blur-2xl border-b border-white/[0.08]"
           : "py-6 bg-transparent"
       }`}
     >
@@ -75,8 +81,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            sound.playClick();
+            handleNavClick("#");
           }}
           className="flex items-center gap-3 group cursor-pointer"
         >
@@ -149,7 +154,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 dark:bg-[#030712]/95 border-b border-slate-200 dark:border-white/[0.08] px-6 py-4 space-y-3 backdrop-blur-2xl"
+            className="md:hidden bg-black/95 border-b border-white/[0.08] px-6 py-5 space-y-3 backdrop-blur-2xl"
           >
             {navLinks.map((link) => (
               <a
@@ -161,8 +166,8 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                 }}
                 className={`block text-xs font-mono tracking-widest py-2 transition-colors ${
                   activeSection === link.id
-                    ? "text-[#0A84FF] dark:text-white font-bold"
-                    : "text-slate-700 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
+                    ? "text-white font-bold"
+                    : "text-white/60 hover:text-white"
                 }`}
               >
                 {link.name}
@@ -175,10 +180,10 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                   sound.playClick();
                   onOpenDownload();
                 }}
-                className="w-full py-3 rounded-full border border-slate-300 dark:border-white/20 bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white text-xs font-sans font-medium flex items-center justify-center gap-2 shadow-sm cursor-pointer transition-transform active:scale-95"
+                className="w-full py-3 rounded-full bg-white text-black text-xs font-sans font-semibold flex items-center justify-center gap-2 shadow-lg cursor-pointer transition-transform active:scale-95 hover:bg-slate-100"
               >
                 <span>Download App</span>
-                <ArrowRight className="w-3.5 h-3.5 opacity-80" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </motion.div>
