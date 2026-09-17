@@ -2,32 +2,32 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck, HardDrive, WifiOff, Lock, CheckCircle2, EyeOff } from "lucide-react";
+import { HardDrive, WifiOff, Lock, CheckCircle2, EyeOff } from "lucide-react";
 
 export default function SecurityPrivacySection() {
   const securityPoints = [
     {
       icon: EyeOff,
       title: "Zero Video Uploads",
-      desc: "Camera frames are analyzed purely in volatile device RAM by on-device MediaPipe models and discarded immediately. No image or video stream is ever saved or transmitted.",
+      desc: "Camera frames execute 100% in volatile device RAM and discard instantly.",
       badge: "VOLATILE RAM ONLY",
     },
     {
       icon: HardDrive,
-      title: "100% Local SQLite Database",
-      desc: "Your workout history, user profile, quest completion, and unlocked app timers remain strictly on your phone's encrypted sandbox filesystem.",
+      title: "100% Local SQLite",
+      desc: "Workouts, user profile, and app lock timers remain on your phone's encrypted sandbox.",
       badge: "ENCRYPTED SANDBOX",
     },
     {
       icon: WifiOff,
       title: "Complete Offline Mode",
-      desc: "ARISE works flawlessly in Airplane Mode. Internet connectivity is strictly required ONLY when requesting verified reward redemptions or taking surveys.",
+      desc: "Full AI camera tracking and app locking works flawlessly in Airplane Mode.",
       badge: "AIRPLANE MODE READY",
     },
     {
       icon: Lock,
       title: "Zero Data Brokerage",
-      desc: "We do not sell, broker, or monetize your private biometric or habit data. The app is funded exclusively through transparent, voluntary partner survey rewards.",
+      desc: "Zero tracking SDKs. We never monetize or sell your biometric data.",
       badge: "PRIVACY PLEDGE",
     },
   ];
@@ -40,18 +40,12 @@ export default function SecurityPrivacySection() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-xs font-mono font-bold tracking-widest text-emerald-500 uppercase">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>SECURITY &amp; PRIVACY PROTOCOL</span>
-          </div>
-
           <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.05]">
             YOUR BIOMETRICS. <br />
             <span className="text-emerald-500">
               STRICTLY YOURS.
             </span>
           </h2>
-
         </div>
 
         {/* Security Cards Grid */}

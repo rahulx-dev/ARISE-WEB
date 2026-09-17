@@ -114,10 +114,6 @@ export default function GateGuardianSection() {
                   HAS A TOLL.
                 </span>
               </h2>
-
-              <p className="text-sm sm:text-base text-slate-600 dark:text-[#94A3B8] max-w-lg leading-relaxed font-sans">
-                ARISE turns cheap dopamine into physical discipline. When you open a restricted app, the Dungeon Gate instantly locks the interface. The only key is verified physical exertion tracked by on-device AI.
-              </p>
             </div>
 
             {/* Clean Minimal Flow Sequence */}

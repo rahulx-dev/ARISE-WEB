@@ -66,7 +66,7 @@ export default function RealCashSection({ onOpenCashout }: RealCashSectionProps)
                 </div>
               </div>
               <p className="text-xs sm:text-sm font-sans text-slate-600 dark:text-[#94A3B8] leading-relaxed">
-                Complete verified brand partner surveys to earn Mana Crystals. Survey responses undergo automated quality verification and are credited within 24 to 48 hours directly via Direct UPI Transfer, Amazon Pay Gift Cards, or Google Play Redeem Codes. You can also convert crystals into In-Game Coins instantly.
+                Earn Mana Crystals through workouts and partner surveys. Cash out via UPI, vouchers, or in-game coins.
               </p>
 
               {/* Supported Payout Channels Badges */}

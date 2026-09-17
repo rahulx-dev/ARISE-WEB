@@ -142,10 +142,6 @@ export default function AITrackerShowcase() {
                   ZERO CHEATING.
                 </span>
               </h2>
-
-              <p className="text-sm sm:text-base text-slate-600 dark:text-[#94A3B8] max-w-lg leading-relaxed font-sans">
-                Powered by Google MediaPipe BlazePose neural architecture running at 30 FPS directly in device RAM. Joint angles and depth kinematics are calculated in real-time with zero cloud uploads.
-              </p>
             </div>
 
             {/* Exercise Selector Tabs */}

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Eye, Lock, Trophy, DollarSign, ArrowRight, ShieldCheck, Zap, Smartphone, Sparkles } from "lucide-react";
+import { Eye, Lock, Trophy, DollarSign, ArrowRight, ShieldCheck, Zap, Smartphone } from "lucide-react";
 import { sound } from "@/lib/audio";
 
 export default function BentoGridFeatures() {
@@ -14,11 +14,6 @@ export default function BentoGridFeatures() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/10 hover:bg-blue-500/20 text-xs font-mono font-bold tracking-widest text-[#0A84FF] uppercase transition-all hover:scale-105 duration-200 cursor-default">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>SYSTEM ARCHITECTURE // BENTO MATRIX</span>
-          </div>
-
           <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.05]">
             ENGINEERED FOR <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0A84FF] to-cyan-400">
@@ -51,7 +46,7 @@ export default function BentoGridFeatures() {
               </h3>
 
               <p className="text-sm text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
-                Lightweight Google MediaPipe BlazePose neural network runs strictly in your device&apos;s volatile RAM. Tracks joint biomechanics in real-time. 100% private with zero video cloud uploads.
+                On-device BlazePose neural tracking in volatile RAM. 100% private with zero video cloud uploads.
               </p>
             </div>
 
@@ -92,7 +87,7 @@ export default function BentoGridFeatures() {
               </h3>
 
               <p className="text-sm text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
-                Locks Instagram, YouTube, TikTok, and Games behind an impenetrable Dungeon Seal. The only valid unlock key is physical exertion verified by AI camera reps.
+                Hardware-level app locking unlocked exclusively via verified AI workout reps.
               </p>
             </div>
 
@@ -132,7 +127,7 @@ export default function BentoGridFeatures() {
               </h3>
 
               <p className="text-sm text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
-                Progress from E-Rank Weakest Hunter to S-Rank Shadow Monarch. Distribute earned stat points across Strength, Agility, and Discipline. Level up your real physique.
+                Real-world RPG stat progression from E-Rank recruit to S-Rank Shadow Monarch.
               </p>
             </div>
 
@@ -172,7 +167,7 @@ export default function BentoGridFeatures() {
               </h3>
 
               <p className="text-sm text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
-                Earn Mana Crystals through workouts and optional partner surveys (10 Mana = ₹1.00 INR). Direct cashouts to UPI, Amazon Pay, and Google Play within 24 to 48 hours.
+                Convert Mana Crystals to instant UPI &amp; voucher payouts dispatched in 24–48 hours.
               </p>
             </div>
 

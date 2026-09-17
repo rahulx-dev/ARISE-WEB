@@ -29,9 +29,6 @@ export default function GuildWorldSection() {
               ALONE.
             </span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-[#94A3B8] max-w-xl mx-auto font-sans">
-            Every squat and pushup completed by guild members worldwide inflicts synchronized raid damage on weekly Shadow Monarch world bosses.
-          </p>
         </div>
 
         {/* Cinematic World Boss Showcase Card */}
