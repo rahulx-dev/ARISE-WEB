@@ -14,7 +14,7 @@ interface CashoutModalProps {
 
 export default function CashoutModal({ isOpen, onClose, initialCrystals = 1500 }: CashoutModalProps) {
   const [method, setMethod] = useState<"upi" | "amazon" | "google_play" | "coins">("upi");
-  const [address, setAddress] = useState("hunter.solo@okhdfcbank");
+  const [address, setAddress] = useState("");
   const [crystals, setCrystals] = useState(initialCrystals);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -124,7 +124,7 @@ export default function CashoutModal({ isOpen, onClose, initialCrystals = 1500 }
                       onClick={() => {
                         sound.playClick();
                         setMethod("upi");
-                        setAddress("hunter.solo@okhdfcbank");
+                        setAddress("");
                       }}
                       className={`flex flex-col items-center justify-center gap-1.5 py-3 px-2 rounded-2xl border text-xs font-medium transition-all cursor-pointer ${
                         method === "upi"
@@ -140,7 +140,7 @@ export default function CashoutModal({ isOpen, onClose, initialCrystals = 1500 }
                       onClick={() => {
                         sound.playClick();
                         setMethod("amazon");
-                        setAddress("hunter.discipline@gmail.com");
+                        setAddress("");
                       }}
                       className={`flex flex-col items-center justify-center gap-1.5 py-3 px-2 rounded-2xl border text-xs font-medium transition-all cursor-pointer ${
                         method === "amazon"
@@ -156,7 +156,7 @@ export default function CashoutModal({ isOpen, onClose, initialCrystals = 1500 }
                       onClick={() => {
                         sound.playClick();
                         setMethod("google_play");
-                        setAddress("hunter.discipline@gmail.com");
+                        setAddress("");
                       }}
                       className={`flex flex-col items-center justify-center gap-1.5 py-3 px-2 rounded-2xl border text-xs font-medium transition-all cursor-pointer ${
                         method === "google_play"
@@ -201,9 +201,16 @@ export default function CashoutModal({ isOpen, onClose, initialCrystals = 1500 }
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
+                    placeholder={
+                      method === "upi"
+                        ? "Enter your UPI ID (e.g. name@okhdfcbank)"
+                        : method === "coins"
+                        ? "Current Hunter Account (In-App)"
+                        : "Enter your email address"
+                    }
                     required
                     disabled={method === "coins"}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#050607] border border-white/10 text-[#F5F5F2] font-mono text-sm focus:outline-none focus:border-white/30 transition-colors disabled:opacity-60"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#050607] border border-white/10 text-[#F5F5F2] font-mono text-sm placeholder:text-[#6F747B] focus:outline-none focus:border-[#9AAEFF] transition-colors disabled:opacity-60"
                   />
                 </div>
 

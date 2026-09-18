@@ -1,17 +1,27 @@
 "use client";
 
 import React from "react";
-import { Trophy, Flame, Users } from "lucide-react";
+import { Flame, Shield, Users, Trophy } from "lucide-react";
 import Image from "next/image";
 import Interactive3DTilt from "./Interactive3DTilt";
 
 export default function GuildWorldSection() {
-  const demoRankings = [
-    { rank: "01", name: "KAIRO", title: "S-RANK · LV.87", streak: "21 DAY STREAK", raidContribution: "142,500 DMG" },
-    { rank: "02", name: "LEVI", title: "S-RANK · LV.82", streak: "18 DAY STREAK", raidContribution: "128,900 DMG" },
-    { rank: "03", name: "RAVEN", title: "A-RANK · LV.76", streak: "16 DAY STREAK", raidContribution: "115,200 DMG" },
-    { rank: "04", name: "JIN", title: "A-RANK · LV.71", streak: "14 DAY STREAK", raidContribution: "98,400 DMG" },
-    { rank: "05", name: "AKIRA", title: "A-RANK · LV.68", streak: "12 DAY STREAK", raidContribution: "86,700 DMG" },
+  const raidFeatures = [
+    {
+      icon: Users,
+      title: "COOPERATIVE GUILD RAIDS",
+      desc: "Form squads with friends or join global guilds to tackle multi-stage dungeon raids.",
+    },
+    {
+      icon: Flame,
+      title: "REP-BASED RAID DAMAGE",
+      desc: "Every verified workout rep deals physical damage to the seasonal world boss.",
+    },
+    {
+      icon: Trophy,
+      title: "SEASONAL DIVISION RANKS",
+      desc: "Compete across guild divisions from E-Rank recruit leagues to S-Rank Monarch divisions.",
+    },
   ];
 
   return (
@@ -54,57 +64,48 @@ export default function GuildWorldSection() {
                 <div className="text-left">
                   <div className="text-xs font-mono text-[#FF6B4A] font-bold uppercase tracking-wider flex items-center gap-1.5">
                     <Flame className="w-3.5 h-3.5" />
-                    <span>COMMANDER IGRIS · S-RANK RAID BOSS</span>
+                    <span>COMMANDER IGRIS · SEASONAL S-RANK WORLD BOSS</span>
                   </div>
-                  <div className="text-2xl sm:text-3xl font-bold font-mono tracking-tight text-[#F5F5F2] mt-1">
-                    425,000 / 1,250,000 HP (34%)
+                  <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight text-[#F5F5F2] mt-1">
+                    Multiplayer Guild Damage Protocol
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 text-xs font-mono text-[#A6A9AE] bg-[#050607]/80 px-3.5 py-2 rounded-xl border border-white/10 self-start sm:self-auto">
-                  <Users className="w-4 h-4 text-[#FF6B4A]" />
-                  <span>14,820 Active Hunters in Raid</span>
+                <div className="flex items-center gap-2 text-xs font-mono text-[#A6A9AE] bg-[#050607]/80 px-3.5 py-2 rounded-xl border border-white/10 self-start sm:self-auto">
+                  <Shield className="w-4 h-4 text-[#9AAEFF]" />
+                  <span>Cooperative Squad Battles</span>
                 </div>
               </div>
 
-              {/* Health Bar with Pulse */}
+              {/* Boss Health Bar */}
               <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden p-0.5 border border-white/10">
-                <div className="h-full w-[34%] bg-[#FF6B4A] rounded-full" />
+                <div className="h-full w-3/4 bg-[#FF6B4A] rounded-full" />
               </div>
             </div>
           </div>
         </Interactive3DTilt>
 
-        {/* Global Hunter Standings (Clean Editorial List) */}
-        <div className="max-w-xl mx-auto space-y-3 pt-4">
-          <div className="flex items-center justify-between text-[10px] font-mono tracking-widest text-[#6F747B] uppercase pb-2 border-b border-white/10">
-            <span className="flex items-center gap-1.5">
-              <Trophy className="w-3.5 h-3.5 text-[#9AAEFF]" />
-              <span>GLOBAL GUILD RANKINGS</span>
-            </span>
-            <span>TOTAL DAMAGE</span>
-          </div>
-
-          <div className="divide-y divide-white/[0.06]">
-            {demoRankings.map((h) => (
+        {/* Authentic Guild Mechanics Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto pt-4 text-left">
+          {raidFeatures.map((feat) => {
+            const Icon = feat.icon;
+            return (
               <div
-                key={h.rank}
-                className="py-3.5 flex items-center justify-between text-xs font-mono hover:bg-white/[0.03] px-3 rounded-xl transition-colors"
+                key={feat.title}
+                className="p-5 rounded-2xl border border-white/10 bg-[#0E1115] hover:bg-[#13171C] transition-colors space-y-2.5"
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-[#6F747B] font-bold">{h.rank}</span>
-                  <div className="text-left">
-                    <span className="text-[#F5F5F2] font-semibold">{h.name}</span>
-                    <span className="text-[10px] text-[#A6A9AE] ml-2">{h.title}</span>
-                  </div>
+                <div className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#9AAEFF]">
+                  <Icon className="w-4 h-4" />
                 </div>
-                <div className="text-right">
-                  <span className="text-[#9AAEFF] font-semibold block">{h.raidContribution}</span>
-                  <span className="text-[10px] text-[#6F747B]">{h.streak}</span>
-                </div>
+                <h4 className="font-mono text-xs font-bold text-[#F5F5F2] tracking-wider uppercase">
+                  {feat.title}
+                </h4>
+                <p className="font-sans text-xs text-[#A6A9AE] leading-relaxed">
+                  {feat.desc}
+                </p>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
       </div>

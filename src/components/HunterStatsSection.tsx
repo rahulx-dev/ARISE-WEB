@@ -9,10 +9,10 @@ import HolographicHunterCard from "./HolographicHunterCard";
 
 export default function HunterStatsSection() {
   const telemetry = [
-    { label: "RANK", value: "E-RANK" },
-    { label: "LEVEL", value: "LV. 35" },
-    { label: "PROGRESSION", value: "75 / 100 XP" },
-    { label: "STREAK", value: "1 DAY" },
+    { label: "RANK ARCHITECTURE", value: "E-RANK TO S-RANK" },
+    { label: "TRACKING ENGINE", value: "ON-DEVICE AI" },
+    { label: "POSE LATENCY", value: "< 16MS VOLATILE" },
+    { label: "USER PRIVACY", value: "100% LOCAL DATA" },
   ];
 
   const rawProfileVideoUrl =

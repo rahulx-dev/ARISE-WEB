@@ -92,12 +92,12 @@ export default function DailyQuestBoard() {
           </h3>
         </div>
 
-        {/* Penalty Timer Warning */}
-        <div className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-[#FF6B4A]/10 border border-[#FF6B4A]/30 text-[#FF6B4A] font-mono text-xs self-start sm:self-auto shrink-0">
-          <Clock className="w-4 h-4 animate-spin" style={{ animationDuration: "12s" }} />
+        {/* System 24H Cycle Indicator */}
+        <div className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-[#9AAEFF]/10 border border-[#9AAEFF]/20 text-[#9AAEFF] font-mono text-xs self-start sm:self-auto shrink-0">
+          <Clock className="w-4 h-4 text-[#9AAEFF]" />
           <div>
-            <div className="text-[10px] text-[#FF6B4A] uppercase tracking-wider">PENALTY ZONE IN</div>
-            <div className="font-bold text-xs">04H : 18M : 42S</div>
+            <div className="text-[10px] text-[#A6A9AE] uppercase tracking-wider">SYSTEM CYCLE</div>
+            <div className="font-bold text-xs text-[#F5F5F2]">DAILY 24H RESET</div>
           </div>
         </div>
       </div>

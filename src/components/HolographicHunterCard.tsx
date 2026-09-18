@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Shield, Sparkles, QrCode } from "lucide-react";
 
 export default function HolographicHunterCard() {
-  const [hunterName, setHunterName] = useState("SUNG JIN-WOO");
+  const [hunterName, setHunterName] = useState("HUNTER");
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -78,8 +78,9 @@ export default function HolographicHunterCard() {
               type="text"
               value={hunterName}
               onChange={(e) => setHunterName(e.target.value.toUpperCase())}
+              placeholder="ENTER NAME"
               maxLength={20}
-              className="bg-transparent text-lg sm:text-xl font-mono font-black text-[#F5F5F2] focus:outline-none border-b border-white/10 focus:border-[#9AAEFF] transition-colors w-full tracking-wide"
+              className="bg-transparent text-lg sm:text-xl font-mono font-black text-[#F5F5F2] placeholder:text-[#6F747B] focus:outline-none border-b border-white/10 focus:border-[#9AAEFF] transition-colors w-full tracking-wide"
               title="Click to customize name"
             />
             <div className="text-[10px] font-mono text-[#9AAEFF] flex items-center gap-1 font-semibold">
@@ -91,7 +92,7 @@ export default function HolographicHunterCard() {
           {/* Footer Telemetry */}
           <div className="flex items-end justify-between pt-2 border-t border-white/10 font-mono text-[9px] text-[#6F747B]">
             <div>
-              <div>ID: #AR-7794-GLOBAL</div>
+              <div>ID: #AR-HUNTER-LICENSE</div>
               <div>SECURITY: OFFLINE VERIFIED</div>
             </div>
             <div className="flex items-center gap-1 text-[#A6A9AE]">
