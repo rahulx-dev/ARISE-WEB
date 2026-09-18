@@ -74,7 +74,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-xl border border-white/10 rounded-3xl p-6 sm:p-8 bg-[#0E1115] text-[#F5F5F2] shadow-2xl shadow-black/80 z-10 overflow-hidden"
+            className="relative w-full max-w-xl border border-white/10 rounded-3xl p-6 sm:p-8 bg-[#090B0F] text-[#F5F5F2] shadow-2xl shadow-black/80 z-10 overflow-hidden"
           >
             {/* Top Laser Accent */}
             <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#9AAEFF]/40 to-transparent" />
@@ -112,7 +112,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => sound.playClick()}
-                className="flex flex-col items-center justify-center p-5 rounded-2xl bg-[#050607] border border-white/10 text-center relative group hover:border-white/20 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                className="flex flex-col items-center justify-center p-5 rounded-2xl bg-[#0E1115] border border-white/10 text-center relative group hover:border-white/20 hover:bg-[#13171C] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer"
               >
                 <div className="relative p-2 bg-white rounded-xl shadow-md mb-3 border border-white/20 overflow-hidden">
                   <img
@@ -170,7 +170,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => sound.playClick()}
-                    className="w-full py-2.5 px-4 rounded-xl bg-[#050607] hover:bg-[#13171C] border border-white/10 text-[#F5F5F2] font-mono text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                    className="w-full py-2.5 px-4 rounded-xl bg-[#0E1115] hover:bg-[#13171C] border border-white/10 text-[#F5F5F2] font-mono text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
                   >
                     <ExternalLink className="w-3.5 h-3.5 text-[#A6A9AE]" />
                     <span>Open GitHub Releases</span>
@@ -190,7 +190,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
             </div>
 
             {/* SHA-256 Hash Strip with hover */}
-            <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs bg-[#050607] px-3.5 py-2.5 rounded-xl border border-white/10">
+            <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs bg-[#0E1115] px-3.5 py-2.5 rounded-xl border border-white/10">
               <div className="flex items-center gap-2 overflow-hidden">
                 <span className="font-mono text-[10px] text-[#6F747B] font-bold shrink-0">SHA-256:</span>
                 <span className="font-mono text-[10px] text-[#A6A9AE] truncate">

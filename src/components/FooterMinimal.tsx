@@ -111,7 +111,7 @@ export default function FooterMinimal() {
             </a>
           </div>
           <div className="font-sans text-[10px] text-[#6F747B]">
-            &copy; 2025 ARISE. All rights reserved.
+            &copy; 2026 ARISE. All rights reserved.
           </div>
         </div>
 

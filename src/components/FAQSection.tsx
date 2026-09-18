@@ -73,7 +73,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-28 sm:py-40 relative overflow-hidden select-none bg-[#0A0C0F]">
+    <section id="faq" className="py-28 sm:py-40 relative overflow-hidden select-none bg-[#050607]">
       {/* Anchor for Privacy Navigation */}
       <div id="privacy" className="absolute -top-24 left-0" />
 
@@ -106,8 +106,8 @@ export default function FAQSection() {
                 initial={false}
                 className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                   isOpen
-                    ? "bg-[#13171C] border-white/20 shadow-xl shadow-black/40"
-                    : "bg-[#0E1115] border-white/10 hover:border-white/20"
+                    ? "bg-[#10141A] border-white/[0.12] shadow-xl shadow-black/40"
+                    : "bg-[#0B0E12] border-white/[0.09] hover:bg-[#10141A] hover:border-white/[0.14]"
                 }`}
               >
                 <button
@@ -119,13 +119,13 @@ export default function FAQSection() {
                       className={`p-2 rounded-xl shrink-0 mt-0.5 transition-colors ${
                         isOpen
                           ? "bg-[#9AAEFF]/15 text-[#9AAEFF]"
-                          : "bg-white/[0.04] text-[#A6A9AE]"
+                          : "bg-white/[0.04] text-[#7D838B]"
                       }`}
                     >
                       <Icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-mono tracking-widest text-[#6F747B] uppercase font-semibold block mb-1">
+                      <span className="text-[10px] font-mono tracking-widest text-[#9AAEFF] uppercase font-semibold block mb-1">
                         {faq.tag}
                       </span>
                       <h3 className="text-base sm:text-lg font-bold tracking-tight text-[#F5F5F2] font-sans">
@@ -135,7 +135,7 @@ export default function FAQSection() {
                   </div>
 
                   <div
-                    className={`p-1.5 rounded-lg border border-white/10 text-[#A6A9AE] transition-transform duration-300 shrink-0 ${
+                    className={`p-1.5 rounded-lg border border-white/10 text-[#7D838B] transition-transform duration-300 shrink-0 ${
                       isOpen ? "rotate-180 text-[#F5F5F2] border-white/25" : ""
                     }`}
                   >
@@ -151,7 +151,7 @@ export default function FAQSection() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-[#A6A9AE] leading-relaxed font-sans border-t border-white/10 mt-2">
+                      <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-[#7D838B] leading-relaxed font-sans border-t border-white/[0.06] mt-2">
                         {faq.answer}
                       </div>
                     </motion.div>
