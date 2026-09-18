@@ -73,22 +73,22 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-28 sm:py-40 relative overflow-hidden select-none">
+    <section id="faq" className="py-28 sm:py-40 relative overflow-hidden select-none bg-[#0A0C0F]">
       {/* Anchor for Privacy Navigation */}
       <div id="privacy" className="absolute -top-24 left-0" />
 
       {/* Subtle Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-white/[0.02] rounded-full blur-[180px] pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-white/[0.01] rounded-full blur-[180px] pointer-events-none -z-10" />
 
       <div className="max-w-4xl mx-auto px-6 sm:px-8">
         {/* Header */}
         <div className="text-center space-y-3 mb-16 select-none">
-          <div className="text-xs font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+          <div className="text-xs font-mono tracking-[0.25em] text-[#6F747B] uppercase">
             TRANSPARENCY &amp; PROTOCOL
           </div>
-          <h2 className="font-display text-4xl sm:text-6xl font-normal tracking-tight text-slate-900 dark:text-white">
+          <h2 className="font-display text-4xl sm:text-6xl font-normal tracking-tight text-[#F5F5F2]">
             Frequently Asked <br />
-            <span className="italic text-slate-400 dark:text-slate-400">
+            <span className="italic text-[#A6A9AE]">
               Questions.
             </span>
           </h2>
@@ -106,8 +106,8 @@ export default function FAQSection() {
                 initial={false}
                 className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                   isOpen
-                    ? "bg-[#070B16] border-cyan-500/40 shadow-lg shadow-cyan-950/20"
-                    : "bg-[#070B16]/70 border-white/[0.08] hover:border-white/20"
+                    ? "bg-[#13171C] border-white/20 shadow-xl shadow-black/40"
+                    : "bg-[#0E1115] border-white/10 hover:border-white/20"
                 }`}
               >
                 <button
@@ -118,25 +118,25 @@ export default function FAQSection() {
                     <div
                       className={`p-2 rounded-xl shrink-0 mt-0.5 transition-colors ${
                         isOpen
-                          ? "bg-cyan-500/10 text-cyan-400"
-                          : "bg-white/[0.04] text-slate-400"
+                          ? "bg-[#9AAEFF]/15 text-[#9AAEFF]"
+                          : "bg-white/[0.04] text-[#A6A9AE]"
                       }`}
                     >
                       <Icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-semibold block mb-1">
+                      <span className="text-[10px] font-mono tracking-widest text-[#6F747B] uppercase font-semibold block mb-1">
                         {faq.tag}
                       </span>
-                      <h3 className="text-base sm:text-lg font-bold tracking-tight text-white font-sans">
+                      <h3 className="text-base sm:text-lg font-bold tracking-tight text-[#F5F5F2] font-sans">
                         {faq.question}
                       </h3>
                     </div>
                   </div>
 
                   <div
-                    className={`p-1.5 rounded-lg border border-white/[0.08] text-slate-400 transition-transform duration-300 shrink-0 ${
-                      isOpen ? "rotate-180 text-cyan-400 border-cyan-500/30" : ""
+                    className={`p-1.5 rounded-lg border border-white/10 text-[#A6A9AE] transition-transform duration-300 shrink-0 ${
+                      isOpen ? "rotate-180 text-[#F5F5F2] border-white/25" : ""
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -151,7 +151,7 @@ export default function FAQSection() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans border-t border-white/[0.04] mt-2">
+                      <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-[#A6A9AE] leading-relaxed font-sans border-t border-white/10 mt-2">
                         {faq.answer}
                       </div>
                     </motion.div>

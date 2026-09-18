@@ -12,36 +12,36 @@ export default function HunterRankCalculator() {
     "0-10": {
       rank: "E-RANK",
       title: "Awakened Recruit",
-      color: "text-slate-400",
-      border: "border-slate-700",
-      glow: "shadow-slate-900/50",
+      color: "text-[#A6A9AE]",
+      border: "border-white/10",
+      glow: "shadow-black/50",
       xpGain: "+10 XP / Rep",
       shadowPower: "Basic Dagger Slash",
     },
     "10-25": {
       rank: "D-RANK",
       title: "Iron Vanguard",
-      color: "text-cyan-400",
-      border: "border-cyan-500/40",
-      glow: "shadow-cyan-950/50",
+      color: "text-[#9AAEFF]",
+      border: "border-[#9AAEFF]/30",
+      glow: "shadow-black/50",
       xpGain: "+25 XP / Rep",
       shadowPower: "Shadow Stealth I",
     },
     "26-50": {
       rank: "B-RANK",
       title: "Dungeon Striker",
-      color: "text-blue-400",
-      border: "border-blue-500/50",
-      glow: "shadow-blue-950/60",
+      color: "text-[#F5F5F2]",
+      border: "border-white/20",
+      glow: "shadow-black/60",
       xpGain: "+60 XP / Rep",
       shadowPower: "Bloodlust Surge",
     },
     "50+": {
       rank: "S-RANK",
       title: "Shadow Monarch",
-      color: "text-amber-400",
-      border: "border-amber-500/60",
-      glow: "shadow-amber-950/80",
+      color: "text-[#F5F5F2]",
+      border: "border-white/30",
+      glow: "shadow-black/80",
       xpGain: "+150 XP / Rep",
       shadowPower: "Ruler's Authority // ARISE",
     },
@@ -50,12 +50,12 @@ export default function HunterRankCalculator() {
   const currentRank = ranks[pushups] || ranks["10-25"];
 
   return (
-    <div className="w-full max-w-xl mx-auto rounded-3xl border border-white/[0.08] bg-[#070B16]/90 backdrop-blur-xl p-6 sm:p-7 shadow-2xl shadow-black/40 space-y-6 select-none">
+    <div className="w-full max-w-xl mx-auto rounded-3xl border border-white/10 bg-[#0E1115] p-6 sm:p-7 shadow-2xl shadow-black/80 space-y-6 select-none">
       {/* Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+      <div className="flex items-center justify-between pb-3 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <Shield className="w-4 h-4 text-cyan-400" />
-          <span className="text-xs font-mono font-bold tracking-wider text-white uppercase">
+          <Shield className="w-4 h-4 text-[#9AAEFF]" />
+          <span className="text-xs font-mono font-bold tracking-wider text-[#F5F5F2] uppercase">
             HUNTER RANK EVALUATOR
           </span>
         </div>
@@ -65,7 +65,7 @@ export default function HunterRankCalculator() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Pushups */}
         <div className="space-y-2">
-          <label className="text-xs font-mono text-slate-400 uppercase block">
+          <label className="text-xs font-mono text-[#A6A9AE] uppercase block">
             Daily Pushups Capacity
           </label>
           <div className="grid grid-cols-2 gap-1.5 font-mono text-xs">
@@ -75,8 +75,8 @@ export default function HunterRankCalculator() {
                 onClick={() => setPushups(lvl)}
                 className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
                   pushups === lvl
-                    ? "border-blue-500 bg-blue-500/20 text-white font-bold shadow-sm"
-                    : "border-white/[0.06] bg-white/[0.03] text-slate-400 hover:border-white/20 hover:text-white"
+                    ? "border-white/30 bg-white/15 text-[#F5F5F2] font-bold shadow-sm"
+                    : "border-white/10 bg-[#050607] text-[#A6A9AE] hover:border-white/20 hover:text-[#F5F5F2]"
                 }`}
               >
                 {lvl}
@@ -87,7 +87,7 @@ export default function HunterRankCalculator() {
 
         {/* Screen Time */}
         <div className="space-y-2">
-          <label className="text-xs font-mono text-slate-400 uppercase block">
+          <label className="text-xs font-mono text-[#A6A9AE] uppercase block">
             Daily Distraction Screen Time
           </label>
           <div className="grid grid-cols-2 gap-1.5 font-mono text-xs">
@@ -97,8 +97,8 @@ export default function HunterRankCalculator() {
                 onClick={() => setScreentime(st)}
                 className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
                   screentime === st
-                    ? "border-emerald-500 bg-emerald-500/20 text-white font-bold shadow-sm"
-                    : "border-white/[0.06] bg-white/[0.03] text-slate-400 hover:border-white/20 hover:text-white"
+                    ? "border-white/30 bg-white/15 text-[#F5F5F2] font-bold shadow-sm"
+                    : "border-white/10 bg-[#050607] text-[#A6A9AE] hover:border-white/20 hover:text-[#F5F5F2]"
                 }`}
               >
                 {st}
@@ -116,35 +116,35 @@ export default function HunterRankCalculator() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.3 }}
-          className={`p-5 rounded-2xl border ${currentRank.border} bg-white/[0.03] shadow-xl ${currentRank.glow} space-y-4`}
+          className={`p-5 rounded-2xl border ${currentRank.border} bg-[#13171C] shadow-xl ${currentRank.glow} space-y-4`}
         >
           <div className="flex items-start justify-between">
             <div className="space-y-1">
-              <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+              <div className="text-[10px] font-mono text-[#6F747B] uppercase tracking-wider">
                 CURRENT EVALUATED STATUS
               </div>
               <div className={`text-3xl font-extrabold font-mono tracking-tight ${currentRank.color}`}>
                 {currentRank.rank}
               </div>
-              <div className="text-sm font-semibold text-white flex items-center gap-1.5">
-                <Trophy className="w-3.5 h-3.5 text-amber-400" />
+              <div className="text-sm font-semibold text-[#F5F5F2] flex items-center gap-1.5">
+                <Trophy className="w-3.5 h-3.5 text-[#9AAEFF]" />
                 <span>{currentRank.title}</span>
               </div>
             </div>
 
-            <div className="px-3 py-1.5 rounded-xl bg-white/[0.05] border border-white/10 text-right font-mono">
-              <div className="text-[10px] text-slate-400">30-DAY POTENTIAL</div>
-              <div className="text-xs font-bold text-amber-400">S-RANK MONARCH</div>
+            <div className="px-3 py-1.5 rounded-xl bg-[#050607] border border-white/10 text-right font-mono">
+              <div className="text-[10px] text-[#6F747B]">30-DAY POTENTIAL</div>
+              <div className="text-xs font-bold text-[#9AAEFF]">S-RANK MONARCH</div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/[0.06] text-xs font-mono">
-            <div className="flex items-center gap-1.5 text-slate-300">
-              <Zap className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/10 text-xs font-mono">
+            <div className="flex items-center gap-1.5 text-[#A6A9AE]">
+              <Zap className="w-3.5 h-3.5 text-[#9AAEFF]" />
               <span>Yield: {currentRank.xpGain}</span>
             </div>
-            <div className="flex items-center gap-1.5 text-slate-300">
-              <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+            <div className="flex items-center gap-1.5 text-[#A6A9AE]">
+              <Sparkles className="w-3.5 h-3.5 text-[#747BFF]" />
               <span>Skill: {currentRank.shadowPower}</span>
             </div>
           </div>

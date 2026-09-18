@@ -97,21 +97,21 @@ export default function GateGuardianSection() {
   };
 
   return (
-    <section id="gate" className="py-28 sm:py-40 relative overflow-hidden select-none">
-      {/* Subtle Crimson Atmosphere */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#EF4444]/[0.04] rounded-full blur-[220px] pointer-events-none -z-10" />
+    <section id="gate" className="py-28 sm:py-40 relative overflow-hidden select-none bg-[#050607]">
+      {/* Subtle Warm Energy Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#FF6B4A]/[0.02] rounded-full blur-[220px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
           
           {/* Left: Editorial Headline, Flow Sequence & App Selector */}
           <div className="lg:col-span-6 space-y-8">
-              <div className="text-xs font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+              <div className="text-xs font-mono tracking-[0.25em] text-[#A6A9AE] uppercase">
                 GATE GUARDIAN PROTOCOL
               </div>
-              <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-[0.96]">
+              <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-[#F5F5F2] leading-[0.96]">
                 Distraction <br />
-                <span className="italic text-slate-400 dark:text-slate-400">
+                <span className="italic text-[#A6A9AE]">
                   Has A Toll.
                 </span>
               </h2>
@@ -120,11 +120,11 @@ export default function GateGuardianSection() {
             <div className="flex flex-wrap items-center gap-2.5 pt-1 select-none font-mono text-xs">
               {steps.map((step, idx) => (
                 <React.Fragment key={idx}>
-                  <span className="text-slate-500 dark:text-slate-300 font-semibold">
+                  <span className="text-[#A6A9AE] font-semibold">
                     {step}
                   </span>
                   {idx < steps.length - 1 && (
-                    <ArrowRight className="w-3 h-3 text-[#EF4444] shrink-0" />
+                    <ArrowRight className="w-3 h-3 text-[#FF6B4A] shrink-0" />
                   )}
                 </React.Fragment>
               ))}
@@ -132,7 +132,7 @@ export default function GateGuardianSection() {
 
             {/* Target App Friction Selector */}
             <div className="space-y-3 pt-2 select-none">
-              <span className="text-xs font-mono text-slate-400 tracking-wider uppercase block font-semibold">
+              <span className="text-xs font-mono text-[#A6A9AE] tracking-wider uppercase block font-semibold">
                 Select Restricted App Target
               </span>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -145,19 +145,19 @@ export default function GateGuardianSection() {
                       onClick={() => handleAppSelect(app.name)}
                       className={`relative p-3 rounded-2xl border text-xs font-mono transition-all flex flex-col items-center gap-1.5 cursor-pointer overflow-hidden ${
                         isSelected
-                          ? "border-red-500/80 text-white shadow-lg shadow-red-950/50 bg-red-500/10"
-                          : "border-white/[0.08] bg-white/[0.03] text-white/60 hover:border-white/20 hover:text-white"
+                          ? "border-[#FF6B4A]/60 text-white shadow-lg shadow-black/50 bg-[#FF6B4A]/10"
+                          : "border-white/10 bg-[#0E1115] text-[#A6A9AE] hover:border-white/20 hover:text-white"
                       }`}
                     >
                       {isSelected && (
                         <motion.div
                           layoutId="activeAppPill"
-                          className="absolute inset-0 bg-gradient-to-b from-red-500/25 to-red-600/10 border border-red-500/40 rounded-2xl pointer-events-none -z-0"
+                          className="absolute inset-0 bg-[#FF6B4A]/15 border border-[#FF6B4A]/40 rounded-2xl pointer-events-none -z-0"
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
                       <Icon className={`w-4 h-4 relative z-10 transition-transform group-hover:scale-110 ${app.color}`} />
-                      <span className="font-bold text-white text-[11px] relative z-10">{app.name}</span>
+                      <span className="font-bold text-[#F5F5F2] text-[11px] relative z-10">{app.name}</span>
                     </button>
                   );
                 })}
@@ -165,22 +165,22 @@ export default function GateGuardianSection() {
             </div>
 
             {/* Dual Custom Sliders for Trial Reps & Unlock Time */}
-            <div className="p-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] space-y-4">
+            <div className="p-4 rounded-2xl border border-white/10 bg-[#0E1115] space-y-4">
               <div className="flex items-center justify-between text-xs font-mono font-semibold">
-                <span className="text-white/80 flex items-center gap-1.5">
-                  <Sliders className="w-3.5 h-3.5 text-red-500" />
+                <span className="text-[#F5F5F2] flex items-center gap-1.5">
+                  <Sliders className="w-3.5 h-3.5 text-[#FF6B4A]" />
                   <span>CUSTOM TOLL: {customReps} {currentApp.reqType}</span>
                 </span>
-                <span className="text-emerald-400 font-bold">
+                <span className="text-[#9AAEFF] font-bold">
                   UNLOCKS FOR: {customMinutes} MINS
                 </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <div className="flex justify-between text-[10px] font-mono text-slate-400">
+                  <div className="flex justify-between text-[10px] font-mono text-[#A6A9AE]">
                     <span>REPS TOLL</span>
-                    <span className="text-red-400 font-bold">{customReps} Reps</span>
+                    <span className="text-[#FF6B4A] font-bold">{customReps} Reps</span>
                   </div>
                   <input
                     type="range"
@@ -193,14 +193,14 @@ export default function GateGuardianSection() {
                       setRepsDone(0);
                       setSimState("locked");
                     }}
-                    className="w-full h-2 rounded-lg bg-white/10 accent-red-500 cursor-pointer"
+                    className="w-full h-2 rounded-lg bg-white/10 accent-[#FF6B4A] cursor-pointer"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <div className="flex justify-between text-[10px] font-mono text-slate-400">
+                  <div className="flex justify-between text-[10px] font-mono text-[#A6A9AE]">
                     <span>UNLOCKED ACCESS</span>
-                    <span className="text-emerald-400 font-bold">{customMinutes} Mins</span>
+                    <span className="text-[#9AAEFF] font-bold">{customMinutes} Mins</span>
                   </div>
                   <input
                     type="range"
@@ -209,19 +209,19 @@ export default function GateGuardianSection() {
                     step={5}
                     value={customMinutes}
                     onChange={(e) => setCustomMinutes(Number(e.target.value))}
-                    className="w-full h-2 rounded-lg bg-white/10 accent-emerald-500 cursor-pointer"
+                    className="w-full h-2 rounded-lg bg-white/10 accent-[#9AAEFF] cursor-pointer"
                   />
                 </div>
               </div>
             </div>
 
             {/* Simulator Action Trigger Bar */}
-            <div className="p-4 rounded-2xl border border-red-500/30 bg-red-500/10 space-y-3">
+            <div className="p-4 rounded-2xl border border-white/10 bg-[#0E1115] space-y-3">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400 uppercase font-semibold">
-                  SIMULATOR: <span className={simState === "unlocked" ? "text-emerald-400 font-bold" : "text-red-400 font-bold"}>{simState.toUpperCase()}</span>
+                <span className="text-[#A6A9AE] uppercase font-semibold">
+                  SIMULATOR: <span className={simState === "unlocked" ? "text-[#9AAEFF] font-bold" : "text-[#FF6B4A] font-bold"}>{simState.toUpperCase()}</span>
                 </span>
-                <span className="text-white font-bold">
+                <span className="text-[#F5F5F2] font-bold">
                   {repsDone} / {customReps} {currentApp.reqType}
                 </span>
               </div>
@@ -232,17 +232,17 @@ export default function GateGuardianSection() {
                   disabled={simState === "unlocked"}
                   className={`flex-1 py-2.5 px-4 rounded-xl font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md ${
                     simState === "unlocked"
-                      ? "bg-white/10 text-slate-400 cursor-not-allowed"
-                      : "bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white shadow-red-500/20 active:scale-95"
+                      ? "bg-white/10 text-[#6F747B] cursor-not-allowed"
+                      : "bg-[#F5F5F2] text-[#050607] hover:bg-white active:scale-95"
                   }`}
                 >
-                  <Flame className="w-4 h-4" />
+                  <Flame className="w-4 h-4 text-[#FF6B4A]" />
                   <span>{simState === "unlocked" ? "Gate Unlocked!" : `Simulate Camera Reps (+5 ${currentApp.reqType})`}</span>
                 </button>
 
                 <button
                   onClick={handleResetSim}
-                  className="p-2.5 rounded-xl bg-white/[0.06] border border-white/10 text-slate-400 hover:text-white cursor-pointer transition-all"
+                  className="p-2.5 rounded-xl bg-[#13171C] border border-white/10 text-[#A6A9AE] hover:text-[#F5F5F2] cursor-pointer transition-all"
                   title="Reset Simulator"
                 >
                   <RefreshCw className="w-4 h-4" />
@@ -251,27 +251,27 @@ export default function GateGuardianSection() {
             </div>
 
             {/* Technical Friction Badges */}
-            <div className="grid grid-cols-3 gap-4 pt-2 border-t border-white/[0.08] font-mono text-xs select-none">
-              <div className="space-y-1 p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-slate-400 text-[10px] flex items-center gap-1">
-                  <Lock className="w-3 h-3 text-red-400" />
+            <div className="grid grid-cols-3 gap-4 pt-2 border-t border-white/10 font-mono text-xs select-none">
+              <div className="space-y-1 p-2.5 rounded-xl bg-[#0E1115] border border-white/10">
+                <div className="text-[#A6A9AE] text-[10px] flex items-center gap-1">
+                  <Lock className="w-3 h-3 text-[#FF6B4A]" />
                   <span>TOLL</span>
                 </div>
-                <div className="font-bold text-red-400">{customReps} {currentApp.reqType}</div>
+                <div className="font-bold text-[#FF6B4A]">{customReps} {currentApp.reqType}</div>
               </div>
-              <div className="space-y-1 p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-slate-400 text-[10px] flex items-center gap-1">
-                  <Zap className="w-3 h-3 text-cyan-400" />
+              <div className="space-y-1 p-2.5 rounded-xl bg-[#0E1115] border border-white/10">
+                <div className="text-[#A6A9AE] text-[10px] flex items-center gap-1">
+                  <Zap className="w-3 h-3 text-[#9AAEFF]" />
                   <span>REWARD</span>
                 </div>
-                <div className="font-bold text-white">{customMinutes} MIN UNLOCKED</div>
+                <div className="font-bold text-[#F5F5F2]">{customMinutes} MIN UNLOCKED</div>
               </div>
-              <div className="space-y-1 p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-slate-400 text-[10px] flex items-center gap-1">
-                  <Smartphone className="w-3 h-3 text-emerald-500" />
+              <div className="space-y-1 p-2.5 rounded-xl bg-[#0E1115] border border-white/10">
+                <div className="text-[#A6A9AE] text-[10px] flex items-center gap-1">
+                  <Smartphone className="w-3 h-3 text-[#F5F5F2]" />
                   <span>SECURITY</span>
                 </div>
-                <div className="font-bold text-emerald-600 dark:text-emerald-400">Zero Bypass</div>
+                <div className="font-bold text-[#F5F5F2]">Zero Bypass</div>
               </div>
             </div>
           </div>

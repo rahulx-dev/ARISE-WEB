@@ -71,12 +71,12 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 select-none ${
         isScrolled
-          ? "py-3 bg-black/90 backdrop-blur-2xl border-b border-white/[0.08]"
+          ? "py-3 bg-[#050607]/90 backdrop-blur-2xl border-b border-white/10 shadow-lg shadow-black/40"
           : "py-6 bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
-        {/* Brand Logo - Exact ARISE Vector Wordmark */}
+        {/* Brand Logo */}
         <a
           href="#"
           onClick={(e) => {
@@ -88,7 +88,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
           <AriseLogo size="md" />
         </a>
 
-        {/* Center Desktop Navigation with Clean Title Case & Active Underline */}
+        {/* Center Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id || (link.id === "hero" && activeSection === "hero");
@@ -102,15 +102,15 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                 }}
                 className={`relative py-1 text-xs font-sans tracking-wide transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "text-white font-medium"
-                    : "text-white/60 hover:text-white"
+                    ? "text-[#F5F5F2] font-medium"
+                    : "text-[#A6A9AE] hover:text-[#F5F5F2]"
                 }`}
               >
                 {link.name}
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-white rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#9AAEFF] rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -119,15 +119,14 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
           })}
         </nav>
 
-        {/* Right Controls: Solid White Pill Button */}
+        {/* Right Controls: Primary Solid White CTA */}
         <div className="flex items-center gap-4">
-          {/* Exact Mockup Pill Button: Solid White with Black Text */}
           <button
             onClick={() => {
               sound.playClick();
               onOpenDownload();
             }}
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-sans font-semibold bg-white text-black hover:bg-slate-100 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-lg shadow-white/10"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-sans font-semibold bg-[#F5F5F2] text-[#050607] hover:bg-white hover:shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           >
             <span>Download App</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -139,7 +138,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
               sound.playClick();
               setMobileMenuOpen(!mobileMenuOpen);
             }}
-            className="md:hidden p-2 text-white/70 hover:text-white rounded-lg cursor-pointer transition-colors"
+            className="md:hidden p-2 text-[#A6A9AE] hover:text-[#F5F5F2] rounded-lg cursor-pointer transition-colors"
             aria-label="Toggle Navigation"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -154,7 +153,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-black/95 border-b border-white/[0.08] px-6 py-5 space-y-3 backdrop-blur-2xl"
+            className="md:hidden bg-[#0A0C0F]/95 border-b border-white/10 px-6 py-5 space-y-3 backdrop-blur-2xl"
           >
             {navLinks.map((link) => (
               <a
@@ -164,10 +163,10 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className={`block text-xs font-mono tracking-widest py-2 transition-colors ${
+                className={`block text-xs font-sans tracking-wide py-2 transition-colors ${
                   activeSection === link.id
-                    ? "text-white font-bold"
-                    : "text-white/60 hover:text-white"
+                    ? "text-[#F5F5F2] font-semibold"
+                    : "text-[#A6A9AE] hover:text-[#F5F5F2]"
                 }`}
               >
                 {link.name}
@@ -180,7 +179,7 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
                   sound.playClick();
                   onOpenDownload();
                 }}
-                className="w-full py-3 rounded-full bg-white text-black text-xs font-sans font-semibold flex items-center justify-center gap-2 shadow-lg cursor-pointer transition-transform active:scale-95 hover:bg-slate-100"
+                className="w-full py-3 rounded-full bg-[#F5F5F2] text-[#050607] text-xs font-sans font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-[0.98] hover:bg-white"
               >
                 <span>Download App</span>
                 <ArrowRight className="w-3.5 h-3.5" />

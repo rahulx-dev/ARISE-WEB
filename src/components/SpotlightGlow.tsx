@@ -59,7 +59,7 @@ export default function SpotlightGlow() {
     >
       <div
         ref={spotlightRef}
-        className="absolute -top-[300px] -left-[300px] w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none will-change-transform dark:bg-[radial-gradient(circle,rgba(10,132,255,0.04)_0%,transparent_70%)] bg-[radial-gradient(circle,rgba(0,102,204,0.025)_0%,transparent_70%)]"
+        className="absolute -top-[300px] -left-[300px] w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none will-change-transform bg-[radial-gradient(circle,rgba(154,174,255,0.035)_0%,transparent_70%)]"
       />
     </div>
   );

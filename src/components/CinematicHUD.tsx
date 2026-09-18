@@ -41,23 +41,22 @@ export default function CinematicHUD() {
 
   return (
     <>
-      {/* Top Floating Cybernetic Progress Line */}
       {/* Top Global Scroll Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-[2px] z-50 pointer-events-none bg-white/[0.05]">
         <motion.div
           style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
-          className="h-full bg-gradient-to-r from-white/40 via-white to-emerald-400 shadow-[0_0_12px_rgba(255,255,255,0.6)]"
+          className="h-full bg-gradient-to-r from-white/30 via-[#9AAEFF] to-[#F5F5F2]"
         />
       </div>
 
-      {/* Right Fixed Sci-Fi Telemetry Dock (Desktop) */}
+      {/* Right Fixed Dock (Desktop) */}
       <div className="fixed right-6 bottom-8 z-40 hidden lg:flex flex-col items-end gap-3 select-none pointer-events-auto">
         {/* Section Telemetry HUD Pill */}
-        <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/80 border border-white/15 backdrop-blur-xl text-[10px] font-mono text-slate-300 shadow-2xl">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-          <span className="text-white font-bold tracking-wider">{activeSection}</span>
-          <span className="text-slate-600">|</span>
-          <span className="text-slate-400">ONLINE</span>
+        <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#0E1115]/90 border border-white/10 backdrop-blur-xl text-[10px] font-mono text-[#A6A9AE] shadow-2xl">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#9AAEFF] animate-ping" />
+          <span className="text-[#F5F5F2] font-bold tracking-wider">{activeSection}</span>
+          <span className="text-white/20">|</span>
+          <span className="text-[#6F747B]">ONLINE</span>
         </div>
       </div>
     </>

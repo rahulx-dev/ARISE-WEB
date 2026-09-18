@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Space_Grotesk, JetBrains_Mono, Cormorant_Garamond } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -15,13 +15,6 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-heading",
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
@@ -70,7 +63,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#050607",
   width: "device-width",
   initialScale: 1,
 };
@@ -83,7 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark scroll-smooth">
       <body
-        className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased bg-black text-white selection:bg-white/20 selection:text-white`}
+        className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} ${jetbrainsMono.variable} font-sans antialiased bg-[#050607] text-[#F5F5F2] selection:bg-[#9AAEFF]/20 selection:text-[#F5F5F2]`}
       >
         <ThemeProvider
           attribute="class"

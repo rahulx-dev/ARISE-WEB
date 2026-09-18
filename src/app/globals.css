@@ -3,31 +3,33 @@
 @tailwind utilities;
 
 :root {
-  --background: #000000;
-  --surface: #070b16;
-  --surface-subtle: #040711;
-  --border-hairline: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.2);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --accent-blue: #0a84ff;
-  --accent-crimson: #ef4444;
-  --accent-emerald: #10b981;
+  --background: #050607;
+  --background-secondary: #0a0c0f;
+  --surface: #0e1115;
+  --surface-elevated: #13171c;
+  --border-hairline: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.20);
+  --text-primary: #f5f5f2;
+  --text-secondary: #a6a9ae;
+  --text-muted: #6f747b;
+  --accent-primary: #9aaeff;
+  --accent-secondary: #747bff;
+  --accent-warm: #ff6b4a;
 }
 
 .dark {
-  --background: #000000;
-  --surface: #070b16;
-  --surface-subtle: #040711;
-  --border-hairline: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.2);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --accent-blue: #0a84ff;
-  --accent-crimson: #ef4444;
-  --accent-emerald: #10b981;
+  --background: #050607;
+  --background-secondary: #0a0c0f;
+  --surface: #0e1115;
+  --surface-elevated: #13171c;
+  --border-hairline: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.20);
+  --text-primary: #f5f5f2;
+  --text-secondary: #a6a9ae;
+  --text-muted: #6f747b;
+  --accent-primary: #9aaeff;
+  --accent-secondary: #747bff;
+  --accent-warm: #ff6b4a;
 }
 
 * {
@@ -36,11 +38,12 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #050607;
 }
 
 body {
-  color: var(--text-primary);
-  background-color: var(--background);
+  color: #f5f5f2;
+  background-color: #050607;
   overflow-x: hidden;
   min-height: 100vh;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -96,30 +99,16 @@ body {
 
 /* Subtle Physical Hardware Bezel */
 .hardware-chassis {
-  background: linear-gradient(145deg, #1e293b, #0f172a, #020617);
+  background: linear-gradient(145deg, #13171c, #0e1115, #050607);
   box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.12),
-    0 30px 70px -20px rgba(0, 0, 0, 0.8),
-    0 0 50px -15px rgba(10, 132, 255, 0.15);
+    0 0 0 1px rgba(255, 255, 255, 0.10),
+    0 30px 70px -20px rgba(0, 0, 0, 0.9),
+    0 0 35px -15px rgba(154, 174, 255, 0.08);
 }
 
-.light .hardware-chassis {
-  background: linear-gradient(145deg, #e2e8f0, #cbd5e1, #94a3b8);
-  box-shadow: 
-    0 0 0 1px rgba(0, 0, 0, 0.08),
-    0 30px 60px -20px rgba(0, 0, 0, 0.12),
-    0 0 35px -10px rgba(0, 102, 204, 0.1);
-}
-
-/* Apple & Linear Refined Typography Gradients */
+/* Refined Typography Gradients */
 .hero-gradient-text {
-  background: linear-gradient(180deg, #ffffff 20%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.light .hero-gradient-text {
-  background: linear-gradient(180deg, #0f172a 20%, #475569 100%);
+  background: linear-gradient(180deg, #f5f5f2 30%, #a6a9ae 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

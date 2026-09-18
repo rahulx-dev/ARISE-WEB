@@ -53,9 +53,9 @@ export default function HeroVideoShowcase() {
   }, []);
 
   return (
-    <section className="py-20 sm:py-28 relative overflow-hidden select-none border-t border-slate-200/80 dark:border-white/[0.08]">
-      {/* Ambient Radial Accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-white/[0.02] rounded-full blur-[200px] pointer-events-none -z-10" />
+    <section className="py-20 sm:py-28 relative overflow-hidden select-none border-t border-white/10 bg-[#0A0C0F]">
+      {/* Ambient Subtle Accent */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-[#9AAEFF]/[0.015] rounded-full blur-[200px] pointer-events-none -z-10" />
 
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
@@ -63,7 +63,7 @@ export default function HeroVideoShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative rounded-3xl p-3 sm:p-4 bg-gradient-to-b from-white/[0.12] to-white/[0.02] shadow-2xl shadow-black/90 border border-white/[0.08]"
+          className="relative rounded-3xl p-3 sm:p-4 bg-[#0E1115] shadow-2xl shadow-black/90 border border-white/10"
         >
           <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-black flex items-center justify-center">
             <video

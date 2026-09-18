@@ -35,12 +35,12 @@ export default function HolographicHunterCard() {
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className="relative w-full aspect-[1.58/1] rounded-3xl p-6 bg-gradient-to-br from-white/[0.08] via-[#070B16]/95 to-black/90 border border-white/20 shadow-2xl shadow-black/80 backdrop-blur-2xl overflow-hidden cursor-grab active:cursor-grabbing group"
+        className="relative w-full aspect-[1.58/1] rounded-3xl p-6 bg-[#0E1115] border border-white/15 shadow-2xl shadow-black/90 backdrop-blur-2xl overflow-hidden cursor-grab active:cursor-grabbing group"
       >
-        {/* Prismatic Silver Sheen Layer */}
+        {/* Subtle Silver & Cold Blue Sheen Layer */}
         <motion.div
           style={{
-            background: `linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.15) 40%, rgba(245, 158, 11, 0.2) 50%, rgba(16, 185, 129, 0.2) 60%, transparent 80%)`,
+            background: `linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.08) 40%, rgba(154, 174, 255, 0.12) 50%, rgba(116, 123, 255, 0.08) 60%, transparent 80%)`,
             left: shimmerX,
           }}
           className="absolute inset-0 pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity duration-300"
@@ -51,27 +51,27 @@ export default function HolographicHunterCard() {
           {/* Header */}
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white">
+              <div className="w-7 h-7 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-[#F5F5F2]">
                 <Shield className="w-4 h-4" />
               </div>
               <div>
-                <div className="text-[10px] font-mono tracking-widest text-slate-400 uppercase">
+                <div className="text-[10px] font-mono tracking-widest text-[#A6A9AE] uppercase">
                   ASSOCIATION LICENSE
                 </div>
-                <div className="text-xs font-bold font-mono text-white tracking-wider">
+                <div className="text-xs font-bold font-mono text-[#F5F5F2] tracking-wider">
                   ARISE // SYSTEM
                 </div>
               </div>
             </div>
 
-            <div className="px-2.5 py-1 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-black font-extrabold text-xs font-mono tracking-widest shadow-md shadow-amber-950/30">
+            <div className="px-2.5 py-1 rounded-xl bg-[#9AAEFF] text-[#050607] font-extrabold text-xs font-mono tracking-widest shadow-md">
               S-RANK
             </div>
           </div>
 
           {/* Middle Body */}
           <div className="my-auto space-y-1">
-            <div className="text-[9px] font-mono text-slate-400 uppercase tracking-widest">
+            <div className="text-[9px] font-mono text-[#6F747B] uppercase tracking-widest">
               HUNTER DESIGNATION
             </div>
             <input
@@ -79,30 +79,30 @@ export default function HolographicHunterCard() {
               value={hunterName}
               onChange={(e) => setHunterName(e.target.value.toUpperCase())}
               maxLength={20}
-              className="bg-transparent text-lg sm:text-xl font-mono font-black text-white focus:outline-none border-b border-white/10 focus:border-white transition-colors w-full tracking-wide"
+              className="bg-transparent text-lg sm:text-xl font-mono font-black text-[#F5F5F2] focus:outline-none border-b border-white/10 focus:border-[#9AAEFF] transition-colors w-full tracking-wide"
               title="Click to customize name"
             />
-            <div className="text-[10px] font-mono text-emerald-600 dark:text-arise-emerald flex items-center gap-1 font-semibold">
+            <div className="text-[10px] font-mono text-[#9AAEFF] flex items-center gap-1 font-semibold">
               <Sparkles className="w-3 h-3" />
               <span>SHADOW MONARCH AWAKENED</span>
             </div>
           </div>
 
           {/* Footer Telemetry */}
-          <div className="flex items-end justify-between pt-2 border-t border-slate-200 dark:border-white/10 font-mono text-[9px] text-slate-500 dark:text-slate-400">
+          <div className="flex items-end justify-between pt-2 border-t border-white/10 font-mono text-[9px] text-[#6F747B]">
             <div>
               <div>ID: #AR-7794-GLOBAL</div>
               <div>SECURITY: OFFLINE VERIFIED</div>
             </div>
-            <div className="flex items-center gap-1 text-slate-700 dark:text-slate-300">
-              <QrCode className="w-4 h-4 text-slate-900 dark:text-white" />
+            <div className="flex items-center gap-1 text-[#A6A9AE]">
+              <QrCode className="w-4 h-4 text-[#F5F5F2]" />
               <span>SCAN</span>
             </div>
           </div>
         </div>
       </motion.div>
 
-      <span className="text-[11px] font-mono text-slate-500 text-center">
+      <span className="text-[11px] font-mono text-[#6F747B] text-center">
         Hover / tilt with mouse • Click name to customize your Hunter ID
       </span>
     </div>

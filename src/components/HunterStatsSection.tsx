@@ -55,32 +55,32 @@ export default function HunterStatsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="ranks" className="py-36 sm:py-48 relative overflow-hidden">
-      {/* Subtle Monochrome Ambience */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-white/[0.02] rounded-full blur-[180px] pointer-events-none -z-10" />
+    <section ref={sectionRef} id="ranks" className="py-36 sm:py-48 relative overflow-hidden bg-[#050607]">
+      {/* Subtle Cold Violet Ambience */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#9AAEFF]/[0.015] rounded-full blur-[180px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
           
           <div className="lg:col-span-6 space-y-8">
-            <div className="text-xs font-mono tracking-[0.25em] text-slate-500 dark:text-slate-400 uppercase">
+            <div className="text-xs font-mono tracking-[0.25em] text-[#A6A9AE] uppercase">
               REAL-WORLD RPG PROGRESSION
             </div>
-            <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-[0.98]">
+            <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-[#F5F5F2] leading-[0.98]">
               You Are <br />
-              <span className="italic text-slate-400 dark:text-slate-400">
+              <span className="italic text-[#A6A9AE]">
                 The Character.
               </span>
             </h2>
 
             {/* Subtle Telemetry Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-2 select-none border-t border-slate-200 dark:border-white/[0.08]">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-2 select-none border-t border-white/10">
               {telemetry.map((t) => (
                 <div key={t.label} className="space-y-1">
-                  <div className="text-[10px] font-mono tracking-wider text-slate-400 dark:text-[#94A3B8] uppercase">
+                  <div className="text-[10px] font-mono tracking-wider text-[#6F747B] uppercase">
                     {t.label}
                   </div>
-                  <div className="text-sm font-semibold tracking-tight text-slate-900 dark:text-[#F8FAFC]">
+                  <div className="text-sm font-semibold tracking-tight text-[#F5F5F2]">
                     {t.value}
                   </div>
                 </div>
@@ -96,7 +96,7 @@ export default function HunterStatsSection() {
               className="w-full max-w-[340px] sm:max-w-[380px]"
             >
               <DeviceMockup showStatusBar={false}>
-                <div className="relative w-full h-full bg-black overflow-hidden flex items-center justify-center group">
+                <div className="relative w-full h-full bg-[#050607] overflow-hidden flex items-center justify-center group">
                   <video
                     ref={videoRef}
                     src={profileVideoUrl}
@@ -112,8 +112,8 @@ export default function HunterStatsSection() {
 
         </div>
 
-        {/* Award-Winning Interactive Tools: Hunter Rank Calculator & Holographic 3D License */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8 border-t border-slate-200 dark:border-white/[0.08] items-center">
+        {/* Interactive Tools: Hunter Rank Calculator & Holographic 3D License */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8 border-t border-white/10 items-center">
           <div className="lg:col-span-7">
             <HunterRankCalculator />
           </div>

@@ -68,7 +68,7 @@ export default function TutorialVideoModal({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/85 backdrop-blur-xl"
+            className="absolute inset-0 bg-black/90 backdrop-blur-xl"
             aria-hidden="true"
           />
 
@@ -81,21 +81,21 @@ export default function TutorialVideoModal({
             className="relative z-10 w-[94vw] max-w-5xl flex flex-col space-y-3"
           >
             {/* Top Bar with Language Tabs & Close Button */}
-            <div className="w-full flex items-center justify-between px-2 bg-slate-900/80 p-2.5 rounded-2xl border border-white/10 backdrop-blur-md">
+            <div className="w-full flex items-center justify-between px-3 bg-[#0E1115] p-2.5 rounded-2xl border border-white/10 backdrop-blur-md">
               <div className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-white" />
-                <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                <Globe className="w-4 h-4 text-[#9AAEFF]" />
+                <span className="text-xs font-mono font-bold text-[#F5F5F2] uppercase tracking-wider">
                   SYSTEM WALKTHROUGH //
                 </span>
                 
                 {/* Language Switcher Tabs */}
-                <div className="flex items-center gap-1 bg-black/40 p-1 rounded-xl border border-white/10 font-mono text-xs">
+                <div className="flex items-center gap-1 bg-[#050607] p-1 rounded-xl border border-white/10 font-mono text-xs">
                   <button
                     onClick={() => handleTabChange("en")}
                     className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
                       currentLang === "en"
-                        ? "bg-white text-black font-bold shadow-sm"
-                        : "text-slate-400 hover:text-white"
+                        ? "bg-[#F5F5F2] text-[#050607] font-bold shadow-sm"
+                        : "text-[#A6A9AE] hover:text-[#F5F5F2]"
                     }`}
                   >
                     English
@@ -104,8 +104,8 @@ export default function TutorialVideoModal({
                     onClick={() => handleTabChange("hi")}
                     className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
                       currentLang === "hi"
-                        ? "bg-white text-black font-bold shadow-sm"
-                        : "text-slate-400 hover:text-white"
+                        ? "bg-[#F5F5F2] text-[#050607] font-bold shadow-sm"
+                        : "text-[#A6A9AE] hover:text-[#F5F5F2]"
                     }`}
                   >
                     हिन्दी
@@ -116,7 +116,7 @@ export default function TutorialVideoModal({
               <button
                 onClick={onClose}
                 aria-label="Close tutorial"
-                className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none cursor-pointer"
+                className="p-2 rounded-xl text-[#A6A9AE] hover:text-[#F5F5F2] hover:bg-white/10 transition-colors focus:outline-none cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>

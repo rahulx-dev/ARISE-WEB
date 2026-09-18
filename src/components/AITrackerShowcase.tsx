@@ -119,9 +119,9 @@ export default function AITrackerShowcase() {
   };
 
   return (
-    <section id="ai" className="py-28 sm:py-40 relative overflow-hidden select-none">
-      {/* Subtle ambient light */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[550px] bg-white/[0.02] rounded-full blur-[220px] pointer-events-none -z-10" />
+    <section id="ai" className="py-28 sm:py-40 relative overflow-hidden select-none bg-[#050607]">
+      {/* Subtle cold blue/violet ambient light */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[550px] bg-[#9AAEFF]/[0.015] rounded-full blur-[220px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
@@ -134,22 +134,22 @@ export default function AITrackerShowcase() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-6 space-y-8"
           >
-              <div className="text-xs font-mono tracking-[0.25em] text-slate-400 uppercase">
+              <div className="text-xs font-mono tracking-[0.25em] text-[#A6A9AE] uppercase">
                 BIOMECHANICAL VISION
               </div>
-              <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-white leading-[0.96]">
+              <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-[#F5F5F2] leading-[0.96]">
                 See Every Rep. <br />
-                <span className="italic text-slate-400">
+                <span className="italic text-[#A6A9AE]">
                   Zero Cheating.
                 </span>
               </h2>
 
             {/* Exercise Selector Tabs */}
             <div className="space-y-3 pt-2 select-none">
-              <span className="text-xs font-mono text-slate-400 tracking-wider uppercase block font-semibold">
+              <span className="text-xs font-mono text-[#A6A9AE] tracking-wider uppercase block font-semibold">
                 Select Biomechanical Target
               </span>
-              <div className="grid grid-cols-3 gap-2 p-1.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md">
+              <div className="grid grid-cols-3 gap-2 p-1.5 rounded-2xl bg-[#0E1115] border border-white/10 backdrop-blur-md">
                 {exercises.map((ex) => {
                   const isActive = mode === ex.id;
                   return (
@@ -157,13 +157,13 @@ export default function AITrackerShowcase() {
                       key={ex.id}
                       onClick={() => handleModeChange(ex.id as ExerciseMode)}
                       className={`relative py-3 px-3 rounded-xl text-xs font-mono transition-all text-center flex flex-col items-center gap-0.5 cursor-pointer z-10 ${
-                        isActive ? "text-white font-bold" : "text-white/60 hover:text-white"
+                        isActive ? "text-[#F5F5F2] font-bold" : "text-[#A6A9AE] hover:text-[#F5F5F2]"
                       }`}
                     >
                       {isActive && (
                         <motion.div
                           layoutId="activeExercisePill"
-                          className="absolute inset-0 rounded-xl bg-white/[0.12] border border-white/20 shadow-sm -z-10"
+                          className="absolute inset-0 rounded-xl bg-white/15 border border-white/20 shadow-sm -z-10"
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -176,17 +176,17 @@ export default function AITrackerShowcase() {
             </div>
 
             {/* Simulator Interactive Action Buttons Bar */}
-            <div className="p-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] space-y-3">
+            <div className="p-4 rounded-2xl border border-white/10 bg-[#0E1115] space-y-3">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400">
-                  SIMULATOR STATUS: <span className="font-bold text-white">{isAutoSimulating ? "AUTO RUNNING (30 FPS)" : questCleared ? "QUEST COMPLETED" : "READY"}</span>
+                <span className="text-[#A6A9AE]">
+                  SIMULATOR STATUS: <span className="font-bold text-[#F5F5F2]">{isAutoSimulating ? "AUTO RUNNING (30 FPS)" : questCleared ? "QUEST COMPLETED" : "READY"}</span>
                 </span>
                 <button
                   onClick={toggleSound}
-                  className="flex items-center gap-1 text-slate-400 hover:text-white cursor-pointer"
+                  className="flex items-center gap-1 text-[#A6A9AE] hover:text-[#F5F5F2] cursor-pointer"
                   title={isMuted ? "Unmute sound" : "Mute sound"}
                 >
-                  {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-white" />}
+                  {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-[#F5F5F2]" />}
                   <span className="text-[10px]">{isMuted ? "MUTED" : "AUDIO ON"}</span>
                 </button>
               </div>
@@ -195,7 +195,7 @@ export default function AITrackerShowcase() {
                 <button
                   onClick={handleSingleRep}
                   disabled={reps >= targetReps}
-                  className="flex-1 py-2.5 px-4 rounded-xl font-mono text-xs font-bold bg-white text-black hover:bg-slate-100 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+                  className="flex-1 py-2.5 px-4 rounded-xl font-mono text-xs font-bold bg-[#F5F5F2] text-[#050607] hover:bg-white transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
                 >
                   <Activity className="w-3.5 h-3.5" />
                   <span>Tap to Rep (+1)</span>
@@ -205,8 +205,8 @@ export default function AITrackerShowcase() {
                   onClick={toggleAutoSimulate}
                   className={`py-2.5 px-4 rounded-xl font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer border ${
                     isAutoSimulating
-                      ? "bg-amber-500/20 border-amber-500/50 text-amber-400"
-                      : "bg-white/[0.06] border-white/10 text-white hover:border-white/30"
+                      ? "bg-[#FF6B4A]/15 border-[#FF6B4A]/40 text-[#FF6B4A]"
+                      : "bg-[#13171C] border-white/10 text-[#F5F5F2] hover:border-white/20 hover:bg-white/10"
                   }`}
                 >
                   {isAutoSimulating ? <Square className="w-3.5 h-3.5 fill-current" /> : <Play className="w-3.5 h-3.5 fill-current" />}
@@ -215,7 +215,7 @@ export default function AITrackerShowcase() {
 
                 <button
                   onClick={handleReset}
-                  className="p-2.5 rounded-xl bg-white/[0.06] border border-white/10 text-slate-400 hover:text-white cursor-pointer transition-all"
+                  className="p-2.5 rounded-xl bg-[#13171C] border border-white/10 text-[#A6A9AE] hover:text-[#F5F5F2] cursor-pointer transition-all"
                   title="Reset counter"
                 >
                   <RotateCcw className="w-4 h-4" />
@@ -224,27 +224,27 @@ export default function AITrackerShowcase() {
             </div>
 
             {/* Architecture Metrics Strip */}
-            <div className="grid grid-cols-3 gap-4 pt-2 border-t border-white/[0.08] font-mono text-xs select-none">
-              <div className="p-3 rounded-xl border border-white/[0.06] bg-white/[0.02] space-y-1">
-                <div className="text-slate-400 text-[10px] flex items-center gap-1">
-                  <Scan className="w-3 h-3 text-white" />
+            <div className="grid grid-cols-3 gap-4 pt-2 border-t border-white/10 font-mono text-xs select-none">
+              <div className="p-3 rounded-xl border border-white/10 bg-[#0E1115] space-y-1">
+                <div className="text-[#A6A9AE] text-[10px] flex items-center gap-1">
+                  <Scan className="w-3 h-3 text-[#9AAEFF]" />
                   <span>TRACKING</span>
                 </div>
-                <div className="font-bold text-white">33 Keypoints</div>
+                <div className="font-bold text-[#F5F5F2]">33 Keypoints</div>
               </div>
-              <div className="p-3 rounded-xl border border-white/[0.06] bg-white/[0.02] space-y-1">
-                <div className="text-slate-400 text-[10px] flex items-center gap-1">
-                  <Cpu className="w-3 h-3 text-white" />
+              <div className="p-3 rounded-xl border border-white/10 bg-[#0E1115] space-y-1">
+                <div className="text-[#A6A9AE] text-[10px] flex items-center gap-1">
+                  <Cpu className="w-3 h-3 text-[#9AAEFF]" />
                   <span>LATENCY</span>
                 </div>
-                <div className="font-bold text-white">&lt; 16ms Local</div>
+                <div className="font-bold text-[#F5F5F2]">&lt; 16ms Local</div>
               </div>
-              <div className="p-3 rounded-xl border border-white/[0.06] bg-white/[0.02] space-y-1">
-                <div className="text-slate-400 text-[10px] flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3 text-emerald-400" />
+              <div className="p-3 rounded-xl border border-white/10 bg-[#0E1115] space-y-1">
+                <div className="text-[#A6A9AE] text-[10px] flex items-center gap-1">
+                  <ShieldCheck className="w-3 h-3 text-[#F5F5F2]" />
                   <span>PRIVACY</span>
                 </div>
-                <div className="font-bold text-emerald-400">100% On-Device</div>
+                <div className="font-bold text-[#F5F5F2]">100% On-Device</div>
               </div>
             </div>
           </motion.div>

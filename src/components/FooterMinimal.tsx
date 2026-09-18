@@ -14,41 +14,41 @@ export default function FooterMinimal() {
   };
 
   return (
-    <footer className="border-t border-slate-200/80 dark:border-white/[0.08] py-12 text-xs select-none bg-white dark:bg-black">
+    <footer className="border-t border-white/10 py-12 text-xs select-none bg-[#050607]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
         
         {/* Left: Brand and Tagline */}
         <div className="space-y-2 text-center md:text-left">
           <AriseLogo size="md" />
-          <div className="font-mono text-[9px] tracking-[0.25em] text-slate-400 uppercase">
+          <div className="font-mono text-[9px] tracking-[0.25em] text-[#6F747B] uppercase">
             A BETTER YOU AWAITS.
           </div>
         </div>
 
         {/* Center: Legal & Support Links */}
-        <div className="flex flex-wrap items-center justify-center gap-8 text-slate-500 dark:text-slate-400 font-sans text-xs">
+        <div className="flex flex-wrap items-center justify-center gap-8 text-[#A6A9AE] font-sans text-xs">
           <button
             onClick={() => scrollTo("faq")}
-            className="hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+            className="hover:text-[#F5F5F2] transition-colors cursor-pointer"
           >
             Privacy
           </button>
           <button
             onClick={() => scrollTo("faq")}
-            className="hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+            className="hover:text-[#F5F5F2] transition-colors cursor-pointer"
           >
             Terms
           </button>
           <button
             onClick={() => scrollTo("faq")}
-            className="hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+            className="hover:text-[#F5F5F2] transition-colors cursor-pointer"
           >
             Support
           </button>
           <a
             href="mailto:contact@arise.fit"
             onClick={() => sound.playClick()}
-            className="hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+            className="hover:text-[#F5F5F2] transition-colors cursor-pointer"
           >
             Contact
           </a>
@@ -56,14 +56,14 @@ export default function FooterMinimal() {
 
         {/* Right: Social Icons & Copyright Stack */}
         <div className="space-y-2 text-center md:text-right">
-          <div className="flex items-center justify-center md:justify-end gap-4 text-slate-400 dark:text-slate-400">
+          <div className="flex items-center justify-center md:justify-end gap-4 text-[#A6A9AE]">
             {/* Discord */}
             <a
               href="https://discord.com"
               target="_blank"
               rel="noreferrer"
               onClick={() => sound.playClick()}
-              className="hover:text-white transition-colors"
+              className="hover:text-[#F5F5F2] transition-colors"
               aria-label="Discord"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -76,7 +76,7 @@ export default function FooterMinimal() {
               target="_blank"
               rel="noreferrer"
               onClick={() => sound.playClick()}
-              className="hover:text-white transition-colors"
+              className="hover:text-[#F5F5F2] transition-colors"
               aria-label="X"
             >
               <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -89,7 +89,7 @@ export default function FooterMinimal() {
               target="_blank"
               rel="noreferrer"
               onClick={() => sound.playClick()}
-              className="hover:text-red-500 transition-colors"
+              className="hover:text-[#F5F5F2] transition-colors"
               aria-label="YouTube"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -102,7 +102,7 @@ export default function FooterMinimal() {
               target="_blank"
               rel="noreferrer"
               onClick={() => sound.playClick()}
-              className="hover:text-pink-500 transition-colors"
+              className="hover:text-[#F5F5F2] transition-colors"
               aria-label="Instagram"
             >
               <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -110,7 +110,7 @@ export default function FooterMinimal() {
               </svg>
             </a>
           </div>
-          <div className="font-sans text-[10px] text-slate-500">
+          <div className="font-sans text-[10px] text-[#6F747B]">
             &copy; 2025 ARISE. All rights reserved.
           </div>
         </div>
