@@ -16,8 +16,8 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
   const [copied, setCopied] = useState(false);
 
   const releaseUrl = "https://github.com/rahulx-dev/ARISE-WEB/releases";
-  const apkUrl = "https://github.com/rahulx-dev/ARISE-WEB/releases/latest/download/ARISE_Final.apk";
-  const qrImageSrc = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=10&data=${encodeURIComponent("https://github.com/rahulx-dev/ARISE-WEB")}`;
+  const apkUrl = "https://github.com/rahulx-dev/ARISE-WEB/releases/download/v1.0.4/ARISE_UP.apk";
+  const qrImageSrc = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=10&data=${encodeURIComponent("https://github.com/rahulx-dev/ARISE-WEB/releases/download/v1.0.4/ARISE_UP.apk")}`;
 
   const hash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
 
@@ -25,18 +25,17 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
     sound.playClick();
     setDownloading(true);
 
-    // Trigger instant browser download with release fallback
     try {
       const link = document.createElement("a");
       link.href = apkUrl;
-      link.setAttribute("download", "ARISE_Final.apk");
+      link.setAttribute("download", "ARISE_UP.apk");
       link.target = "_blank";
       link.rel = "noopener noreferrer";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     } catch {
-      window.open(releaseUrl, "_blank");
+      window.open(apkUrl, "_blank");
     }
 
     setTimeout(() => {
@@ -150,7 +149,7 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
                     <span className="text-[#A6A9AE] flex items-center gap-1.5">
                       <ShieldCheck className="w-3.5 h-3.5 text-[#9AAEFF]" /> Package File
                     </span>
-                    <span className="font-mono text-[#F5F5F2] font-bold">ARISE_Final.apk</span>
+                    <span className="font-mono text-[#F5F5F2] font-bold">ARISE_UP.apk</span>
                   </div>
                 </div>
 
