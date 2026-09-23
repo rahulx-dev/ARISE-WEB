@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import { resolveCloudinaryVideoUrl } from "@/lib/videoUrl";
 
 export default function HeroVideoShowcase() {
@@ -53,38 +52,44 @@ export default function HeroVideoShowcase() {
   }, []);
 
   return (
-    <section className="py-20 sm:py-28 relative overflow-hidden select-none border-t border-white/10 bg-[#0A0C0F]">
-      {/* Ambient Subtle Accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-[#9AAEFF]/[0.015] rounded-full blur-[200px] pointer-events-none -z-10" />
+    <section className="relative w-full h-[80vh] sm:h-screen overflow-hidden select-none border-y border-white/10 bg-[#050607] flex items-center justify-center">
+      {/* Full-Bleed Video Element */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+        <video
+          ref={videoRef}
+          src={heroVideoUrl}
+          autoPlay
+          loop
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover object-center"
+        />
 
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative rounded-3xl p-3 sm:p-4 bg-[#0E1115] shadow-2xl shadow-black/90 border border-white/10"
-        >
-          <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-black flex items-center justify-center">
-            <video
-              ref={videoRef}
-              src={heroVideoUrl}
-              autoPlay
-              loop
-              playsInline
-              preload="auto"
-              className="w-full h-full object-cover object-center"
-            />
+        {/* Cinematic Gradient Overlays for Seamless Page Integration */}
+        <div className="absolute top-0 left-0 right-0 h-28 sm:h-36 bg-gradient-to-b from-[#050607] via-[#050607]/70 to-transparent pointer-events-none z-10" />
+        <div className="absolute bottom-0 left-0 right-0 h-28 sm:h-36 bg-gradient-to-t from-[#050607] via-[#050607]/70 to-transparent pointer-events-none z-10" />
+      </div>
 
-            {/* Corner Crosshairs */}
-            <div className="absolute top-4 left-4 font-mono text-[10px] text-white/70 pointer-events-none select-none tracking-widest">
-              + ARISE // PRODUCT SHOWCASE
-            </div>
-            <div className="absolute bottom-4 right-4 font-mono text-[10px] text-white/70 pointer-events-none select-none tracking-widest">
-              30 FPS ON-DEVICE AI
-            </div>
+      {/* Futuristic Corner HUD Telemetry */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full h-full flex flex-col justify-between py-8 sm:py-12 relative z-20 pointer-events-none font-mono text-[10px] sm:text-xs text-white/80">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 bg-black/60 px-3 py-1.5 rounded-xl border border-white/15 backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-[#9AAEFF] animate-pulse" />
+            <span className="tracking-widest uppercase font-bold">+ ARISE // LIVE PRODUCT SHOWCASE</span>
           </div>
-        </motion.div>
+          <div className="hidden sm:block bg-black/60 px-3 py-1.5 rounded-xl border border-white/15 backdrop-blur-md text-[#A6A9AE] tracking-widest uppercase">
+            1080P CINEMATIC · 60 FPS
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <div className="bg-black/60 px-3 py-1.5 rounded-xl border border-white/15 backdrop-blur-md text-[#A6A9AE] tracking-widest uppercase">
+            SYSTEM ENGINE: ON-DEVICE
+          </div>
+          <div className="bg-black/60 px-3 py-1.5 rounded-xl border border-white/15 backdrop-blur-md text-[#9AAEFF] font-bold tracking-widest uppercase">
+            30 FPS NEURAL POSE MATRIX
+          </div>
+        </div>
       </div>
     </section>
   );

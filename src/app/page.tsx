@@ -13,7 +13,6 @@ import HunterStatsSection from "@/components/HunterStatsSection";
 import DailyQuestBoard from "@/components/DailyQuestBoard";
 import SecurityPrivacySection from "@/components/SecurityPrivacySection";
 import RealCashSection from "@/components/RealCashSection";
-import HowToUseSection from "@/components/HowToUseSection";
 import GuildWorldSection from "@/components/GuildWorldSection";
 import FAQSection from "@/components/FAQSection";
 import FinalCTA from "@/components/FinalCTA";
@@ -77,10 +76,7 @@ export default function Home() {
       {/* 09. Section 05 — Rewards (Surveys to Real Payouts · Mana Crystals to UPI, Amazon, Google Play) */}
       <RealCashSection onOpenCashout={handleOpenCashout} />
 
-      {/* 10. Section 06 — How to Use (Ready to Arise? · English & Hindi Video Guides) */}
-      <HowToUseSection />
-
-      {/* 11. Section 07 — Guild (Don't Level Up Alone · Blood-Red Commander Igris) */}
+      {/* 10. Section 06 — Guild (Don't Level Up Alone · Blood-Red Commander Igris) */}
       <GuildWorldSection />
 
       {/* 12. Section 08 — Transparency & FAQ (Privacy, Offline Protocol, Survey Rewards) */}
