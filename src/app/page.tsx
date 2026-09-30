@@ -1,107 +1,73 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import HeroVideoShowcase from "@/components/HeroVideoShowcase";
-import HeroPillarsSection from "@/components/HeroPillarsSection";
+import NexusNavbar from "@/components/nexus/NexusNavbar";
+import NexusHero from "@/components/nexus/NexusHero";
+import NexusMarquee from "@/components/nexus/NexusMarquee";
+import NexusCapabilities from "@/components/nexus/NexusCapabilities";
+import NexusWork from "@/components/nexus/NexusWork";
 import NexusStatsBanner from "@/components/NexusStatsBanner";
-import StorySection from "@/components/StorySection";
-import DoomscrollVsAriseComparison from "@/components/DoomscrollVsAriseComparison";
-import AITrackerShowcase from "@/components/AITrackerShowcase";
-import GateGuardianSection from "@/components/GateGuardianSection";
-import HunterStatsSection from "@/components/HunterStatsSection";
-import DailyQuestBoard from "@/components/DailyQuestBoard";
-import SecurityPrivacySection from "@/components/SecurityPrivacySection";
-import RealCashSection from "@/components/RealCashSection";
-import GuildWorldSection from "@/components/GuildWorldSection";
-import FAQSection from "@/components/FAQSection";
-import FinalCTA from "@/components/FinalCTA";
-import FooterMinimal from "@/components/FooterMinimal";
-import DownloadModal from "@/components/DownloadModal";
-import CashoutModal from "@/components/CashoutModal";
-import SpotlightGlow from "@/components/SpotlightGlow";
+import NexusManifesto from "@/components/nexus/NexusManifesto";
+import NexusTeam from "@/components/nexus/NexusTeam";
+import NexusTestimonials from "@/components/nexus/NexusTestimonials";
+import NexusPricing from "@/components/nexus/NexusPricing";
+import NexusFAQ from "@/components/nexus/NexusFAQ";
+import NexusContactCTA from "@/components/nexus/NexusContactCTA";
+import NexusFooter from "@/components/nexus/NexusFooter";
+import NexusProjectModal from "@/components/nexus/NexusProjectModal";
 
 export default function Home() {
-  const [downloadModalOpen, setDownloadModalOpen] = useState(false);
-  const [cashoutModalOpen, setCashoutModalOpen] = useState(false);
-  const [cashoutCrystals, setCashoutCrystals] = useState(2450);
+  const [projectModalOpen, setProjectModalOpen] = useState(false);
 
-  const handleOpenCashout = (crystals?: number) => {
-    setCashoutCrystals(crystals || 2450);
-    setCashoutModalOpen(true);
+  const handleOpenProject = () => {
+    setProjectModalOpen(true);
   };
 
   return (
-    <main className="relative min-h-screen bg-[#050607] text-[#F5F5F2] selection:bg-[#9AAEFF]/20 selection:text-[#F5F5F2]">
-      {/* Linear-Style Mouse Spotlight Glow */}
-      <SpotlightGlow />
+    <main className="relative min-h-screen bg-ink-950 text-mist-100 selection:bg-signal selection:text-ink-950 overflow-x-hidden font-body">
+      {/* 01. Sticky / Floating Header */}
+      <NexusNavbar onOpenContact={handleOpenProject} />
 
-      {/* 00. Minimal Floating Navigation */}
-      <Navbar onOpenDownload={() => setDownloadModalOpen(true)} />
+      {/* 02. Impact Hero Section */}
+      <NexusHero onOpenContact={handleOpenProject} />
 
-      {/* 01. Mockup Editorial Hero Section */}
-      <Hero onOpenDownload={() => setDownloadModalOpen(true)} />
+      {/* 03. Infinite Scrolling Brand Logos Marquee */}
+      <NexusMarquee />
 
-      {/* 01.5 Full-Width Product Showcase Video */}
-      <HeroVideoShowcase />
+      {/* 04. Bento Capabilities / Services Grid */}
+      <NexusCapabilities />
 
-      {/* 02. Mockup 4-Pillars Sub-Hero Matrix */}
-      <HeroPillarsSection />
+      {/* 05. Selected Case Studies & 3D Work Portfolio */}
+      <NexusWork />
 
-      {/* 02.5 NEXUS Studio Electric Volt Signal Stats Banner */}
+      {/* 06. Electric Signal Stats & Metrics Banner */}
       <NexusStatsBanner />
 
-      {/* 03. Section 01 — The Problem (Whitespace & Typography) */}
-      <StorySection />
+      {/* 07. Studio Philosophy & Manifesto */}
+      <NexusManifesto />
 
-      {/* Interactive Feature: Doomscroll vs ARISE Matrix */}
-      <section className="px-6 sm:px-8 lg:px-12 py-12 relative z-10">
-        <DoomscrollVsAriseComparison />
-      </section>
+      {/* 08. Core Team with 3D Flip & Generative Pixel Art */}
+      <NexusTeam />
 
-      {/* 04. Section 02 — AI (See Every Rep · 30 FPS On-Device AI) */}
-      <AITrackerShowcase />
+      {/* 09. Testimonials Carousel with Huge Quote Backdrop */}
+      <NexusTestimonials />
 
-      {/* 05. Section 03 — Gate Guardian (Distraction Has a Toll · Interactive App Lock) */}
-      <GateGuardianSection />
+      {/* 10. Transparent Pricing / Investment Packages */}
+      <NexusPricing onSelectPlan={handleOpenProject} />
 
-      {/* 06. Section 04 — Real Life RPG (You Are the Character · Warrior Identity) */}
-      <HunterStatsSection />
+      {/* 11. Interactive FAQ Accordion */}
+      <NexusFAQ />
 
-      {/* 07. Interactive Feature: Daily Quest Log & System Notification */}
-      <section id="quests" className="px-6 sm:px-8 lg:px-12 py-12 relative z-10">
-        <DailyQuestBoard />
-      </section>
+      {/* 12. Direct Contact Form & Inquiry Section */}
+      <NexusContactCTA />
 
-      {/* 08. Security & Offline-First Privacy Architecture */}
-      <SecurityPrivacySection />
+      {/* 13. Studio Footer with Global Clocks (SF, London, Mumbai) */}
+      <NexusFooter />
 
-      {/* 09. Section 05 — Rewards (Surveys to Real Payouts · Mana Crystals to UPI, Amazon, Google Play) */}
-      <RealCashSection onOpenCashout={handleOpenCashout} />
-
-      {/* 10. Section 06 — Guild (Don't Level Up Alone · Blood-Red Commander Igris) */}
-      <GuildWorldSection />
-
-      {/* 12. Section 08 — Transparency & FAQ (Privacy, Offline Protocol, Survey Rewards) */}
-      <FAQSection />
-
-      {/* 13. Section 09 — Final CTA (Your Daily Quest is Waiting · APK + QR) */}
-      <FinalCTA onOpenDownload={() => setDownloadModalOpen(true)} />
-
-      {/* 14. Minimalist Footer */}
-      <FooterMinimal />
-
-      {/* Interactive Modals */}
-      <DownloadModal
-        isOpen={downloadModalOpen}
-        onClose={() => setDownloadModalOpen(false)}
-      />
-
-      <CashoutModal
-        isOpen={cashoutModalOpen}
-        onClose={() => setCashoutModalOpen(false)}
-        initialCrystals={cashoutCrystals}
+      {/* Interactive Project Inquiry Modal */}
+      <NexusProjectModal
+        isOpen={projectModalOpen}
+        onClose={() => setProjectModalOpen(false)}
       />
     </main>
   );
