@@ -2,66 +2,60 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Check, ArrowUpRight } from "lucide-react";
+import { Check, Sparkles, ArrowUpRight } from "lucide-react";
+import { sound } from "@/lib/audio";
 
 interface NexusPricingProps {
-  onSelectPlan?: (plan: string) => void;
+  onSelectPlan?: () => void;
 }
 
 export default function NexusPricing({ onSelectPlan }: NexusPricingProps) {
-  const plans = [
+  const tiers = [
     {
-      name: "Starter",
-      price: "₹1.5L",
-      desc: "Perfect for: Startups & MVPs",
+      name: "E-Rank Hunter",
+      price: "₹0",
+      cadence: "Forever Free",
+      desc: "For solo hunters beginning their physical awakening journey.",
       features: [
-        "Brand Identity",
-        "5-page website",
-        "Responsive Design",
-        "Basic SEO Setup",
-        "3 months support",
+        "30 FPS On-Device AI Pose Detection",
+        "Daily System Quest Board & Push-up Tracker",
+        "1 Gate Guardian App Lock Toll",
+        "Standard Mana Crystal Accumulation",
+        "100% Offline Privacy Guarantee",
       ],
-      timeline: "3 weeks",
-      btnText: "Get Started",
-      btnClass: "bg-signal text-ink-950 hover:shadow-[0_0_25px_rgba(232,255,71,0.3)]",
-      borderClass: "border-white/5 bg-ink-900",
       popular: false,
+      cta: "Download APK Free",
     },
     {
-      name: "Growth",
-      price: "₹4L",
-      desc: "Perfect for: Scaling companies",
+      name: "Shadow Monarch Pass",
+      price: "₹199",
+      cadence: "per month / ₹999 Lifetime",
+      desc: "Maximum discipline acceleration, 2x cashout multiplier & raid boss perks.",
       features: [
-        "Full design system",
-        "Custom Web App",
-        "Advanced Animations",
-        "Technical SEO",
-        "Analytics Integration",
-        "6 months support",
+        "Everything in Free, plus:",
+        "Unlimited Gate Guardian App Locks",
+        "2× Mana Crystal Reward Multiplier",
+        "Weekly Guild Boss Raids & Clan Loot",
+        "Custom System Audio & Voice Feedback",
+        "Instant Priority UPI Payout Queue",
       ],
-      timeline: "6 weeks",
-      btnText: "Get Started",
-      btnClass: "bg-signal text-ink-950 hover:shadow-[0_0_30px_rgba(232,255,71,0.4)]",
-      borderClass: "border-signal/50 bg-ink-900 shadow-[0_0_50px_rgba(232,255,71,0.06)]",
       popular: true,
+      cta: "Awaken Monarch Status",
     },
     {
-      name: "Enterprise",
-      price: "Custom",
-      desc: "Perfect for: Series A+ companies",
+      name: "Guild Sovereign",
+      price: "₹1,499",
+      cadence: "per squad / year",
+      desc: "For fitness creators, university squads, and competitive guilds.",
       features: [
-        "Everything in Growth",
-        "Dedicated Team",
-        "AI Features Integration",
-        "Custom Backend",
-        "Scalability Audits",
-        "Priority Support",
+        "Everything in Monarch Pass",
+        "Up to 25 Squad Hunter Accounts",
+        "Custom Guild Leaderboard & Clan Logo",
+        "Automated Squad Workout Tolls",
+        "Dedicated VIP Discord Channel",
       ],
-      timeline: "Custom",
-      btnText: "Talk to Us",
-      btnClass: "border border-signal/60 text-signal hover:bg-signal hover:text-ink-950",
-      borderClass: "border-white/5 bg-ink-900",
       popular: false,
+      cta: "Found a Guild",
     },
   ];
 
@@ -70,77 +64,87 @@ export default function NexusPricing({ onSelectPlan }: NexusPricingProps) {
       <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3">
+        <div className="text-center max-w-2xl mx-auto space-y-4">
           <p className="font-mono text-xs text-signal uppercase tracking-widest">
-            06 // INVESTMENT
+            06 // HUNTER PASSES
           </p>
-          <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight">
-            Transparent engagement models.
+          <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-black tracking-tight">
+            Transparent Investment.
           </h2>
-          <p className="font-body text-mist-500 text-base sm:text-lg">
-            No hidden scope creeps. Fixed sprints, guaranteed delivery dates.
+          <p className="font-body text-mist-400 text-base">
+            No hidden paywalls on core health. Level up for free or unlock the Monarch pass for maximum discipline.
           </p>
         </div>
 
         {/* 3 Pricing Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {plans.map((plan, idx) => (
+          {tiers.map((tier, idx) => (
             <motion.div
-              key={plan.name}
+              key={tier.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`p-8 sm:p-10 rounded-3xl border flex flex-col justify-between relative shadow-2xl ${plan.borderClass}`}
+              className={`rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative shadow-2xl transition-all duration-300 ${
+                tier.popular
+                  ? "bg-ink-900 border-2 border-signal shadow-[0_0_40px_rgba(232,255,71,0.15)] scale-[1.03]"
+                  : "bg-ink-900/60 border border-white/5 hover:border-white/20"
+              }`}
             >
-              {plan.popular && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-signal text-ink-950 font-mono text-[10px] font-bold uppercase tracking-widest shadow-md">
-                  Most Popular
+              {tier.popular && (
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-signal text-ink-950 font-mono text-xs font-black uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 fill-current" />
+                  <span>MOST POPULAR</span>
                 </div>
               )}
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-display text-2xl font-bold text-mist-100">
-                    {plan.name}
+                  <h3 className="font-display font-bold text-2xl text-mist-100">
+                    {tier.name}
                   </h3>
-                  <p className="font-mono text-xs text-mist-500 mt-1">
-                    {plan.desc}
+                  <p className="font-body text-mist-400 text-xs sm:text-sm mt-1">
+                    {tier.desc}
                   </p>
                 </div>
 
-                <div className="flex items-baseline gap-2 pt-2 border-t border-white/5">
-                  <span className="font-display text-5xl font-bold text-mist-100 tracking-tight">
-                    {plan.price}
+                <div className="pt-2">
+                  <span className="font-display font-black text-4xl sm:text-5xl text-mist-100 tracking-tight">
+                    {tier.price}
                   </span>
-                  <span className="font-mono text-xs text-mist-500">
-                    / {plan.timeline}
+                  <span className="font-mono text-xs text-mist-500 ml-2">
+                    {tier.cadence}
                   </span>
                 </div>
 
                 {/* Features List */}
-                <ul className="space-y-3 pt-4 border-t border-white/5">
-                  {plan.features.map((feat) => (
-                    <li
-                      key={feat}
-                      className="flex items-center gap-3 font-body text-sm text-mist-300"
-                    >
-                      <div className="w-4 h-4 rounded-full bg-signal/15 border border-signal/30 flex items-center justify-center shrink-0">
-                        <Check className="w-2.5 h-2.5 text-signal" />
+                <div className="space-y-3 pt-4 border-t border-white/5">
+                  {tier.features.map((f) => (
+                    <div key={f} className="flex items-start gap-3">
+                      <div className="p-1 rounded-full bg-signal/15 text-signal shrink-0 mt-0.5">
+                        <Check className="w-3.5 h-3.5" />
                       </div>
-                      <span>{feat}</span>
-                    </li>
+                      <span className="font-body text-xs sm:text-sm text-mist-300">
+                        {f}
+                      </span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
 
-              {/* Action Button */}
               <div className="pt-8">
                 <button
-                  onClick={() => onSelectPlan?.(plan.name)}
-                  className={`w-full py-4 rounded-full font-body font-bold text-sm flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 ${plan.btnClass}`}
+                  onClick={() => {
+                    sound.playClick();
+                    if (onSelectPlan) onSelectPlan();
+                  }}
+                  className={`w-full py-4 rounded-full font-display font-bold text-sm flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 ${
+                    tier.popular
+                      ? "bg-signal hover:bg-[#d4ff00] text-ink-950 shadow-[0_0_25px_rgba(232,255,71,0.35)]"
+                      : "bg-white/[0.04] hover:bg-white/10 text-mist-100 border border-white/10 hover:border-signal/40"
+                  }`}
                 >
-                  <span>{plan.btnText}</span>
+                  <span>{tier.cta}</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </button>
               </div>

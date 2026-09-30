@@ -1,107 +1,131 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Star } from "lucide-react";
+import { sound } from "@/lib/audio";
 
 export default function NexusTestimonials() {
+  const [current, setCurrent] = useState(0);
+
   const testimonials = [
     {
-      quote: "NEXUS transformed our entire digital presence. We went from embarrassed to proud in 12 weeks.",
-      author: "CEO",
-      company: "Vanta Finance",
+      id: 1,
+      quote:
+        "The Gate Guardian app lock literally saved my college GPA. Locking Instagram behind 20 push-ups made me think twice before opening it. I did 600 push-ups last month without going to a gym.",
+      author: "Aditya Sharma",
+      role: "S-Rank Hunter · 74 Day Streak",
+      location: "Bengaluru",
+      badge: "₹3,400 Cashed Out via UPI",
     },
     {
-      quote: "The strategy session alone was worth the entire engagement cost.",
-      author: "Founder",
-      company: "Bloom Health",
+      id: 2,
+      quote:
+        "I was skeptical about camera privacy until I checked network traffic. Zero packets sent. The 30 FPS pose tracker counts reps perfectly even in low bedroom lighting.",
+      author: "Sneha Patel",
+      role: "A-Rank Hunter · Strength 48",
+      location: "Mumbai",
+      badge: "1,200 Squats Verified",
     },
     {
-      quote: "They think like founders, not vendors. Rare.",
-      author: "CTO",
-      company: "Orbit SaaS",
-    },
-    {
-      quote: "Delivered 3 weeks early. Never happens with agencies.",
-      author: "Product Lead",
-      company: "Crest Retail",
-    },
-    {
-      quote: "Our Clutch review says 5 stars. Honestly, we'd give 6.",
-      author: "CMO",
-      company: "Frameshift",
+      id: 3,
+      quote:
+        "Solo Leveling made me want a real System. ARISE is the closest thing on earth. Seeing my Hunter Rank go from E to A gave me more dopamine than scrolling reels ever did.",
+      author: "Rohan Mukherjee",
+      role: "Guild Leader · Shadow Vanguard",
+      location: "Delhi NCR",
+      badge: "Top 1% Global Leaderboard",
     },
   ];
 
-  const [current, setCurrent] = useState(0);
+  const handleNext = () => {
+    sound.playClick();
+    setCurrent((prev) => (prev + 1) % testimonials.length);
+  };
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [testimonials.length]);
+  const handlePrev = () => {
+    sound.playClick();
+    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
 
-  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
-  const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const currentItem = testimonials[current];
 
   return (
-    <section className="bg-ink-950 py-32 sm:py-44 overflow-hidden relative select-none border-t border-white/5">
-      <div className="max-w-5xl mx-auto px-6 md:px-12 relative min-h-[420px] flex flex-col justify-center">
+    <section className="bg-ink-950 py-28 sm:py-36 text-mist-100 select-none overflow-hidden relative">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
         
-        {/* Giant Quote Backdrop Mark */}
-        <div className="absolute top-0 left-4 font-display text-[15rem] sm:text-[22rem] md:text-[28rem] text-signal/[0.04] leading-none pointer-events-none select-none -translate-y-16">
-          &ldquo;
-        </div>
-
-        <div className="relative z-10 space-y-8">
-          <div className="flex items-center gap-1 text-signal">
-            {[1, 2, 3, 4, 5].map((s) => (
-              <Star key={s} className="w-4 h-4 fill-current" />
-            ))}
+        {/* Section Header */}
+        <div className="flex justify-between items-end">
+          <div className="space-y-3">
+            <p className="font-mono text-xs text-signal uppercase tracking-widest">
+              05 // HUNTER TRANSMISSIONS
+            </p>
+            <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-black tracking-tight">
+              Verified Transmissions.
+            </h2>
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-6"
-            >
-              <p className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-mist-100 font-medium leading-[1.15] tracking-tight">
-                &ldquo;{testimonials[current].quote}&rdquo;
-              </p>
-
-              <div className="font-mono text-sm sm:text-base text-mist-500">
-                <span className="text-signal font-bold">{testimonials[current].author}</span>
-                <span className="mx-2 text-mist-700">·</span>
-                <span className="text-mist-300">{testimonials[current].company}</span>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Controls */}
-          <div className="flex items-center gap-4 pt-6">
+          {/* Navigation Arrows */}
+          <div className="flex gap-3">
             <button
-              onClick={prev}
-              className="w-12 h-12 rounded-full border border-white/10 hover:border-signal/50 bg-ink-900 hover:bg-ink-800 text-mist-300 hover:text-signal flex items-center justify-center transition-all cursor-pointer"
-              aria-label="Previous testimonial"
+              onClick={handlePrev}
+              className="p-4 rounded-full border border-white/10 hover:border-signal bg-white/[0.02] text-mist-300 hover:text-signal transition-colors cursor-pointer"
+              aria-label="Previous review"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <button
-              onClick={next}
-              className="w-12 h-12 rounded-full border border-white/10 hover:border-signal/50 bg-ink-900 hover:bg-ink-800 text-mist-300 hover:text-signal flex items-center justify-center transition-all cursor-pointer"
-              aria-label="Next testimonial"
+              onClick={handleNext}
+              className="p-4 rounded-full border border-white/10 hover:border-signal bg-white/[0.02] text-mist-300 hover:text-signal transition-colors cursor-pointer"
+              aria-label="Next review"
             >
               <ArrowRight className="w-5 h-5" />
             </button>
-            <span className="font-mono text-xs text-mist-700 ml-2">
-              {current + 1} / {testimonials.length}
-            </span>
           </div>
+        </div>
+
+        {/* Big Testimonial Display */}
+        <div className="relative p-10 sm:p-16 rounded-3xl border border-white/5 bg-ink-900 shadow-2xl min-h-[380px] flex flex-col justify-between overflow-hidden">
+          {/* Huge quotation mark backdrop */}
+          <span className="absolute -right-6 -bottom-16 text-[220px] font-display font-black text-white/[0.02] pointer-events-none select-none">
+            &ldquo;
+          </span>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentItem.id}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-8 z-10"
+            >
+              <div className="flex items-center gap-1.5 text-signal">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-current" />
+                ))}
+              </div>
+
+              <blockquote className="font-display text-2xl sm:text-4xl md:text-4xl font-bold tracking-tight text-mist-100 leading-snug max-w-4xl">
+                &ldquo;{currentItem.quote}&rdquo;
+              </blockquote>
+
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-white/5">
+                <div>
+                  <h3 className="font-display font-bold text-xl text-mist-100">
+                    {currentItem.author}
+                  </h3>
+                  <p className="font-mono text-xs text-mist-400 mt-0.5">
+                    {currentItem.role} · {currentItem.location}
+                  </p>
+                </div>
+
+                <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-signal/30 bg-signal/10 font-mono text-xs text-signal font-bold">
+                  {currentItem.badge}
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>

@@ -3,104 +3,102 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
+import { sound } from "@/lib/audio";
 
 export default function NexusFAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   const faqs = [
     {
-      q: "How long does a typical project take?",
-      a: "Most projects take 3–8 weeks depending on scope. We'll give you a precise timeline in our discovery call. We don't pad timelines — we hit them.",
+      q: "Does ARISE upload or stream my camera feed to any server?",
+      a: "Never. Absolute zero bytes of camera imagery leave your handset. ARISE loads an on-device TensorFlow Lite computer vision model directly into your smartphone's NPU/GPU. The camera stream is analyzed in local memory to extract 17 numeric joint coordinates and immediately discarded at 30 FPS.",
     },
     {
-      q: "Do you work with international clients?",
-      a: "Yes. About 30% of our clients are outside India. We work async-first with tools like Linear, Figma, and Loom — timezone is rarely a barrier.",
+      q: "How does the Gate Guardian App Lock Toll work?",
+      a: "Gate Guardian utilizes standard Android Accessibility and Usage Stats permissions. When you attempt to launch a blacklisted distraction app (e.g., Instagram, YouTube, Reddit), ARISE intercepts the screen and presents an interactive workout toll. You must complete your designated reps (e.g. 15 push-ups) verified by AI to unlock the app for a set window.",
     },
     {
-      q: "What's your revision policy?",
-      a: "Unlimited revisions within scope. We've never had a client feel they ran out of revisions, because we align on direction early.",
+      q: "How do Mana Crystal to Real Cash payouts work?",
+      a: "As you complete daily system quests, maintain workout streaks, and clear dungeon bosses, you accumulate Mana Crystals. In the Rewards tab, you can redeem your crystals directly to your bank account via UPI ID, Amazon Gift Card code, or Google Play balance. Processing is automated and settles within 15 minutes.",
     },
     {
-      q: "Do you offer payment plans?",
-      a: "Yes. Typically 40% upfront, 30% at midpoint, 30% on delivery. For larger engagements we can structure monthly retainers.",
+      q: "Can I use ARISE without an internet connection?",
+      a: "Yes! 100% of the AI pose tracking, workout logging, Gate Guardian app locks, and daily quest checks operate fully offline. Internet is only required when you initiate a Mana Crystal cashout or sync your leaderboard rank.",
     },
     {
-      q: "Can I hire just for design, or development separately?",
-      a: "Absolutely. Many clients start with design-only, then bring us in for development later. Others need just a technical build from existing designs.",
+      q: "What exercises can the AI vision currently track?",
+      a: "ARISE v2.4 supports standard push-ups, diamond push-ups, bodyweight squats, jumping jacks, lunges, and planks. Our neural network verifies full extension, proper depth, and chest contact to prevent half-rep cheating.",
     },
     {
-      q: "Do you sign NDAs?",
-      a: "Yes, always. We treat client information with the same care we give our own.",
+      q: "Will ARISE drain my smartphone battery?",
+      a: "Our lightweight edge model utilizes hardware-accelerated INT8 quantization, using less than 4% battery for a complete 30-minute workout session. Background Gate Guardian monitoring consumes virtually zero idle battery.",
     },
     {
-      q: "What happens after the project is delivered?",
-      a: "All projects include 30 days of post-launch support at no extra charge. After that, we offer monthly retainer plans starting at ₹25,000/month.",
+      q: "How do I install ARISE on my Android device?",
+      a: "Click the 'Download APK' button on this site. Once downloaded, tap the APK file and select 'Allow installation from this source' if prompted by Android. The app requires no root access and takes only 24MB of storage.",
     },
     {
-      q: "How do you handle urgent or rush projects?",
-      a: "We have a rush lane for time-sensitive projects (1.35× standard rate). Talk to us — we've launched products in 7 days when the stakes demanded it.",
+      q: "Is there an iOS version available?",
+      a: "An iOS version is currently available via Apple TestFlight for beta hunters. You can join the iOS queue by submitting your Apple ID in the download modal.",
     },
   ];
 
   const toggle = (idx: number) => {
-    setOpenIndex(openIndex === idx ? null : idx);
+    sound.playClick();
+    setOpenIdx(openIdx === idx ? null : idx);
   };
 
   return (
-    <section id="faq" className="bg-ink-950 py-28 sm:py-36 text-mist-100 select-none border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+    <section id="faq" className="bg-ink-950 py-28 sm:py-36 text-mist-100 select-none">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 space-y-16">
         
-        {/* Left Sticky Column */}
-        <div className="lg:col-span-4 space-y-4 lg:sticky lg:top-32 h-fit">
+        {/* Section Header */}
+        <div className="text-center space-y-3">
           <p className="font-mono text-xs text-signal uppercase tracking-widest">
-            07 // FAQ
+            07 // SYSTEM PROTOCOL FAQ
           </p>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight leading-tight">
-            Answers to your questions.
+          <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-black tracking-tight">
+            Frequently Answered.
           </h2>
-          <p className="font-body text-mist-500 text-base leading-relaxed">
-            Everything you need to know about how we work, what we charge, and what happens when things go wrong.
+          <p className="font-body text-mist-400 text-base">
+            Everything you need to know about our privacy architecture, AI vision, and reward payouts.
           </p>
         </div>
 
-        {/* Right Accordion Column */}
-        <div className="lg:col-span-8 divide-y divide-white/5">
+        {/* Accordion List */}
+        <div className="space-y-4">
           {faqs.map((faq, idx) => {
-            const isOpen = openIndex === idx;
+            const isOpen = openIdx === idx;
             return (
-              <div key={faq.q} className="py-6 sm:py-8">
+              <div
+                key={idx}
+                className="rounded-2xl border border-white/5 bg-ink-900 overflow-hidden transition-colors duration-200"
+              >
                 <button
                   onClick={() => toggle(idx)}
-                  className="w-full flex items-center justify-between text-left group cursor-pointer focus:outline-none"
+                  className="w-full p-6 sm:p-7 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-white/[0.02]"
                 >
-                  <span
-                    className={`font-body text-lg sm:text-xl font-medium tracking-tight transition-colors duration-200 ${
-                      isOpen ? "text-signal" : "text-mist-100 group-hover:text-white"
-                    }`}
-                  >
+                  <span className="font-display font-bold text-lg sm:text-xl text-mist-100">
                     {faq.q}
                   </span>
-                  <div
-                    className={`p-2 rounded-full border border-white/10 shrink-0 ml-4 transition-transform duration-300 ${
-                      isOpen ? "bg-signal text-ink-950 rotate-90" : "text-mist-500 group-hover:text-white"
-                    }`}
-                  >
-                    {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                  <div className={`p-2 rounded-full border transition-colors shrink-0 ${
+                    isOpen ? "bg-signal text-ink-950 border-signal" : "border-white/10 text-mist-400"
+                  }`}>
+                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </div>
                 </button>
 
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <p className="pt-4 font-body text-mist-500 text-base leading-relaxed max-w-2xl">
+                      <div className="px-6 sm:px-7 pb-7 pt-2 font-body text-mist-400 text-sm sm:text-base leading-relaxed border-t border-white/5">
                         {faq.a}
-                      </p>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>

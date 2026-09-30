@@ -1,87 +1,62 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
-interface StatItem {
-  num: number;
+interface StatMetric {
+  value: string;
   label: string;
-  prefix?: string;
-  suffix?: string;
-  decimals?: number;
-}
-
-function Counter({ end, prefix = "", suffix = "", decimals = 0 }: { end: number; prefix?: string; suffix?: string; decimals?: number }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-
-  useEffect(() => {
-    if (!isInView) return;
-
-    const duration = 2000;
-    const frameRate = 1000 / 60;
-    const totalFrames = Math.round(duration / frameRate);
-    let frame = 0;
-
-    const timer = setInterval(() => {
-      frame++;
-      const progress = frame / totalFrames;
-      // Ease out expo
-      const current = end * (1 - Math.pow(2, -10 * progress));
-      setCount(current);
-
-      if (frame === totalFrames) {
-        clearInterval(timer);
-        setCount(end);
-      }
-    }, frameRate);
-
-    return () => clearInterval(timer);
-  }, [isInView, end]);
-
-  return (
-    <span ref={ref} className="tabular-nums">
-      {prefix}
-      {count.toFixed(decimals)}
-      {suffix}
-    </span>
-  );
+  sub: string;
 }
 
 export default function NexusStatsBanner() {
-  const stats: StatItem[] = [
-    { num: 50, label: "Active Hunters", suffix: "k+" },
-    { num: 2.4, label: "Reps Tracked by Vision AI", suffix: "M+", decimals: 1 },
-    { num: 99.4, label: "Neural Pose Accuracy", suffix: "%", decimals: 1 },
-    { num: 1.2, label: "Mana Redeemed via UPI", prefix: "₹", suffix: "M+", decimals: 1 },
-    { num: 4.9, label: "Hunter Rating", suffix: "★", decimals: 1 },
-    { num: 100, label: "On-Device Zero Data Storage", suffix: "%" },
+  const stats: StatMetric[] = [
+    {
+      value: "14,200+",
+      label: "ACTIVE HUNTERS",
+      sub: "Leveling up daily across 40+ countries",
+    },
+    {
+      value: "2.4M+",
+      label: "REPS AI-VERIFIED",
+      sub: "30 FPS on-device computer vision",
+    },
+    {
+      value: "₹18.5L+",
+      label: "MANA CASHOUTS",
+      sub: "Paid out directly via UPI & Amazon",
+    },
+    {
+      value: "100%",
+      label: "OFFLINE PRIVACY",
+      sub: "Zero video frames uploaded to servers",
+    },
   ];
 
   return (
-    <section className="bg-signal py-20 sm:py-28 w-full text-ink-950 relative z-10 select-none overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-10">
+    <section className="bg-signal text-ink-950 py-16 sm:py-20 select-none overflow-hidden relative shadow-[0_0_60px_rgba(232,255,71,0.15)]">
+      {/* Background kinetic pattern */}
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#050508_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
           {stats.map((stat, idx) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.08 }}
-              className="flex flex-col items-start"
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className="space-y-1.5"
             >
-              <div className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tighter leading-none text-ink-950">
-                <Counter
-                  end={stat.num}
-                  prefix={stat.prefix}
-                  suffix={stat.suffix}
-                  decimals={stat.decimals}
-                />
+              <div className="font-display font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight text-ink-950 leading-none">
+                {stat.value}
               </div>
-              <p className="font-mono text-[10px] sm:text-xs uppercase tracking-widest mt-3 opacity-90 font-semibold leading-snug">
+              <div className="font-mono text-xs sm:text-sm font-black tracking-wider text-ink-950/90 uppercase">
                 {stat.label}
+              </div>
+              <p className="font-body text-xs text-ink-950/70 font-medium leading-snug">
+                {stat.sub}
               </p>
             </motion.div>
           ))}

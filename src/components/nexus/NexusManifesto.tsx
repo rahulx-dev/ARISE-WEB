@@ -2,67 +2,74 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Zap, ShieldCheck, Flame } from "lucide-react";
 
 export default function NexusManifesto() {
-  const points = [
+  const pillars = [
     {
-      num: "01",
-      title: "The world drowns in mediocre digital products.",
-      p1: 'Look at the tools you use every day. Most are clunky, slow, or just plain boring. The baseline for digital experiences has settled somewhere between "barely functional" and "forgettable."',
-      p2: "Companies bleed revenue not because their idea is flawed, but because their execution lacks soul. In a sea of templates, average is the most dangerous place a brand can be.",
+      number: "01",
+      icon: <Flame className="w-8 h-8 text-signal" />,
+      title: "Physical Strain is Real Currency.",
+      desc: "In an era of endless digital dopamine, physical sweat and muscle resistance are the only honest proofs of work left. ARISE treats every rep as an undeniable asset.",
     },
     {
-      num: "02",
-      title: "We believe every company deserves a world-class digital presence.",
-      p1: "Your product is your absolute best salesperson. It doesn't sleep, it doesn't take days off. It should feel intuitive, look striking, and function flawlessly.",
-      p2: "We reject the compromise between aesthetic beauty and technical performance. The best digital products do both beautifully.",
+      number: "02",
+      icon: <ShieldCheck className="w-8 h-8 text-signal" />,
+      title: "Your Camera Feed is Sovereign.",
+      desc: "Big tech harvests your biometric footage. We reject the cloud. ARISE computer vision runs 100% on your local silicon. What happens in your room stays on your device.",
     },
     {
-      num: "03",
-      title: "So we built a studio that does it differently.",
-      p1: "No fluff. No bloated agency retainers. Just a ruthless focus on building what matters with the best craft possible.",
-      p2: "From deep strategic foundations to pixel-perfect execution, our process is designed to push your brand from where it is to where it simply must be.",
+      number: "03",
+      icon: <Zap className="w-8 h-8 text-signal" />,
+      title: "Discipline Must Be Gamified.",
+      desc: "Willpower alone fails. By turning real workouts into Solo Leveling stat boosts, daily quests, and instant UPI payouts, discipline becomes an addictive loop you crave.",
     },
   ];
 
   return (
-    <section id="about" className="py-28 sm:py-36 bg-ink-900 border-y border-white/5 text-mist-100 select-none">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-20">
+    <section id="about" className="bg-ink-950 py-28 sm:py-36 text-mist-100 select-none">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
         
         {/* Section Header */}
         <div className="space-y-3">
           <p className="font-mono text-xs text-signal uppercase tracking-widest">
-            03 // PHILOSOPHY
+            03 // THE SYSTEM MANIFESTO
           </p>
-          <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight">
-            Why we exist.
+          <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-black tracking-tight">
+            Built on Uncompromising Principles.
           </h2>
         </div>
 
-        {/* 3 Manifesto Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
-          {points.map((point, idx) => (
+        {/* 3 Pillar Bento Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {pillars.map((pillar, idx) => (
             <motion.div
-              key={point.num}
-              initial={{ opacity: 0, y: 25 }}
+              key={pillar.number}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.12 }}
-              className="p-8 sm:p-10 rounded-3xl border border-white/5 bg-ink-950 flex flex-col justify-between space-y-8 shadow-2xl relative overflow-hidden group hover:border-signal/30 transition-colors duration-300"
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              whileHover={{ y: -4 }}
+              className="p-8 sm:p-10 rounded-3xl border border-white/5 bg-ink-900 hover:border-signal/40 transition-all duration-300 flex flex-col justify-between space-y-8 shadow-2xl group"
             >
               <div className="space-y-6">
-                <span className="font-mono text-2xl text-signal font-bold">
-                  {point.num}
-                </span>
-                <h3 className="font-display font-semibold text-2xl sm:text-3xl text-mist-100 tracking-tight leading-snug">
-                  {point.title}
+                <div className="flex items-center justify-between">
+                  <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/5 group-hover:border-signal/30 group-hover:scale-110 transition-all">
+                    {pillar.icon}
+                  </div>
+                  <span className="font-mono text-xl font-bold text-mist-700 group-hover:text-signal transition-colors">
+                    {pillar.number}
+                  </span>
+                </div>
+
+                <h3 className="font-display font-bold text-2xl sm:text-3xl text-mist-100 group-hover:text-white transition-colors leading-tight">
+                  {pillar.title}
                 </h3>
               </div>
 
-              <div className="space-y-4 font-body text-mist-500 text-sm sm:text-base leading-relaxed">
-                <p>{point.p1}</p>
-                <p className="text-mist-300">{point.p2}</p>
-              </div>
+              <p className="font-body text-mist-400 text-sm sm:text-base leading-relaxed">
+                {pillar.desc}
+              </p>
             </motion.div>
           ))}
         </div>
