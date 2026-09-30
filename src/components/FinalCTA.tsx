@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { sound } from "@/lib/audio";
+import GlassGalaxyButton from "./ui/GlassGalaxyButton";
 
 interface FinalCTAProps {
   onOpenDownload: () => void;
@@ -50,18 +50,14 @@ export default function FinalCTA({ onOpenDownload }: FinalCTAProps) {
 
           {/* Right: Download Pill Button & Security Subtext */}
           <div className="flex flex-col items-center lg:items-end gap-2.5 z-10 shrink-0">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => {
-                sound.playClick();
-                onOpenDownload();
-              }}
-              className="px-8 py-3.5 rounded-full bg-[#F5F5F2] hover:bg-white text-[#050607] font-sans font-semibold text-xs tracking-tight transition-all duration-300 inline-flex items-center gap-2 shadow-2xl cursor-pointer"
+            <GlassGalaxyButton
+              variant="primary"
+              size="lg"
+              icon={<ArrowRight className="w-4 h-4" />}
+              onClick={onOpenDownload}
             >
-              <span>Download App</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </motion.button>
+              Download App
+            </GlassGalaxyButton>
             <span className="font-mono text-[10px] text-[#6F747B]">
               Free • Safe • Always Improving
             </span>

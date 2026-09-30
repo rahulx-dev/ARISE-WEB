@@ -8,6 +8,7 @@ import confetti from "canvas-confetti";
 import DeviceMockup from "./DeviceMockup";
 import Interactive3DTilt from "./Interactive3DTilt";
 import { sound } from "@/lib/audio";
+import GlassGalaxyButton from "./ui/GlassGalaxyButton";
 
 type ExerciseMode = "squats" | "pushups" | "planks";
 
@@ -192,34 +193,41 @@ export default function AITrackerShowcase() {
               </div>
 
               <div className="flex flex-wrap items-center gap-2">
-                <button
-                  onClick={handleSingleRep}
-                  disabled={reps >= targetReps}
-                  className="flex-1 py-2.5 px-4 rounded-xl font-mono text-xs font-bold bg-[#F5F5F2] text-[#050607] hover:bg-white transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
-                >
-                  <Activity className="w-3.5 h-3.5" />
-                  <span>Tap to Rep (+1)</span>
-                </button>
+                <div className="flex-1">
+                  <GlassGalaxyButton
+                    variant="primary"
+                    size="md"
+                    fullWidth
+                    onClick={handleSingleRep}
+                    disabled={reps >= targetReps}
+                    icon={<Activity className="w-3.5 h-3.5" />}
+                    iconPosition="left"
+                    className="font-mono text-xs font-bold"
+                  >
+                    Tap to Rep (+1)
+                  </GlassGalaxyButton>
+                </div>
 
-                <button
+                <GlassGalaxyButton
+                  variant={isAutoSimulating ? "danger" : "secondary"}
+                  size="md"
                   onClick={toggleAutoSimulate}
-                  className={`py-2.5 px-4 rounded-xl font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer border ${
-                    isAutoSimulating
-                      ? "bg-[#FF6B4A]/15 border-[#FF6B4A]/40 text-[#FF6B4A]"
-                      : "bg-[#13171C] border-white/10 text-[#F5F5F2] hover:border-white/20 hover:bg-white/10"
-                  }`}
+                  icon={isAutoSimulating ? <Square className="w-3.5 h-3.5 fill-current" /> : <Play className="w-3.5 h-3.5 fill-current" />}
+                  iconPosition="left"
+                  className="font-mono text-xs font-bold"
                 >
-                  {isAutoSimulating ? <Square className="w-3.5 h-3.5 fill-current" /> : <Play className="w-3.5 h-3.5 fill-current" />}
-                  <span>{isAutoSimulating ? "Stop Sim" : "Auto Simulate"}</span>
-                </button>
+                  {isAutoSimulating ? "Stop Sim" : "Auto Simulate"}
+                </GlassGalaxyButton>
 
-                <button
+                <GlassGalaxyButton
+                  variant="ghost"
+                  size="md"
                   onClick={handleReset}
-                  className="p-2.5 rounded-xl bg-[#13171C] border border-white/10 text-[#A6A9AE] hover:text-[#F5F5F2] cursor-pointer transition-all"
+                  icon={<RotateCcw className="w-4 h-4" />}
                   title="Reset counter"
                 >
-                  <RotateCcw className="w-4 h-4" />
-                </button>
+                  <span className="sr-only">Reset</span>
+                </GlassGalaxyButton>
               </div>
             </div>
 

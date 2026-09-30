@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle2, ArrowRight, Zap, Gift, Gamepad2, Coins, Wallet } from "lucide-react";
 import confetti from "canvas-confetti";
 import { sound } from "@/lib/audio";
+import GlassGalaxyButton from "./ui/GlassGalaxyButton";
 
 interface CashoutModalProps {
   isOpen: boolean;
@@ -256,24 +257,26 @@ export default function CashoutModal({ isOpen, onClose, initialCrystals = 1500 }
                 </div>
 
                 {/* Action button */}
-                <button
+                <GlassGalaxyButton
                   type="submit"
+                  variant="gold"
+                  size="lg"
+                  fullWidth
                   disabled={isProcessing}
-                  className="w-full py-4 px-4 rounded-2xl bg-[#F5F5F2] hover:bg-white text-[#050607] font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-black/40 hover:-translate-y-0.5 active:scale-[0.98] transition-all disabled:opacity-75 cursor-pointer"
+                  icon={!isProcessing ? <ArrowRight className="w-4 h-4" /> : undefined}
                 >
                   {isProcessing ? (
-                    <>
-                      <span className="w-4 h-4 border-2 border-[#050607] border-t-transparent rounded-full animate-spin" />
+                    <span className="flex items-center gap-2">
+                      <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       <span>Submitting Redemption Request...</span>
-                    </>
+                    </span>
                   ) : (
-                    <>
-                      <Wallet className="w-4 h-4" />
+                    <span className="flex items-center gap-2">
+                      <Wallet className="w-4 h-4 text-[#FEF08A]" />
                       <span>Redeem {crystals.toLocaleString()} Crystals</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </>
+                    </span>
                   )}
-                </button>
+                </GlassGalaxyButton>
 
                 <p className="text-[11px] text-[#6F747B] text-center font-mono">
                   Guaranteed zero processing fees • Credited within 24–48h • 10 Mana = ₹1 INR
@@ -313,12 +316,14 @@ export default function CashoutModal({ isOpen, onClose, initialCrystals = 1500 }
                   </div>
                 </div>
 
-                <button
+                <GlassGalaxyButton
+                  variant="primary"
+                  size="md"
+                  fullWidth
                   onClick={handleReset}
-                  className="w-full py-3.5 px-4 rounded-2xl bg-[#F5F5F2] hover:bg-white text-[#050607] font-semibold text-sm transition-all hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer shadow-md"
                 >
                   Return to Hunter System
-                </button>
+                </GlassGalaxyButton>
               </div>
             )}
           </motion.div>

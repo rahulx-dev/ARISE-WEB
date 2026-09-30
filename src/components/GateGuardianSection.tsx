@@ -7,6 +7,7 @@ import Image from "next/image";
 import DeviceMockup from "./DeviceMockup";
 import Interactive3DTilt from "./Interactive3DTilt";
 import { sound } from "@/lib/audio";
+import GlassGalaxyButton from "./ui/GlassGalaxyButton";
 
 // Clean brand SVG components
 const InstagramIcon = ({ className }: { className?: string }) => (
@@ -227,26 +228,30 @@ export default function GateGuardianSection() {
               </div>
 
               <div className="flex items-center gap-2">
-                <button
-                  onClick={handleSimulateRep}
-                  disabled={simState === "unlocked"}
-                  className={`flex-1 py-2.5 px-4 rounded-xl font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md ${
-                    simState === "unlocked"
-                      ? "bg-white/10 text-[#6F747B] cursor-not-allowed"
-                      : "bg-[#F5F5F2] text-[#050607] hover:bg-white active:scale-95"
-                  }`}
-                >
-                  <Flame className="w-4 h-4 text-[#FF6B4A]" />
-                  <span>{simState === "unlocked" ? "Gate Unlocked!" : `Simulate Camera Reps (+5 ${currentApp.reqType})`}</span>
-                </button>
+                <div className="flex-1">
+                  <GlassGalaxyButton
+                    variant={simState === "unlocked" ? "mana" : "danger"}
+                    size="md"
+                    fullWidth
+                    disabled={simState === "unlocked"}
+                    onClick={handleSimulateRep}
+                    icon={<Flame className="w-4 h-4 text-[#FF6B4A]" />}
+                    iconPosition="left"
+                    className="font-mono text-xs font-bold"
+                  >
+                    {simState === "unlocked" ? "Gate Unlocked!" : `Simulate Camera Reps (+5 ${currentApp.reqType})`}
+                  </GlassGalaxyButton>
+                </div>
 
-                <button
+                <GlassGalaxyButton
+                  variant="secondary"
+                  size="md"
                   onClick={handleResetSim}
-                  className="p-2.5 rounded-xl bg-[#13171C] border border-white/10 text-[#A6A9AE] hover:text-[#F5F5F2] cursor-pointer transition-all"
+                  icon={<RefreshCw className="w-4 h-4" />}
                   title="Reset Simulator"
                 >
-                  <RefreshCw className="w-4 h-4" />
-                </button>
+                  <span className="sr-only">Reset</span>
+                </GlassGalaxyButton>
               </div>
             </div>
 

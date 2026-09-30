@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Flame, Sparkles, Trophy, Clock, Zap, RefreshCw } from "lucide-react";
 import confetti from "canvas-confetti";
 import { sound } from "@/lib/audio";
+import GlassGalaxyButton from "./ui/GlassGalaxyButton";
 
 interface QuestItem {
   id: string;
@@ -201,33 +202,38 @@ export default function DailyQuestBoard() {
       {/* Interactive Controls & Claim Rewards */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
         <div className="flex items-center gap-2 w-full sm:w-auto">
-          <button
+          <GlassGalaxyButton
+            variant="secondary"
+            size="sm"
             onClick={completeAll}
-            className="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-[#050607] border border-white/10 hover:border-white/20 text-xs font-mono text-[#A6A9AE] hover:text-[#F5F5F2] transition-all cursor-pointer flex items-center justify-center gap-1.5"
+            icon={<Zap className="w-3.5 h-3.5 text-[#9AAEFF]" />}
+            iconPosition="left"
           >
-            <Zap className="w-3.5 h-3.5 text-[#9AAEFF]" />
-            <span>Simulate 100% Reps</span>
-          </button>
-          <button
+            Simulate 100% Reps
+          </GlassGalaxyButton>
+          <GlassGalaxyButton
+            variant="ghost"
+            size="sm"
             onClick={resetQuests}
-            className="px-3 py-2 rounded-xl bg-[#050607] border border-white/10 hover:border-white/20 text-xs font-mono text-[#6F747B] hover:text-[#F5F5F2] transition-all cursor-pointer"
+            icon={<RefreshCw className="w-3.5 h-3.5" />}
             title="Reset simulation"
           >
-            <RefreshCw className="w-3.5 h-3.5" />
-          </button>
+            Reset
+          </GlassGalaxyButton>
         </div>
 
         {/* Claim Rewards Button */}
         {isAllComplete && !claimed ? (
-          <motion.button
+          <GlassGalaxyButton
+            variant="gold"
+            size="md"
             onClick={handleClaim}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full sm:w-auto px-6 py-2.5 rounded-2xl bg-[#F5F5F2] text-[#050607] hover:bg-white font-mono font-bold text-xs tracking-wider uppercase shadow-xl cursor-pointer flex items-center justify-center gap-2"
+            icon={<Trophy className="w-4 h-4 text-[#FEF08A]" />}
+            iconPosition="left"
+            className="w-full sm:w-auto font-mono text-xs tracking-wider uppercase"
           >
-            <Trophy className="w-4 h-4 text-[#050607]" />
-            <span>CLAIM REWARD // +500 MANA CRYSTALS</span>
-          </motion.button>
+            CLAIM REWARD // +500 MANA CRYSTALS
+          </GlassGalaxyButton>
         ) : claimed ? (
           <div className="w-full sm:w-auto px-5 py-2 rounded-2xl bg-[#13171C] border border-[#9AAEFF]/40 text-[#9AAEFF] font-mono text-xs font-bold flex items-center justify-center gap-2">
             <CheckCircle2 className="w-4 h-4" />

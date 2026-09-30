@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Download, ShieldCheck, QrCode, Smartphone, Cpu, Check, Copy, ExternalLink } from "lucide-react";
 import TrustTelemetryBadges from "./TrustTelemetryBadges";
 import { sound } from "@/lib/audio";
+import GlassGalaxyButton from "./ui/GlassGalaxyButton";
 
 interface DownloadModalProps {
   isOpen: boolean;
@@ -154,25 +155,33 @@ export default function DownloadModal({ isOpen, onClose }: DownloadModalProps) {
                 </div>
 
                 {/* Clean Download APK Button & GitHub Release */}
-                <div className="space-y-2">
-                  <button
-                    onClick={handleDownload}
+                <div className="space-y-2.5">
+                  <GlassGalaxyButton
+                    variant="primary"
+                    size="lg"
+                    fullWidth
                     disabled={downloading}
-                    className="w-full relative group overflow-hidden py-3.5 px-4 rounded-2xl bg-[#F5F5F2] text-[#050607] hover:bg-white font-sans font-semibold text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 disabled:opacity-75 cursor-pointer"
+                    onClick={handleDownload}
+                    icon={<Download className={`w-4 h-4 ${downloading ? "animate-bounce" : ""}`} />}
                   >
-                    <Download className={`w-4 h-4 ${downloading ? "animate-bounce" : "group-hover:-translate-y-0.5 transition-transform"}`} />
-                    <span>{downloading ? "Starting Download..." : "Download APK (Direct)"}</span>
-                  </button>
+                    {downloading ? "Starting Download..." : "Download APK (Direct)"}
+                  </GlassGalaxyButton>
 
                   <a
                     href={releaseUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => sound.playClick()}
-                    className="w-full py-2.5 px-4 rounded-xl bg-[#0E1115] hover:bg-[#13171C] border border-white/10 text-[#F5F5F2] font-mono text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                    className="w-full"
                   >
-                    <ExternalLink className="w-3.5 h-3.5 text-[#A6A9AE]" />
-                    <span>Open GitHub Releases</span>
+                    <GlassGalaxyButton
+                      variant="secondary"
+                      size="md"
+                      fullWidth
+                      icon={<ExternalLink className="w-3.5 h-3.5" />}
+                    >
+                      Open GitHub Releases
+                    </GlassGalaxyButton>
                   </a>
                 </div>
 

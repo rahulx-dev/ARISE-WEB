@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 import AriseLogo from "./AriseLogo";
 import { sound } from "@/lib/audio";
+import GlassGalaxyButton from "./ui/GlassGalaxyButton";
 
 interface NavbarProps {
   onOpenDownload: () => void;
@@ -119,18 +120,18 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
           })}
         </nav>
 
-        {/* Right Controls: Primary Solid White CTA */}
+        {/* Right Controls: Glass Galaxy Pill CTA */}
         <div className="flex items-center gap-4">
-          <button
-            onClick={() => {
-              sound.playClick();
-              onOpenDownload();
-            }}
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-sans font-semibold bg-[#F5F5F2] text-[#050607] hover:bg-white hover:shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-          >
-            <span>Download App</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+          <div className="hidden sm:block">
+            <GlassGalaxyButton
+              variant="primary"
+              size="sm"
+              icon={<ArrowRight className="w-3.5 h-3.5" />}
+              onClick={onOpenDownload}
+            >
+              Download App
+            </GlassGalaxyButton>
+          </div>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -173,17 +174,18 @@ export default function Navbar({ onOpenDownload }: NavbarProps) {
               </a>
             ))}
             <div className="pt-2">
-              <button
+              <GlassGalaxyButton
+                variant="primary"
+                size="md"
+                fullWidth
+                icon={<ArrowRight className="w-3.5 h-3.5" />}
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  sound.playClick();
                   onOpenDownload();
                 }}
-                className="w-full py-3 rounded-full bg-[#F5F5F2] text-[#050607] text-xs font-sans font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all active:scale-[0.98] hover:bg-white"
               >
-                <span>Download App</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+                Download App
+              </GlassGalaxyButton>
             </div>
           </motion.div>
         )}
