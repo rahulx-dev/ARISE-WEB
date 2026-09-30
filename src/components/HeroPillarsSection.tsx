@@ -45,18 +45,18 @@ export default function HeroPillarsSection() {
   ];
 
   return (
-    <section id="features" className="relative py-28 sm:py-36 select-none border-t border-white/10 bg-[#050607] overflow-hidden">
+    <section id="features" className="relative py-28 sm:py-36 select-none border-t border-white/5 bg-ink-950 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-16">
         
-        {/* Section Header: Centered Exact Typography */}
+        {/* Section Header: NEXUS Studio Style Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="text-xs font-mono tracking-[0.25em] text-[#A6A9AE] uppercase">
-            MORE THAN A TO-DO LIST
+          <div className="text-xs font-mono tracking-[0.25em] text-signal uppercase">
+            01 // CAPABILITIES
           </div>
-          <h2 className="font-display text-4xl sm:text-6xl font-normal tracking-tight text-[#F5F5F2] leading-[1.05]">
+          <h2 className="font-display text-4xl sm:text-6xl font-bold tracking-tight text-mist-100 leading-[1.05]">
             A System That Works <br />
-            <span className="italic text-[#A6A9AE] font-serif">
-              For You
+            <span className="text-signal italic font-display">
+              For You.
             </span>
           </h2>
         </div>
@@ -72,28 +72,30 @@ export default function HeroPillarsSection() {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               whileHover={{ y: -6 }}
               onClick={() => scrollTo(pillar.id)}
-              className="group p-6 sm:p-7 rounded-3xl border border-white/10 bg-[#0E1115] hover:bg-[#13171C] shadow-xl shadow-black/80 flex flex-col justify-between h-[360px] sm:h-[380px] hover:border-white/20 transition-all duration-300 cursor-pointer overflow-hidden"
+              className="group p-6 sm:p-7 rounded-3xl border border-white/5 bg-ink-900/90 hover:bg-ink-800/90 shadow-2xl flex flex-col justify-between h-[360px] sm:h-[380px] hover:border-signal/30 transition-all duration-300 cursor-pointer overflow-hidden backdrop-blur-xl"
             >
               {/* Top 3D Visual Object */}
-              <div className="w-full h-44 flex items-center justify-center relative overflow-hidden rounded-2xl bg-black/40">
+              <div className="w-full h-44 flex items-center justify-center relative overflow-hidden rounded-2xl bg-black/40 border border-white/5">
                 <img
                   src={pillar.image}
                   alt={pillar.title}
-                  className="w-32 h-32 object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+                  className="w-32 h-32 object-contain group-hover:scale-108 transition-transform duration-500 ease-out"
                 />
               </div>
 
               {/* Bottom Content & Step Number */}
-              <div className="space-y-3 pt-4">
-                <h3 className="font-display text-lg font-bold tracking-wider text-[#F5F5F2] uppercase">
-                  {pillar.title}
-                </h3>
-                <p className="text-xs text-[#A6A9AE] font-sans leading-relaxed">
+              <div className="space-y-2 pt-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-display text-lg font-bold tracking-tight text-mist-100 uppercase group-hover:text-signal transition-colors">
+                    {pillar.title}
+                  </h3>
+                  <span className="font-mono text-xs text-signal font-bold">
+                    {pillar.num}
+                  </span>
+                </div>
+                <p className="text-xs text-mist-500 font-sans leading-relaxed">
                   {pillar.desc}
                 </p>
-                <div className="font-mono text-[10px] text-[#6F747B]">
-                  {pillar.num}
-                </div>
               </div>
             </motion.div>
           ))}

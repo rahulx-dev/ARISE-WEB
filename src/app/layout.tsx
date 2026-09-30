@@ -68,6 +68,8 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+import CustomCursor from "@/components/CustomCursor";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -75,8 +77,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="dark scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} ${jetbrainsMono.variable} font-sans antialiased bg-[#050607] text-[#F5F5F2] selection:bg-[#9AAEFF]/20 selection:text-[#F5F5F2]`}
+        className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} ${jetbrainsMono.variable} font-sans antialiased bg-[#050508] text-[#F0F0F8] selection:bg-[#E8FF47] selection:text-[#050508]`}
       >
         <ThemeProvider
           attribute="class"
@@ -85,6 +96,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <CustomCursor />
           <BackgroundEffects />
           <SmoothScroll>
             {children}

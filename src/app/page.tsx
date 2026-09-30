@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HeroVideoShowcase from "@/components/HeroVideoShowcase";
 import HeroPillarsSection from "@/components/HeroPillarsSection";
+import NexusStatsBanner from "@/components/NexusStatsBanner";
 import StorySection from "@/components/StorySection";
 import DoomscrollVsAriseComparison from "@/components/DoomscrollVsAriseComparison";
 import AITrackerShowcase from "@/components/AITrackerShowcase";
@@ -47,6 +48,9 @@ export default function Home() {
 
       {/* 02. Mockup 4-Pillars Sub-Hero Matrix */}
       <HeroPillarsSection />
+
+      {/* 02.5 NEXUS Studio Electric Volt Signal Stats Banner */}
+      <NexusStatsBanner />
 
       {/* 03. Section 01 — The Problem (Whitespace & Typography) */}
       <StorySection />

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import AriseLogo from "./AriseLogo";
 import { sound } from "@/lib/audio";
 
 export default function FooterMinimal() {
@@ -14,44 +13,59 @@ export default function FooterMinimal() {
   };
 
   return (
-    <footer className="border-t border-white/10 py-12 text-xs select-none bg-[#050607]">
+    <footer className="border-t border-white/5 py-14 text-xs select-none bg-ink-950 text-mist-500">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
         
         {/* Left: Brand and Tagline */}
         <div className="space-y-2 text-center md:text-left">
-          <AriseLogo size="md" />
-          <div className="font-mono text-[9px] tracking-[0.25em] text-[#6F747B] uppercase">
-            A BETTER YOU AWAITS.
+          <div className="flex items-center justify-center md:justify-start gap-2">
+            <span className="font-display font-bold text-lg text-mist-100 tracking-tight">ARISE</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-signal animate-pulse" />
+          </div>
+          <div className="font-mono text-[10px] tracking-[0.25em] text-signal/80 uppercase">
+            [•] PROTOCOL ACTIVE // GLOBAL
+          </div>
+        </div>
+
+        {/* Center: Live Time Clocks (NEXUS Studio Style) */}
+        <div className="hidden lg:flex items-center gap-8 font-mono text-[11px] text-mist-500">
+          <div className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-signal" />
+            <span className="text-mist-300">SF:</span>
+            <span>UTC-7</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-signal" />
+            <span className="text-mist-300">LONDON:</span>
+            <span>UTC+1</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-signal" />
+            <span className="text-mist-300">MUMBAI:</span>
+            <span>UTC+5:30</span>
           </div>
         </div>
 
         {/* Center: Legal & Support Links */}
-        <div className="flex flex-wrap items-center justify-center gap-8 text-[#A6A9AE] font-sans text-xs">
+        <div className="flex flex-wrap items-center justify-center gap-6 text-mist-300 font-sans text-xs">
           <button
             onClick={() => scrollTo("faq")}
-            className="hover:text-[#F5F5F2] transition-colors cursor-pointer"
+            className="hover:text-signal transition-colors cursor-pointer"
           >
-            Privacy
+            Privacy Protocol
           </button>
           <button
             onClick={() => scrollTo("faq")}
-            className="hover:text-[#F5F5F2] transition-colors cursor-pointer"
+            className="hover:text-signal transition-colors cursor-pointer"
           >
             Terms
           </button>
           <button
             onClick={() => scrollTo("faq")}
-            className="hover:text-[#F5F5F2] transition-colors cursor-pointer"
+            className="hover:text-signal transition-colors cursor-pointer"
           >
-            Support
+            Hunter Support
           </button>
-          <a
-            href="mailto:contact@arise.fit"
-            onClick={() => sound.playClick()}
-            className="hover:text-[#F5F5F2] transition-colors cursor-pointer"
-          >
-            Contact
-          </a>
         </div>
 
         {/* Right: Social Icons & Copyright Stack */}
