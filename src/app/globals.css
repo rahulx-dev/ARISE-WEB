@@ -5,7 +5,7 @@
 :root {
   --background: #000000;
   --surface: #08090c;
-  --surface-card: #111318;
+  --surface-card: #0e1118;
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.16);
   --text-primary: #f5f5f7;
@@ -34,33 +34,40 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Apple Hardware Card Surface */
+/* Apple Luxe Hardware Card Surface */
 .apple-card {
-  background: #08090c;
+  background: linear-gradient(180deg, rgba(17, 20, 28, 0.7) 0%, rgba(8, 9, 12, 0.9) 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  backdrop-filter: blur(24px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .apple-card:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
-/* Subtle Titanium / Hardware Chassis */
-.hardware-bezel {
-  background: linear-gradient(145deg, #13151b, #090a0e);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+/* Dark Titanium Box Chassis */
+.hardware-chassis {
+  background: linear-gradient(155deg, #131620 0%, #08090d 50%, #030406 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 0.98), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  border-radius: 36px;
+  backdrop-filter: blur(32px);
 }
 
-/* Editorial Minimal Typography */
-.editorial-title {
-  letter-spacing: -0.035em;
-  line-height: 0.96;
+/* Luxury Metallic Silver Text Gradient */
+.luxe-heading {
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 40%, #86868b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.03em;
 }
 
-/* Minimal Custom Scrollbar */
+/* Subtle Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }

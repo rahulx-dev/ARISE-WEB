@@ -1,30 +1,32 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { Download, Sparkles, QrCode } from "lucide-react";
+import { motion } from "framer-motion";
+import { Download, Sparkles, Copy, Check, ShieldCheck, Flame, Gem } from "lucide-react";
 import confetti from "canvas-confetti";
 
 export default function AriseHunterCardGenerator() {
   const [hunterName, setHunterName] = useState("Karan_Awakened");
   const [hunterRank, setHunterRank] = useState<"S-RANK" | "A-RANK" | "B-RANK" | "C-RANK" | "D-RANK" | "E-RANK">("S-RANK");
-  const [hunterClass, setHunterClass] = useState("Shadow Monarch Vanguard");
-  const [streakDays] = useState(48);
-  const [totalReps] = useState(14850);
-  const [manaPoints] = useState(9420);
+  const [hunterClass, setHunterClass] = useState("AETHER SPRINTER");
+  const [copiedId, setCopiedId] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
 
-  // 3D Card Gyroscope / Mouse State
+  // 3D Card Gyroscope State
   const [cardRotate, setCardRotate] = useState({ x: 0, y: 0 });
   const [mouseCoord, setMouseCoord] = useState({ x: 50, y: 50 });
   const cardRef = useRef<HTMLDivElement>(null);
+
+  const hunterId = `#KA${(hunterName.length * 137).toString().padStart(5, "0").slice(0, 5)}`;
+  const initials = (hunterName || "KA").replace(/[^a-zA-Z]/g, "").slice(0, 2).toUpperCase() || "KA";
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const rotX = ((y / rect.height) - 0.5) * -18;
-    const rotY = ((x / rect.width) - 0.5) * 18;
+    const rotX = (y / rect.height - 0.5) * -12;
+    const rotY = (x / rect.width - 0.5) * 12;
     setCardRotate({ x: rotX, y: rotY });
     setMouseCoord({ x: (x / rect.width) * 100, y: (y / rect.height) * 100 });
   };
@@ -34,167 +36,417 @@ export default function AriseHunterCardGenerator() {
     setMouseCoord({ x: 50, y: 50 });
   };
 
-  const rankColor =
-    hunterRank === "S-RANK"
-      ? { text: "text-[#EF4444]", bg: "bg-[#EF4444]/15", border: "border-[#EF4444]/50", glow: "#EF4444", bar: "#EF4444" }
-      : hunterRank === "A-RANK"
-      ? { text: "text-[#0A84FF]", bg: "bg-[#0A84FF]/15", border: "border-[#0A84FF]/50", glow: "#0A84FF", bar: "#0A84FF" }
-      : hunterRank === "B-RANK"
-      ? { text: "text-[#38BDF8]", bg: "bg-[#38BDF8]/15", border: "border-[#38BDF8]/50", glow: "#38BDF8", bar: "#38BDF8" }
-      : hunterRank === "C-RANK"
-      ? { text: "text-[#10B981]", bg: "bg-[#10B981]/15", border: "border-[#10B981]/50", glow: "#10B981", bar: "#10B981" }
-      : hunterRank === "D-RANK"
-      ? { text: "text-[#F59E0B]", bg: "bg-[#F59E0B]/15", border: "border-[#F59E0B]/50", glow: "#F59E0B", bar: "#F59E0B" }
-      : { text: "text-[#86868B]", bg: "bg-white/10", border: "border-white/20", glow: "#86868B", bar: "#6E6E73" };
+  const handleCopyId = () => {
+    navigator.clipboard.writeText(hunterId);
+    setCopiedId(true);
+    setTimeout(() => setCopiedId(false), 2000);
+  };
 
-  // Native High-Resolution HTML5 Canvas Generator (Exports Crisp 1200x760 PNG)
+  const rankConfig = {
+    "S-RANK": {
+      color: "#EF4444",
+      gradient: "from-[#EF4444]/25 via-[#EF4444]/10 to-[#0A0C11]/80",
+      border: "border-[#EF4444]/40",
+      glow: "shadow-[0_0_30px_rgba(239,68,68,0.3)]",
+      textColor: "text-[#EF4444]",
+      starColor: "#EF4444",
+      status: "AWAKENED",
+    },
+    "A-RANK": {
+      color: "#0A84FF",
+      gradient: "from-[#0A84FF]/25 via-[#0A84FF]/10 to-[#0A0C11]/80",
+      border: "border-[#0A84FF]/40",
+      glow: "shadow-[0_0_30px_rgba(10,132,255,0.3)]",
+      textColor: "text-[#0A84FF]",
+      starColor: "#0A84FF",
+      status: "ELITE",
+    },
+    "B-RANK": {
+      color: "#38BDF8",
+      gradient: "from-[#38BDF8]/25 via-[#38BDF8]/10 to-[#0A0C11]/80",
+      border: "border-[#38BDF8]/40",
+      glow: "shadow-[0_0_30px_rgba(56,189,248,0.3)]",
+      textColor: "text-[#38BDF8]",
+      starColor: "#38BDF8",
+      status: "ADVANCED",
+    },
+    "C-RANK": {
+      color: "#10B981",
+      gradient: "from-[#10B981]/25 via-[#10B981]/10 to-[#0A0C11]/80",
+      border: "border-[#10B981]/40",
+      glow: "shadow-[0_0_30px_rgba(16,185,129,0.3)]",
+      textColor: "text-[#10B981]",
+      starColor: "#10B981",
+      status: "STABLE",
+    },
+    "D-RANK": {
+      color: "#F59E0B",
+      gradient: "from-[#F59E0B]/25 via-[#F59E0B]/10 to-[#0A0C11]/80",
+      border: "border-[#F59E0B]/40",
+      glow: "shadow-[0_0_30px_rgba(245,158,11,0.3)]",
+      textColor: "text-[#F59E0B]",
+      starColor: "#F59E0B",
+      status: "NOVICE",
+    },
+    "E-RANK": {
+      color: "#86868B",
+      gradient: "from-white/15 via-white/5 to-[#0A0C11]/80",
+      border: "border-white/20",
+      glow: "shadow-[0_0_20px_rgba(255,255,255,0.1)]",
+      textColor: "text-[#86868B]",
+      starColor: "#86868B",
+      status: "INITIATE",
+    },
+  };
+
+  const currentRank = rankConfig[hunterRank];
+
+  // High-Resolution 1200x680 PNG Card Generator
   const handleDownloadCard = () => {
     setIsDownloading(true);
 
     const canvas = document.createElement("canvas");
     canvas.width = 1200;
-    canvas.height = 760;
+    canvas.height = 680;
     const ctx = canvas.getContext("2d");
 
     if (ctx) {
-      // 1. Dark Luxe Obsidian / Titanium Background
-      const bgGrad = ctx.createLinearGradient(0, 0, 1200, 760);
-      bgGrad.addColorStop(0, "#161922");
-      bgGrad.addColorStop(0.4, "#0B0D12");
+      // 1. Dark Luxe Obsidian Bezel Background
+      const bgGrad = ctx.createLinearGradient(0, 0, 1200, 680);
+      bgGrad.addColorStop(0, "#0E1118");
+      bgGrad.addColorStop(0.5, "#07080C");
       bgGrad.addColorStop(1, "#020305");
       ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, 1200, 760);
+      ctx.fillRect(0, 0, 1200, 680);
 
-      // Micro grid background
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
-      ctx.lineWidth = 1;
-      for (let x = 40; x < 1200; x += 40) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, 760);
-        ctx.stroke();
-      }
-      for (let y = 40; y < 760; y += 40) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(1200, y);
-        ctx.stroke();
-      }
-
-      // 2. Hardware Titanium Outer Border
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.18)";
+      // Outer Smooth Rounded Bezel Border
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.14)";
       ctx.lineWidth = 3;
-      ctx.strokeRect(12, 12, 1176, 736);
-
-      // Inner subtle border
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.06)";
-      ctx.lineWidth = 1;
-      ctx.strokeRect(20, 20, 1160, 720);
-
-      // 3. Cyberpunk Horizon Neon Line
-      const accentGrad = ctx.createLinearGradient(0, 0, 1200, 0);
-      accentGrad.addColorStop(0, "transparent");
-      accentGrad.addColorStop(0.3, rankColor.glow);
-      accentGrad.addColorStop(0.7, rankColor.glow);
-      accentGrad.addColorStop(1, "transparent");
-      ctx.fillStyle = accentGrad;
-      ctx.fillRect(0, 0, 1200, 6);
-
-      // 4. Header: ARISE System Wordmark
-      ctx.fillStyle = "#F5F5F7";
-      ctx.font = "bold 44px -apple-system, sans-serif";
-      ctx.fillText("ARISE", 60, 95);
-
-      ctx.fillStyle = rankColor.glow;
-      ctx.beginPath();
-      ctx.arc(195, 80, 7, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Telemetry small tag next to logo
-      ctx.fillStyle = "#86868B";
-      ctx.font = "14px monospace";
-      ctx.fillText("SOVEREIGN HUNTER CLEARANCE DOSSIER", 220, 85);
-
-      // Rank Badge Top Right
-      ctx.fillStyle = "rgba(255, 255, 255, 0.06)";
       if (ctx.roundRect) {
-        ctx.roundRect(870, 50, 270, 60, 30);
+        ctx.beginPath();
+        ctx.roundRect(10, 10, 1180, 660, 36);
+        ctx.stroke();
       } else {
-        ctx.fillRect(870, 50, 270, 60);
+        ctx.strokeRect(10, 10, 1180, 660);
       }
+
+      // Top-Left Cyan Ambient Rim Glow
+      const cyanRim = ctx.createLinearGradient(0, 0, 400, 0);
+      cyanRim.addColorStop(0, "rgba(10, 132, 255, 0.6)");
+      cyanRim.addColorStop(1, "transparent");
+      ctx.fillStyle = cyanRim;
+      ctx.fillRect(10, 10, 300, 4);
+
+      // Top-Right Rank Glow Rim
+      const rankRim = ctx.createLinearGradient(800, 0, 1200, 0);
+      rankRim.addColorStop(0, "transparent");
+      rankRim.addColorStop(1, currentRank.color);
+      ctx.fillStyle = rankRim;
+      ctx.fillRect(900, 10, 280, 4);
+
+      // 2. Header
+      // ARISE •
+      ctx.fillStyle = "#FFFFFF";
+      ctx.font = "bold 32px -apple-system, sans-serif";
+      ctx.letterSpacing = "6px";
+      ctx.fillText("A R I S E", 60, 75);
+
+      ctx.fillStyle = "#EF4444";
+      ctx.beginPath();
+      ctx.arc(225, 65, 5.5, 0, Math.PI * 2);
       ctx.fill();
-      ctx.strokeStyle = rankColor.glow;
-      ctx.lineWidth = 2;
+
+      // HUNTER PROTOCOL / IDENTITY CARD
+      ctx.fillStyle = "#86868B";
+      ctx.font = "11px monospace";
+      ctx.fillText("HUNTER PROTOCOL", 280, 62);
+      ctx.fillText("IDENTITY CARD", 280, 78);
+
+      // Right: REAL EFFORT / REAL PROGRESSION
+      ctx.strokeStyle = "#404040";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(880, 68);
+      ctx.lineTo(915, 68);
       ctx.stroke();
 
-      ctx.fillStyle = rankColor.glow;
-      ctx.font = "bold 26px monospace";
+      ctx.fillStyle = "#86868B";
+      ctx.font = "11px monospace";
+      ctx.fillText("REAL EFFORT", 930, 62);
+      ctx.fillText("REAL PROGRESSION", 930, 78);
+
+      // 3. Left Avatar Frame Box
+      const avatarX = 60;
+      const avatarY = 120;
+      const avatarW = 240;
+      const avatarH = 370;
+
+      ctx.fillStyle = "#0A0D14";
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(avatarX, avatarY, avatarW, avatarH, 24);
+        ctx.fill();
+        ctx.strokeStyle = "rgba(10, 132, 255, 0.4)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      } else {
+        ctx.fillRect(avatarX, avatarY, avatarW, avatarH);
+      }
+
+      // Dark shadow hunter silhouette aura
+      const shadowGrad = ctx.createRadialGradient(avatarX + 120, avatarY + 150, 20, avatarX + 120, avatarY + 150, 120);
+      shadowGrad.addColorStop(0, "rgba(10, 132, 255, 0.35)");
+      shadowGrad.addColorStop(1, "transparent");
+      ctx.fillStyle = shadowGrad;
+      ctx.fillRect(avatarX, avatarY, avatarW, avatarH);
+
+      // Monogram in avatar box
+      ctx.fillStyle = "#FFFFFF";
+      ctx.font = "bold 52px -apple-system, sans-serif";
+      ctx.fillText(initials, avatarX + 24, avatarY + avatarH - 55);
+
+      ctx.fillStyle = "#86868B";
+      ctx.font = "12px monospace";
+      ctx.fillText("HUNTER", avatarX + 24, avatarY + avatarH - 30);
+
+      // 4. Middle Content Area
+      const midX = 340;
+
+      // HUNTER ID #KA00731
+      ctx.fillStyle = "#6E6E73";
+      ctx.font = "12px monospace";
+      ctx.fillText("HUNTER ID", midX, 150);
+
+      ctx.fillStyle = "#A1A1AA";
+      ctx.font = "bold 15px monospace";
+      ctx.fillText(hunterId, midX, 175);
+
+      // Hunter Name
+      ctx.fillStyle = "#FFFFFF";
+      ctx.font = "bold 44px -apple-system, sans-serif";
+      ctx.fillText(hunterName || "Karan_Awakened", midX, 235);
+
+      // Class
+      ctx.fillStyle = "#71717A";
+      ctx.font = "12px monospace";
+      ctx.fillText("CLASS", midX, 280);
+
+      ctx.fillStyle = "#38BDF8";
+      ctx.font = "14px -apple-system, sans-serif";
+      ctx.fillText("✦", midX + 60, 280);
+
+      ctx.fillStyle = "#F5F5F7";
+      ctx.font = "bold 13px monospace";
+      ctx.fillText(hunterClass, midX + 85, 280);
+
+      // Level & Progress Row
+      ctx.fillStyle = "#86868B";
+      ctx.font = "bold 14px monospace";
+      ctx.fillText("LEVEL", midX, 335);
+
+      ctx.fillStyle = "#0A84FF";
+      ctx.font = "bold 20px -apple-system, sans-serif";
+      ctx.fillText("28", midX + 58, 335);
+
+      ctx.fillStyle = "#71717A";
+      ctx.font = "12px monospace";
+      ctx.fillText("24,850 / 50,000 XP", midX + 160, 335);
+
+      ctx.fillStyle = "#A1A1AA";
+      ctx.font = "bold 12px monospace";
+      ctx.fillText("56%", midX + 410, 335);
+
+      // XP Progress Bar
+      const barX = midX;
+      const barY = 355;
+      const barW = 440;
+      const barH = 10;
+
+      ctx.fillStyle = "#131620";
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(barX, barY, barW, barH, 5);
+        ctx.fill();
+      } else {
+        ctx.fillRect(barX, barY, barW, barH);
+      }
+
+      // Active Blue Glow Bar
+      const xpFillGrad = ctx.createLinearGradient(barX, barY, barX + barW * 0.56, barY);
+      xpFillGrad.addColorStop(0, "#0A84FF");
+      xpFillGrad.addColorStop(1, "#38BDF8");
+      ctx.fillStyle = xpFillGrad;
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(barX, barY, barW * 0.56, barH, 5);
+        ctx.fill();
+      } else {
+        ctx.fillRect(barX, barY, barW * 0.56, barH);
+      }
+
+      // 5. 4-Metrics Capsule Card
+      const capX = midX;
+      const capY = 390;
+      const capW = 440;
+      const capH = 100;
+
+      ctx.fillStyle = "#080A0F";
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(capX, capY, capW, capH, 20);
+        ctx.fill();
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      } else {
+        ctx.fillRect(capX, capY, capW, capH);
+      }
+
+      // Column 1: STREAK 48 DAYS
+      ctx.fillStyle = "#EF4444";
+      ctx.font = "18px -apple-system, sans-serif";
+      ctx.fillText("🔥", capX + 20, capY + 58);
+
+      ctx.fillStyle = "#6E6E73";
+      ctx.font = "9px monospace";
+      ctx.fillText("STREAK", capX + 50, capY + 40);
+
+      ctx.fillStyle = "#FFFFFF";
+      ctx.font = "bold 20px -apple-system, sans-serif";
+      ctx.fillText("48", capX + 50, capY + 65);
+
+      ctx.fillStyle = "#6E6E73";
+      ctx.font = "8px monospace";
+      ctx.fillText("DAYS", capX + 50, capY + 80);
+
+      // Column 2: AI REPS 14,850
+      ctx.fillStyle = "#6E6E73";
+      ctx.font = "9px monospace";
+      ctx.fillText("AI REPS", capX + 140, capY + 40);
+
+      ctx.fillStyle = "#FFFFFF";
+      ctx.font = "bold 18px -apple-system, sans-serif";
+      ctx.fillText("14,850", capX + 140, capY + 68);
+
+      // Column 3: MANA 9,420
+      ctx.fillStyle = "#0A84FF";
+      ctx.font = "16px -apple-system, sans-serif";
+      ctx.fillText("💎", capX + 240, capY + 58);
+
+      ctx.fillStyle = "#6E6E73";
+      ctx.font = "9px monospace";
+      ctx.fillText("MANA", capX + 265, capY + 40);
+
+      ctx.fillStyle = "#0A84FF";
+      ctx.font = "bold 18px -apple-system, sans-serif";
+      ctx.fillText("9,420", capX + 265, capY + 68);
+
+      // Column 4: STATUS AWAKENED
+      ctx.fillStyle = currentRank.color;
+      ctx.font = "16px -apple-system, sans-serif";
+      ctx.fillText("✦", capX + 340, capY + 58);
+
+      ctx.fillStyle = "#6E6E73";
+      ctx.font = "9px monospace";
+      ctx.fillText("STATUS", capX + 360, capY + 40);
+
+      ctx.fillStyle = currentRank.color;
+      ctx.font = "bold 11px monospace";
+      ctx.fillText(currentRank.status, capX + 360, capY + 65);
+
+      // 6. Right Rank Frame Box
+      const rankX = 810;
+      const rankY = 120;
+      const rankW = 330;
+      const rankH = 370;
+
+      const rankBoxGrad = ctx.createLinearGradient(rankX, rankY, rankX + rankW, rankY + rankH);
+      rankBoxGrad.addColorStop(0, currentRank.color + "25");
+      rankBoxGrad.addColorStop(0.5, "#0B0E14");
+      rankBoxGrad.addColorStop(1, "#040508");
+      ctx.fillStyle = rankBoxGrad;
+
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(rankX, rankY, rankW, rankH, 24);
+        ctx.fill();
+        ctx.strokeStyle = currentRank.color + "55";
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      } else {
+        ctx.fillRect(rankX, rankY, rankW, rankH);
+      }
+
+      // RANK title
+      ctx.fillStyle = "#86868B";
+      ctx.font = "11px monospace";
+      ctx.fillText("RANK", rankX + 28, rankY + 40);
+
+      // Center 4-Point 3D Star
+      ctx.fillStyle = currentRank.starColor;
+      ctx.font = "72px -apple-system, sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText(`RANK // ${hunterRank}`, 1005, 90);
+      ctx.fillText("✦", rankX + rankW / 2, rankY + 180);
+
+      // S-RANK
+      ctx.fillStyle = currentRank.color;
+      ctx.font = "bold 34px -apple-system, sans-serif";
+      ctx.fillText(hunterRank, rankX + rankW / 2, rankY + 250);
+
+      // AWAKENED
+      ctx.fillStyle = "#86868B";
+      ctx.font = "11px monospace";
+      ctx.letterSpacing = "2px";
+      ctx.fillText(currentRank.status, rankX + rankW / 2, rankY + 285);
       ctx.textAlign = "left";
 
-      // 5. Hunter Avatar / Holographic Monogram Frame
-      ctx.fillStyle = "#0E1017";
-      ctx.fillRect(60, 150, 140, 140);
-      ctx.strokeStyle = rankColor.glow;
-      ctx.lineWidth = 2;
-      ctx.strokeRect(60, 150, 140, 140);
+      // 7. Footer
+      const footY = 560;
 
+      // Sovereign Protocol
       ctx.fillStyle = "#F5F5F7";
-      ctx.font = "bold 58px -apple-system, sans-serif";
-      ctx.fillText((hunterName || "AR").slice(0, 2).toUpperCase(), 94, 242);
+      ctx.font = "18px -apple-system, sans-serif";
+      ctx.fillText("🛡️", 60, footY + 20);
 
-      // 6. Hunter Name & Class
-      ctx.fillStyle = "#F5F5F7";
-      ctx.font = "bold 52px -apple-system, sans-serif";
-      ctx.fillText(hunterName || "Anonymous Hunter", 240, 210);
+      ctx.fillStyle = "#D4D4D8";
+      ctx.font = "11px monospace";
+      ctx.fillText("SOVEREIGN PROTOCOL", 95, footY + 12);
 
-      ctx.fillStyle = "#86868B";
-      ctx.font = "22px monospace";
-      ctx.fillText(`CLASS: ${hunterClass.toUpperCase()}`, 240, 260);
+      ctx.fillStyle = "#6E6E73";
+      ctx.font = "10px monospace";
+      ctx.fillText("100% ON-DEVICE ENCRYPTED", 95, footY + 28);
 
-      // 7. Divider Line
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
-      ctx.lineWidth = 2;
+      // Center Version Line
+      ctx.strokeStyle = "#27272A";
+      ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.moveTo(60, 330);
-      ctx.lineTo(1140, 330);
+      ctx.moveTo(560, footY);
+      ctx.lineTo(560, footY + 36);
       ctx.stroke();
 
-      // 8. 4 Telemetry Metrics
-      const metrics = [
-        { label: "DISCIPLINE STREAK", val: `${streakDays} DAYS` },
-        { label: "VISION REPS", val: `${totalReps.toLocaleString()}` },
-        { label: "MANA CRYSTALS", val: `${manaPoints.toLocaleString()}` },
-        { label: "SYSTEM STATUS", val: "AWAKENED" },
-      ];
+      ctx.fillStyle = "#86868B";
+      ctx.font = "11px monospace";
+      ctx.fillText("ARISE-HUNTER-001", 580, footY + 12);
 
-      metrics.forEach((m, idx) => {
-        const xPos = 60 + idx * 280;
-        ctx.fillStyle = "#6E6E73";
-        ctx.font = "16px monospace";
-        ctx.fillText(m.label, xPos, 385);
+      ctx.fillStyle = "#52525B";
+      ctx.font = "10px monospace";
+      ctx.fillText("VER 1.0.0", 580, footY + 28);
 
-        ctx.fillStyle = idx === 2 ? "#0A84FF" : idx === 3 ? rankColor.glow : "#F5F5F7";
-        ctx.font = "bold 38px -apple-system, sans-serif";
-        ctx.fillText(m.val, xPos, 440);
-      });
-
-      // 9. Bottom Clean Verification
-      ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
-      ctx.fillRect(60, 520, 1080, 170);
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
-      ctx.strokeRect(60, 520, 1080, 170);
+      // Right QR Code representation
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillRect(1030, footY - 8, 44, 44);
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(1034, footY - 4, 12, 12);
+      ctx.fillRect(1058, footY - 4, 12, 12);
+      ctx.fillRect(1034, footY + 20, 12, 12);
+      ctx.fillRect(1052, footY + 14, 8, 8);
 
       ctx.fillStyle = "#86868B";
-      ctx.font = "20px -apple-system, sans-serif";
-      ctx.fillText("ARISE HUNTER VERIFICATION // LEVEL 24 ACTIVE", 100, 580);
-      
-      ctx.fillStyle = "#6E6E73";
-      ctx.font = "16px monospace";
-      ctx.fillText(`ISSUED: ${new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} · 100% ON-DEVICE ENCRYPTED`, 100, 630);
+      ctx.font = "10px monospace";
+      ctx.fillText("SCAN TO VIEW", 1085, footY + 12);
+      ctx.fillText("HUNTER PROFILE", 1085, footY + 28);
 
-      // Trigger Direct Download
+      // Trigger Download
       const dataUrl = canvas.toDataURL("image/png");
       const a = document.createElement("a");
       a.href = dataUrl;
@@ -204,10 +456,10 @@ export default function AriseHunterCardGenerator() {
       document.body.removeChild(a);
 
       confetti({
-        particleCount: 90,
+        particleCount: 100,
         spread: 70,
         origin: { y: 0.7 },
-        colors: ["#0A84FF", rankColor.glow, "#FFFFFF"],
+        colors: [currentRank.color, "#0A84FF", "#FFFFFF"],
       });
     }
 
@@ -222,22 +474,22 @@ export default function AriseHunterCardGenerator() {
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>INTERACTIVE DOSSIER // 3D HOLOGRAPHIC CARD</span>
+            <span>08 // SOVEREIGN IDENTITY DOSSIER</span>
           </div>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
-            Mint Your Hunter ID.
+            Mint Your Hunter Card.
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
-            Type your call-sign below. Your 3D holographic Hunter ID dynamically renders in real-time with specular lighting and exports as a high-resolution 1200×760 PNG.
+            Type your hunter call-sign below. Your 3D titanium identity card dynamically updates in real time with specular lighting and exports as a high-resolution PNG.
           </p>
         </div>
 
         {/* Live Card + Customizer Matrix */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Live 3D Holographic Titanium Card Preview */}
-          <div className="lg:col-span-7 flex justify-center perspective-[1000px]">
-            <div
+          {/* Left Live 3D Titanium Card (Matches Reference Image Exactly) */}
+          <div className="lg:col-span-8 flex justify-center perspective-[1200px]">
+            <motion.div
               ref={cardRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
@@ -245,111 +497,235 @@ export default function AriseHunterCardGenerator() {
                 transform: `rotateX(${cardRotate.x}deg) rotateY(${cardRotate.y}deg)`,
                 transition: "transform 0.1s ease-out",
               }}
-              className="w-full max-w-xl p-8 sm:p-10 rounded-[36px] bg-gradient-to-br from-[#161922] via-[#0B0D12] to-[#020305] border border-white/[0.18] shadow-[0_35px_90px_-15px_rgba(0,0,0,0.98),inset_0_1px_1px_rgba(255,255,255,0.25)] relative overflow-hidden space-y-8 cursor-grab active:cursor-grabbing group"
+              className="w-full max-w-3xl p-6 sm:p-9 rounded-[36px] bg-gradient-to-br from-[#0E1118] via-[#07080C] to-[#020305] border border-white/[0.15] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.98),inset_0_1px_1px_rgba(255,255,255,0.2)] relative overflow-hidden space-y-6 cursor-grab active:cursor-grabbing group"
             >
-              {/* Dynamic 3D Specular Sheen Glare following cursor */}
+              {/* Dynamic 3D Specular Light Glare following cursor */}
               <div
-                className="absolute inset-0 pointer-events-none opacity-40 transition-opacity duration-200 group-hover:opacity-70"
+                className="absolute inset-0 pointer-events-none opacity-30 transition-opacity duration-200 group-hover:opacity-60"
                 style={{
-                  background: `radial-gradient(circle 350px at ${mouseCoord.x}% ${mouseCoord.y}%, rgba(255,255,255,0.18), transparent 70%)`,
+                  background: `radial-gradient(circle 450px at ${mouseCoord.x}% ${mouseCoord.y}%, rgba(255,255,255,0.15), transparent 70%)`,
                 }}
               />
 
-              {/* Top Accent Rim */}
+              {/* Cyan Top-Left Rim Accent */}
+              <div className="absolute top-0 left-8 w-48 h-[2px] bg-gradient-to-r from-[#0A84FF] to-transparent pointer-events-none" />
+
+              {/* Rank Top-Right Rim Accent */}
               <div
-                className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-current to-transparent"
-                style={{ color: rankColor.glow }}
+                className="absolute top-0 right-8 w-48 h-[2px] bg-gradient-to-l from-current to-transparent pointer-events-none"
+                style={{ color: currentRank.color }}
               />
 
-              {/* Card Header */}
-              <div className="flex items-center justify-between border-b border-white/[0.08] pb-5">
-                <div className="flex items-center gap-2.5">
-                  <span className="font-sans font-bold text-2xl text-[#F5F5F7] tracking-tight">
-                    ARISE
-                  </span>
-                  <span
-                    className="w-2 h-2 rounded-full animate-pulse"
-                    style={{ backgroundColor: rankColor.glow }}
-                  />
-                  <span className="font-mono text-[10px] text-[#86868B] tracking-widest hidden sm:inline">
-                    CLEARANCE ID
-                  </span>
+              {/* 1. Header Row */}
+              <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <span className="font-sans font-bold text-xl tracking-[0.25em] text-[#FFFFFF]">
+                      A R I S E
+                    </span>
+                    <span className="w-2 h-2 rounded-full bg-[#EF4444]" />
+                  </div>
+                  <div className="font-mono text-[9px] text-[#86868B] uppercase leading-tight border-l border-white/[0.1] pl-3">
+                    <div>HUNTER PROTOCOL</div>
+                    <div>IDENTITY CARD</div>
+                  </div>
                 </div>
 
-                <span className={`px-3.5 py-1 rounded-full border font-mono text-xs font-bold ${rankColor.text} ${rankColor.bg} ${rankColor.border}`}>
-                  {hunterRank}
-                </span>
-              </div>
-
-              {/* Avatar + Hunter Identity */}
-              <div className="flex items-center gap-5">
-                <div className="w-20 h-20 rounded-2xl bg-[#0E1017] border border-white/[0.15] flex items-center justify-center text-[#F5F5F7] font-bold text-2xl shadow-inner relative overflow-hidden">
-                  {(hunterName || "AR").slice(0, 2).toUpperCase()}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-                </div>
-                <div className="space-y-1">
-                  <h3 className="font-sans font-bold text-2xl sm:text-3xl text-[#F5F5F7] tracking-tight">
-                    {hunterName || "Anonymous Hunter"}
-                  </h3>
-                  <div className="font-mono text-xs text-[#86868B]">
-                    CLASS: <span className="text-[#F5F5F7] font-semibold">{hunterClass.toUpperCase()}</span>
+                <div className="flex items-center gap-2 font-mono text-[9px] text-[#86868B] uppercase">
+                  <span className="w-4 h-[1px] bg-white/30" />
+                  <div className="text-right">
+                    <div>REAL EFFORT</div>
+                    <div>REAL PROGRESSION</div>
                   </div>
                 </div>
               </div>
 
-              {/* 4 Telemetry Metrics */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[#000000]/70 border border-white/[0.08] font-mono text-xs">
-                <div>
-                  <span className="text-[10px] text-[#6E6E73] block uppercase tracking-wider">STREAK</span>
-                  <span className="text-base font-bold text-[#F5F5F7]">{streakDays} DAYS</span>
+              {/* 2. Main 3-Column Core Body */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+                
+                {/* Left: Hunter Avatar Box */}
+                <div className="md:col-span-4 rounded-2xl bg-[#0A0D14] border border-[#0A84FF]/40 p-4 relative overflow-hidden flex flex-col justify-between min-h-[260px] sm:min-h-[300px] shadow-[0_0_30px_rgba(10,132,255,0.15)]">
+                  {/* Subtle Background Glow */}
+                  <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#0A84FF]/25 rounded-full blur-[40px] pointer-events-none" />
+
+                  {/* Character Silhouette / Monogram Art */}
+                  <div className="relative z-10 space-y-1">
+                    <div className="w-2 h-2 rounded-full bg-[#0A84FF] shadow-[0_0_8px_#0A84FF]" />
+                  </div>
+
+                  {/* Bottom KA / HUNTER Label */}
+                  <div className="relative z-10 space-y-0.5">
+                    <div className="font-sans font-extrabold text-4xl text-[#FFFFFF] tracking-tight">
+                      {initials}
+                    </div>
+                    <div className="font-mono text-[10px] text-[#86868B] uppercase tracking-widest">
+                      HUNTER
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-[10px] text-[#6E6E73] block uppercase tracking-wider">AI REPS</span>
-                  <span className="text-base font-bold text-[#F5F5F7]">{totalReps.toLocaleString()}</span>
+
+                {/* Middle: Name, Level, Progress, 4-Stats */}
+                <div className="md:col-span-5 flex flex-col justify-between space-y-4">
+                  <div className="space-y-1">
+                    {/* Hunter ID with copy button */}
+                    <div className="flex items-center gap-2 font-mono text-[11px] text-[#6E6E73]">
+                      <span>HUNTER ID</span>
+                      <button
+                        onClick={handleCopyId}
+                        className="text-[#A1A1AA] hover:text-white flex items-center gap-1 cursor-pointer transition-colors"
+                      >
+                        <span>{hunterId}</span>
+                        {copiedId ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                      </button>
+                    </div>
+
+                    {/* Hunter Name */}
+                    <h3 className="font-sans font-bold text-2xl sm:text-3xl text-[#FFFFFF] tracking-tight truncate">
+                      {hunterName || "Karan_Awakened"}
+                    </h3>
+
+                    {/* Class */}
+                    <div className="flex items-center gap-2 font-mono text-xs text-[#86868B] pt-0.5">
+                      <span>CLASS</span>
+                      <span className="text-[#38BDF8]">✦</span>
+                      <span className="text-[#F5F5F7] font-semibold">{hunterClass}</span>
+                    </div>
+                  </div>
+
+                  {/* Level & XP Progress */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-baseline justify-between font-mono text-xs">
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-[#86868B]">LEVEL</span>
+                        <span className="text-[#0A84FF] font-bold text-base">28</span>
+                      </div>
+                      <span className="text-[10px] text-[#71717A]">24,850 / 50,000 XP</span>
+                      <span className="text-[10px] text-[#A1A1AA] font-bold">56%</span>
+                    </div>
+                    <div className="w-full h-2 bg-[#131620] rounded-full overflow-hidden p-0.5">
+                      <div className="w-[56%] h-full bg-gradient-to-r from-[#0A84FF] to-[#38BDF8] rounded-full shadow-[0_0_10px_#0A84FF]" />
+                    </div>
+                  </div>
+
+                  {/* 4-Stats Pill Box */}
+                  <div className="grid grid-cols-4 gap-2 p-3 rounded-2xl bg-[#080A0F] border border-white/[0.08] text-center font-mono">
+                    <div className="space-y-0.5">
+                      <div className="text-[8px] text-[#6E6E73] uppercase">STREAK</div>
+                      <div className="text-sm font-bold text-white flex items-center justify-center gap-0.5">
+                        <Flame className="w-3 h-3 text-[#EF4444]" />
+                        <span>48</span>
+                      </div>
+                      <div className="text-[7px] text-[#6E6E73]">DAYS</div>
+                    </div>
+
+                    <div className="space-y-0.5">
+                      <div className="text-[8px] text-[#6E6E73] uppercase">AI REPS</div>
+                      <div className="text-xs font-bold text-white pt-1">
+                        14,850
+                      </div>
+                    </div>
+
+                    <div className="space-y-0.5">
+                      <div className="text-[8px] text-[#6E6E73] uppercase">MANA</div>
+                      <div className="text-xs font-bold text-[#0A84FF] pt-1 flex items-center justify-center gap-0.5">
+                        <Gem className="w-2.5 h-2.5" />
+                        <span>9,420</span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-0.5">
+                      <div className="text-[8px] text-[#6E6E73] uppercase">STATUS</div>
+                      <div className={`text-[10px] font-bold pt-1 ${currentRank.textColor}`}>
+                        {currentRank.status}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-[10px] text-[#6E6E73] block uppercase tracking-wider">MANA</span>
-                  <span className="text-base font-bold text-[#0A84FF]">{manaPoints.toLocaleString()}</span>
+
+                {/* Right: Rank Box */}
+                <div
+                  className={`md:col-span-3 rounded-2xl bg-gradient-to-b ${currentRank.gradient} border ${currentRank.border} p-5 flex flex-col justify-between items-center text-center shadow-lg relative overflow-hidden min-h-[200px]`}
+                >
+                  <div className="w-full flex justify-between items-center font-mono text-[10px] text-[#86868B]">
+                    <span>RANK</span>
+                  </div>
+
+                  {/* 3D 4-Point Glowing Star */}
+                  <motion.div
+                    animate={{ scale: [1, 1.06, 1], rotate: [0, 2, -2, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="text-5xl my-2"
+                    style={{ color: currentRank.starColor }}
+                  >
+                    ✦
+                  </motion.div>
+
+                  <div className="space-y-0.5">
+                    <div className={`font-sans font-bold text-2xl tracking-tight ${currentRank.textColor}`}>
+                      {hunterRank}
+                    </div>
+                    <div className="font-mono text-[9px] text-[#86868B] uppercase tracking-widest">
+                      {currentRank.status}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-[10px] text-[#6E6E73] block uppercase tracking-wider">STATUS</span>
-                  <span className={`text-base font-bold ${rankColor.text}`}>AWAKENED</span>
+
+              </div>
+
+              {/* 3. Bottom Footer */}
+              <div className="flex flex-wrap items-center justify-between pt-3 border-t border-white/[0.06] font-mono text-[10px] text-[#6E6E73]">
+                <div className="flex items-center gap-2.5">
+                  <ShieldCheck className="w-4 h-4 text-[#F5F5F7]" />
+                  <div className="space-y-0.5">
+                    <div className="text-[#D4D4D8] font-semibold uppercase">SOVEREIGN PROTOCOL</div>
+                    <div>100% ON-DEVICE ENCRYPTED</div>
+                  </div>
+                </div>
+
+                <div className="hidden sm:block border-l border-white/[0.08] pl-4 space-y-0.5">
+                  <div className="text-[#86868B]">ARISE-HUNTER-001</div>
+                  <div className="text-[#52525B]">VER 1.0.0</div>
+                </div>
+
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 bg-white rounded p-0.5 flex flex-wrap gap-0.5">
+                    <div className="w-2.5 h-2.5 bg-black" />
+                    <div className="w-2.5 h-2.5 bg-black ml-auto" />
+                    <div className="w-2.5 h-2.5 bg-black" />
+                    <div className="w-2.5 h-2.5 bg-black ml-auto" />
+                  </div>
+                  <div className="space-y-0.5 text-right">
+                    <div className="text-[#86868B]">SCAN TO VIEW</div>
+                    <div>HUNTER PROFILE</div>
+                  </div>
                 </div>
               </div>
 
-              {/* Bottom Verification Footer */}
-              <div className="flex items-center justify-between pt-2 border-t border-white/[0.08] font-mono text-[11px] text-[#6E6E73]">
-                <div className="space-y-0.5">
-                  <div className="text-[#86868B] font-semibold">SOVEREIGN PROTOCOL</div>
-                  <div>100% ON-DEVICE ENCRYPTED</div>
-                </div>
-                <QrCode className="w-8 h-8 text-[#F5F5F7]" />
-              </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Live Customization Inputs */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-4 space-y-6">
             
             {/* Input 1: Hunter Name */}
             <div className="space-y-2">
               <label className="block font-mono text-xs text-[#86868B] uppercase tracking-wider">
-                Type Your Hunter Name
+                Hunter Call-Sign
               </label>
               <input
                 type="text"
                 value={hunterName}
                 onChange={(e) => setHunterName(e.target.value)}
                 maxLength={24}
-                placeholder="e.g. Sung_Jin_Woo"
+                placeholder="e.g. Karan_Awakened"
                 className="w-full px-5 py-4 rounded-2xl bg-[#08090C] border border-white/[0.12] text-[#F5F5F7] font-mono text-sm outline-none focus:border-[#0A84FF] transition-colors"
               />
             </div>
 
-            {/* Input 2: Rank Selector (All Ranks) */}
+            {/* Input 2: Rank Selector */}
             <div className="space-y-2">
               <label className="block font-mono text-xs text-[#86868B] uppercase tracking-wider">
-                Select Hunter Rank
+                Hunter Rank Tier
               </label>
               <div className="grid grid-cols-6 gap-1.5">
                 {(["E-RANK", "D-RANK", "C-RANK", "B-RANK", "A-RANK", "S-RANK"] as const).map((r) => (
@@ -371,18 +747,18 @@ export default function AriseHunterCardGenerator() {
             {/* Input 3: Class Specialty */}
             <div className="space-y-2">
               <label className="block font-mono text-xs text-[#86868B] uppercase tracking-wider">
-                Hunter Specialty Class
+                Specialty Class
               </label>
               <select
                 value={hunterClass}
                 onChange={(e) => setHunterClass(e.target.value)}
                 className="w-full px-5 py-4 rounded-2xl bg-[#08090C] border border-white/[0.12] text-[#F5F5F7] font-mono text-xs outline-none focus:border-[#0A84FF] transition-colors cursor-pointer"
               >
-                <option value="Shadow Monarch Vanguard">Shadow Monarch Vanguard (Strength & Calisthenics)</option>
-                <option value="Aether Speed Sprinter">Aether Speed Sprinter (Endurance & 10KM GPS Runs)</option>
-                <option value="Titan Core Berserker">Titan Core Berserker (Full Biomechanical Matrix)</option>
-                <option value="Aegis Gate Guardian">Aegis Gate Guardian (Focus & Strict App Defense)</option>
-                <option value="Void Voidblade">Void Voidblade (Speed & High-Intensity Reps)</option>
+                <option value="AETHER SPRINTER">AETHER SPRINTER (Endurance & 10KM Speed Runs)</option>
+                <option value="SHADOW VANGUARD">SHADOW VANGUARD (Push-ups & Chest Power)</option>
+                <option value="MONARCH BERSERKER">MONARCH BERSERKER (Full Calisthenics Matrix)</option>
+                <option value="AEGIS GUARDIAN">AEGIS GUARDIAN (Focus & Strict App Defense)</option>
+                <option value="VOID BLADE">VOID BLADE (High Velocity HIIT Reps)</option>
               </select>
             </div>
 
@@ -397,7 +773,7 @@ export default function AriseHunterCardGenerator() {
                 <span>{isDownloading ? "Generating High-Res PNG..." : "Download Hunter Card (PNG)"}</span>
               </button>
               <p className="text-[11px] font-mono text-[#6E6E73] text-center mt-2">
-                1200×760 HD PNG output · Ready for Instagram Stories & Wallpapers.
+                1200×680 HD PNG export · Ready for Instagram Stories & Wallpapers.
               </p>
             </div>
 
