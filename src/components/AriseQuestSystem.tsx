@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, CheckCircle2 } from "lucide-react";
+import { Sparkles, CheckCircle2, Target } from "lucide-react";
 
 interface LevelPreset {
   level: number;
@@ -41,7 +41,7 @@ export default function AriseQuestSystem() {
     },
     {
       level: 10,
-      rankName: "Elite",
+      rankName: "Elite Vanguard",
       rankCode: "A-RANK",
       pushups: 80,
       squats: 80,
@@ -52,7 +52,7 @@ export default function AriseQuestSystem() {
     },
     {
       level: 20,
-      rankName: "Monarch",
+      rankName: "Monarch Sovereign",
       rankCode: "S-RANK",
       pushups: 100,
       squats: 100,
@@ -67,32 +67,32 @@ export default function AriseQuestSystem() {
   const current = presets[selectedIdx];
 
   return (
-    <section className="bg-[#000000] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 select-none border-t border-white/[0.08]">
+    <section id="quests" className="bg-[#000000] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 select-none border-t border-white/[0.08] relative">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0A84FF]" />
-            <span>03 / DAILY QUESTS</span>
+            <Target className="w-3.5 h-3.5" />
+            <span>06 // DAILY QUEST SYSTEM</span>
           </div>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
             Progress isn&apos;t given. <br />
-            <span className="text-[#86868B]">It&apos;s earned.</span>
+            <span className="text-[#86868B]">It&apos;s earned daily.</span>
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
-            Inspired by legendary progression frameworks. Quests dynamically adapt to your current capability, pushing you to awaken your true physical ceiling.
+            Inspired by the Solo Leveling daily quest framework. Quests dynamically adapt to your personal physiological baseline, pushing you to awaken your true physical ceiling.
           </p>
         </div>
 
         {/* Level Progression Controller */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#08090C] border border-white/[0.08] space-y-10">
+        <div className="p-8 sm:p-12 rounded-[36px] bg-gradient-to-b from-[#12141A] via-[#08090C] to-[#040507] border border-white/[0.1] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)] space-y-10">
           
-          {/* Level Switcher Tabs / Slider */}
+          {/* Level Switcher Tabs */}
           <div className="space-y-4">
             <div className="flex items-center justify-between text-xs font-mono text-[#86868B]">
               <span>SELECT HUNTER TIER</span>
-              <span className="text-[#0A84FF] font-bold">LEVEL {current.level} {"//"} {current.rankCode}</span>
+              <span className="text-[#0A84FF] font-bold">TIER 0{current.level} {"//"} {current.rankCode}</span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -100,10 +100,10 @@ export default function AriseQuestSystem() {
                 <button
                   key={p.level}
                   onClick={() => setSelectedIdx(idx)}
-                  className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
+                  className={`p-5 rounded-2xl border text-left transition-all cursor-pointer ${
                     selectedIdx === idx
-                      ? "bg-[#111318] border-[#0A84FF] text-[#F5F5F7] shadow-[0_0_20px_rgba(10,132,255,0.15)]"
-                      : "bg-[#0D0F14] border-white/[0.06] text-[#86868B] hover:border-white/[0.15] hover:text-[#F5F5F7]"
+                      ? "bg-[#161822] border-[#0A84FF] text-[#F5F5F7] shadow-[0_0_20px_rgba(10,132,255,0.2)]"
+                      : "bg-[#08090C] border-white/[0.06] text-[#86868B] hover:border-white/[0.15] hover:text-[#F5F5F7]"
                   }`}
                 >
                   <span className="font-mono text-[10px] block opacity-60">LEVEL 0{p.level}</span>
@@ -127,7 +127,7 @@ export default function AriseQuestSystem() {
               ].map((q) => (
                 <div
                   key={q.label}
-                  className="p-5 rounded-2xl bg-[#0D0F14] border border-white/[0.06] space-y-1.5"
+                  className="p-6 rounded-2xl bg-[#08090C] border border-white/[0.06] space-y-1.5"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-[#86868B] font-medium">{q.label}</span>
@@ -140,7 +140,7 @@ export default function AriseQuestSystem() {
             </div>
 
             {/* Right Rewards Output */}
-            <div className="lg:col-span-4 p-6 rounded-2xl bg-[#111318] border border-white/[0.08] space-y-6">
+            <div className="lg:col-span-4 p-7 rounded-2xl bg-[#08090C] border border-white/[0.08] space-y-6">
               <span className="font-mono text-xs uppercase tracking-wider text-[#86868B] block">
                 COMPLETION YIELD
               </span>
@@ -163,7 +163,7 @@ export default function AriseQuestSystem() {
               </div>
 
               <div className="text-[11px] font-mono text-[#6E6E73] border-t border-white/[0.08] pt-3">
-                * Canonical preset. Quest goals scale dynamically with your personal baseline.
+                * Real-time calibration. Quest goals scale dynamically with your personal baseline.
               </div>
             </div>
 

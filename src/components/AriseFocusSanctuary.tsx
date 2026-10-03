@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Play, Pause } from "lucide-react";
+import { Play, Pause, Headphones, Radio } from "lucide-react";
 
 type AudioTrack = "alpha" | "gamma" | "brown";
 
@@ -18,22 +18,22 @@ export default function AriseFocusSanctuary() {
     {
       id: "alpha" as AudioTrack,
       freq: 14,
-      name: "14 Hz Alpha",
-      label: "ALPHA FOCUS",
-      desc: "Mild rhythmic carrier wave for sustained deep reading and coding blocks.",
+      name: "14 Hz Alpha Carrier Wave",
+      label: "ALPHA FLOW",
+      desc: "Mild rhythmic carrier wave for sustained deep reading, deep research, and coding blocks.",
     },
     {
       id: "gamma" as AudioTrack,
       freq: 40,
-      name: "40 Hz Gamma",
-      label: "GAMMA SPRINT",
-      desc: "Fast frequency acoustic tone designed for high-pace analytical problem solving.",
+      name: "40 Hz Gamma Neural Pulse",
+      label: "GAMMA FOCUS",
+      desc: "Fast frequency acoustic wave designed for high-pace analytical problem solving and intense workouts.",
     },
     {
       id: "brown" as AudioTrack,
       freq: 8,
-      name: "Brown Noise",
-      label: "DEEP ISOLATION",
+      name: "Deep Brown Noise Mask",
+      label: "ISOLATION",
       desc: "Low-frequency atmospheric mask that dampens erratic ambient background room noise.",
     },
   ];
@@ -109,17 +109,18 @@ export default function AriseFocusSanctuary() {
   };
 
   return (
-    <section className="bg-[#000000] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 select-none border-t border-white/[0.08]">
+    <section id="sanctuary" className="bg-[#000000] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 select-none border-t border-white/[0.08] relative">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0A84FF]" />
-            <span>06 / FOCUS SANCTUARY</span>
+            <Headphones className="w-3.5 h-3.5" />
+            <span>10 // FOCUS SANCTUARY ACOUSTICS</span>
           </div>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
-            Silence the world.
+            Silence the world. <br />
+            <span className="text-[#86868B]">Binaural Neural Audio.</span>
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             A built-in minimal sound isolation suite. Clean ambient acoustic frequencies designed to shield your focus during intense deep work blocks.
@@ -127,28 +128,28 @@ export default function AriseFocusSanctuary() {
         </div>
 
         {/* Minimal Player Interface */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#08090C] border border-white/[0.08] grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="p-8 sm:p-12 rounded-[36px] bg-gradient-to-b from-[#12141A] via-[#08090C] to-[#040507] border border-white/[0.1] grid grid-cols-1 lg:grid-cols-12 gap-10 items-center shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)]">
           
           {/* Left Circular Visualizer & Timer */}
-          <div className="lg:col-span-6 flex flex-col items-center justify-center p-8 sm:p-12 rounded-2xl bg-[#000000] border border-white/[0.06] relative overflow-hidden text-center space-y-6">
+          <div className="lg:col-span-6 flex flex-col items-center justify-center p-8 sm:p-12 rounded-3xl bg-[#000000] border border-white/[0.08] relative overflow-hidden text-center space-y-6">
             
             {/* Pulsing Concentric Visualizer Rings */}
             <div className="relative w-48 h-48 sm:w-56 sm:h-56 flex items-center justify-center">
               <motion.div
-                animate={isPlaying ? { scale: [1, 1.08, 1], opacity: [0.3, 0.7, 0.3] } : { scale: 1, opacity: 0.2 }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                animate={isPlaying ? { scale: [1, 1.1, 1], opacity: [0.3, 0.8, 0.3] } : { scale: 1, opacity: 0.2 }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute inset-0 rounded-full border border-[#0A84FF]/40"
               />
               <motion.div
-                animate={isPlaying ? { scale: [1, 1.15, 1], opacity: [0.15, 0.4, 0.15] } : { scale: 1, opacity: 0.1 }}
-                transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+                animate={isPlaying ? { scale: [1, 1.2, 1], opacity: [0.15, 0.5, 0.15] } : { scale: 1, opacity: 0.1 }}
+                transition={{ duration: 3.0, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
                 className="absolute -inset-4 rounded-full border border-[#0A84FF]/25"
               />
               
               {/* Center Play/Pause Button */}
               <button
                 onClick={togglePlayback}
-                className="w-20 h-20 rounded-full bg-[#0A84FF] hover:bg-[#0071e3] text-white flex items-center justify-center shadow-[0_0_30px_rgba(10,132,255,0.4)] transition-all duration-200 cursor-pointer hover:scale-105"
+                className="w-20 h-20 rounded-full bg-[#0A84FF] hover:bg-[#0071e3] text-white flex items-center justify-center shadow-[0_0_35px_rgba(10,132,255,0.45)] transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95"
                 aria-label={isPlaying ? "Pause audio" : "Play audio"}
               >
                 {isPlaying ? <Pause className="w-8 h-8 fill-current" /> : <Play className="w-8 h-8 ml-1 fill-current" />}
@@ -159,8 +160,9 @@ export default function AriseFocusSanctuary() {
               <div className="font-mono font-bold text-3xl sm:text-4xl text-[#F5F5F7] tracking-tight">
                 {formatTime(timeRemaining)}
               </div>
-              <span className="font-mono text-xs text-[#86868B] uppercase tracking-wider block">
-                {isPlaying ? "FREQUENCY GENERATING // LIVE" : "SESSION READY"}
+              <span className="font-mono text-xs text-[#86868B] uppercase tracking-wider block flex items-center justify-center gap-1.5">
+                <Radio className={`w-3 h-3 ${isPlaying ? "text-[#0A84FF] animate-pulse" : "text-[#6E6E73]"}`} />
+                {isPlaying ? "SYNTHESIZER LIVE // OSCILLATING" : "SESSION READY TO INITIALIZE"}
               </span>
             </div>
           </div>
@@ -173,8 +175,8 @@ export default function AriseFocusSanctuary() {
                 onClick={() => handleTrackSelect(t.id)}
                 className={`p-6 rounded-2xl border transition-all cursor-pointer ${
                   activeTrack === t.id
-                    ? "bg-[#111318] border-[#0A84FF] text-[#F5F5F7] shadow-[0_0_20px_rgba(10,132,255,0.12)]"
-                    : "bg-[#0D0F14] border-white/[0.06] text-[#86868B] hover:border-white/[0.15] hover:text-[#F5F5F7]"
+                    ? "bg-[#161822] border-[#0A84FF] text-[#F5F5F7] shadow-[0_0_20px_rgba(10,132,255,0.18)]"
+                    : "bg-[#08090C] border-white/[0.06] text-[#86868B] hover:border-white/[0.15] hover:text-[#F5F5F7]"
                 }`}
               >
                 <div className="flex items-center justify-between">

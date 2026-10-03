@@ -1,21 +1,22 @@
 "use client";
 
 import React from "react";
-import { MapPin } from "lucide-react";
+import { MapPin, Navigation } from "lucide-react";
 
 export default function AriseShadowSprint() {
   return (
-    <section className="bg-[#000000] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 select-none border-t border-white/[0.08]">
+    <section id="sprint" className="bg-[#000000] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 select-none border-t border-white/[0.08] relative">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0A84FF]" />
-            <span>05 / SHADOW SPRINT</span>
+            <Navigation className="w-3.5 h-3.5" />
+            <span>09 // SHADOW SPRINT TELEMETRY</span>
           </div>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
-            Move for real.
+            Move for real. <br />
+            <span className="text-[#86868B]">GPS & Cadence Tracking.</span>
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             Outdoor distance runs, cadence pacing, and elevation splits. Validated through local device GPS and accelerometer sensors.
@@ -23,10 +24,10 @@ export default function AriseShadowSprint() {
         </div>
 
         {/* Minimal Dark GPS HUD & Metric Interface */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#08090C] border border-white/[0.08] grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="p-8 sm:p-12 rounded-[36px] bg-gradient-to-b from-[#12141A] via-[#08090C] to-[#040507] border border-white/[0.1] grid grid-cols-1 lg:grid-cols-12 gap-10 items-center shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)]">
           
           {/* Left GPS Route Minimal Vector */}
-          <div className="lg:col-span-7 h-[360px] sm:h-[400px] rounded-2xl bg-[#000000] border border-white/[0.06] p-6 relative flex flex-col justify-between overflow-hidden">
+          <div className="lg:col-span-7 h-[360px] sm:h-[400px] rounded-3xl bg-[#000000] border border-white/[0.08] p-6 relative flex flex-col justify-between overflow-hidden">
             {/* Ambient Map Grid Lines */}
             <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:24px_24px]" />
 
@@ -62,25 +63,25 @@ export default function AriseShadowSprint() {
 
           {/* Right 4 Key Running Telemetry Cards */}
           <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-            <div className="p-6 rounded-2xl bg-[#0D0F14] border border-white/[0.06] space-y-1">
+            <div className="p-6 rounded-2xl bg-[#08090C] border border-white/[0.06] space-y-1">
               <span className="font-mono text-[10px] text-[#86868B] uppercase tracking-wider block">DISTANCE</span>
               <div className="font-mono font-bold text-3xl sm:text-4xl text-[#F5F5F7]">7.42 <span className="text-sm text-[#86868B]">KM</span></div>
               <span className="text-[11px] text-[#6E6E73] block pt-1">+0.8 km vs last split</span>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0D0F14] border border-white/[0.06] space-y-1">
+            <div className="p-6 rounded-2xl bg-[#08090C] border border-white/[0.06] space-y-1">
               <span className="font-mono text-[10px] text-[#86868B] uppercase tracking-wider block">AVG PACE</span>
               <div className="font-mono font-bold text-3xl sm:text-4xl text-[#0A84FF]">5:42 <span className="text-sm text-[#86868B]">/KM</span></div>
               <span className="text-[11px] text-[#6E6E73] block pt-1">Optimal aerobic zone</span>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0D0F14] border border-white/[0.06] space-y-1">
+            <div className="p-6 rounded-2xl bg-[#08090C] border border-white/[0.06] space-y-1">
               <span className="font-mono text-[10px] text-[#86868B] uppercase tracking-wider block">TOTAL STEPS</span>
               <div className="font-mono font-bold text-3xl sm:text-4xl text-[#F5F5F7]">9,284</div>
               <span className="text-[11px] text-[#6E6E73] block pt-1">Cadence: 168 spm</span>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#0D0F14] border border-white/[0.06] space-y-1">
+            <div className="p-6 rounded-2xl bg-[#08090C] border border-white/[0.06] space-y-1">
               <span className="font-mono text-[10px] text-[#86868B] uppercase tracking-wider block">CALORIES</span>
               <div className="font-mono font-bold text-3xl sm:text-4xl text-[#EF4444]">482 <span className="text-sm text-[#86868B]">KCAL</span></div>
               <span className="text-[11px] text-[#6E6E73] block pt-1">Direct Mana conversion</span>

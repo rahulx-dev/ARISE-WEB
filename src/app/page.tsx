@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import SmoothScroll from "@/components/SmoothScroll";
+import Arise3DBackground from "@/components/Arise3DBackground";
+import AriseScrollytellingHUD from "@/components/AriseScrollytellingHUD";
 import AriseNavbar from "@/components/AriseNavbar";
 import AriseHero from "@/components/AriseHero";
 import AriseLiveMetrics from "@/components/AriseLiveMetrics";
@@ -32,75 +35,83 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen bg-[#000000] text-[#F5F5F7] font-sans selection:bg-[#0A84FF]/30 selection:text-[#FFFFFF] overflow-x-hidden">
-      {/* 00. Top Navigation */}
-      <AriseNavbar onOpenDownload={handleOpenDownload} />
+    <SmoothScroll>
+      <main className="relative min-h-screen bg-[#000000] text-[#F5F5F7] font-sans selection:bg-[#0A84FF]/30 selection:text-[#FFFFFF] overflow-x-hidden">
+        {/* Interactive 3D Cosmic Depth Background */}
+        <Arise3DBackground />
 
-      {/* 01. Cinematic Apple Hardware Hero */}
-      <AriseHero onOpenDownload={handleOpenDownload} />
+        {/* Scrollytelling Telemetry HUD Dock (Right Side) */}
+        <AriseScrollytellingHUD />
 
-      {/* 02. Social Proof / Live Metrics */}
-      <AriseLiveMetrics />
+        {/* 00. Top Navigation (Apple Minimalist Frosted Glass) */}
+        <AriseNavbar onOpenDownload={handleOpenDownload} />
 
-      {/* 03. Core Philosophy & Text Morphing */}
-      <AriseCorePhilosophy />
+        {/* 01. Cinematic Apple Hardware Hero with 3D Specular Parallax */}
+        <AriseHero onOpenDownload={handleOpenDownload} />
 
-      {/* 04. Feature 01 — AI Vision Tracking (Video 1 Autoplay) */}
-      <AriseVisionTracker />
+        {/* 02. Social Proof / Live Metrics */}
+        <AriseLiveMetrics />
 
-      {/* 05. Feature 02 — Focus Shield (App Blocker Toll) */}
-      <AriseFocusShield />
+        {/* 03. Core Philosophy & Text Morphing */}
+        <AriseCorePhilosophy />
 
-      {/* 06. Feature 03 — Daily Quests & Dynamic Level Slider */}
-      <AriseQuestSystem />
+        {/* 04. Feature 01 — AI Vision Tracking (Video 1 Autoplay Seamless) */}
+        <AriseVisionTracker />
 
-      {/* 07. Feature 04 — Dungeons */}
-      <AriseDungeons />
+        {/* 05. Feature 02 — Focus Shield (Physical App Blocker Gate) */}
+        <AriseFocusShield />
 
-      {/* 08. Mana Economy & Animated Crystal */}
-      <AriseManaEconomy />
+        {/* 06. Feature 03 — Daily Quests & Dynamic Level Slider */}
+        <AriseQuestSystem />
 
-      {/* 09. Feature 05 — Shadow Sprint (GPS Running) */}
-      <AriseShadowSprint />
+        {/* 07. Feature 04 — Dungeons */}
+        <AriseDungeons />
 
-      {/* 10. Feature 06 — Focus Sanctuary (Audio Player) */}
-      <AriseFocusSanctuary />
+        {/* 08. Mana Economy & 3D Animated Crystal */}
+        <AriseManaEconomy />
 
-      {/* 11. Interactive Hunter Card Generator (Real-Time Name + PNG Download) */}
-      <AriseHunterCardGenerator />
+        {/* 09. Feature 05 — Shadow Sprint (GPS Running) */}
+        <AriseShadowSprint />
 
-      {/* 12. Digital Hunter Profile Dossier */}
-      <AriseHunterProfile />
+        {/* 10. Feature 06 — Focus Sanctuary (Binaural Web Audio Synthesizer) */}
+        <AriseFocusSanctuary />
 
-      {/* 13. Live Global Hunter Leaderboard */}
-      <AriseLeaderboard />
+        {/* 11. Interactive Hunter Card Generator (3D Holographic Card + High-Res PNG) */}
+        <AriseHunterCardGenerator />
 
-      {/* 14. How It Works (3 Steps) */}
-      <AriseHowItWorks />
+        {/* 12. Digital Hunter Profile Dossier */}
+        <AriseHunterProfile />
 
-      {/* 15. Download Section & System Video Tour (Video 2 Autoplay) */}
-      <AriseDownloadSection onOpenDownload={handleOpenDownload} />
+        {/* 13. Live Global Hunter Leaderboard */}
+        <AriseLeaderboard />
 
-      {/* 16. Installation Guide */}
-      <AriseInstallationGuide />
+        {/* 14. How It Works (3 Minimal Steps) */}
+        <AriseHowItWorks />
 
-      {/* 17. Sovereign Privacy & Trust */}
-      <ArisePrivacyTrust />
+        {/* 15. Download Section & System Video Tour (Video 2 Autoplay Seamless) */}
+        <AriseDownloadSection onOpenDownload={handleOpenDownload} />
 
-      {/* 18. Accordion FAQ (11 Questions) */}
-      <AriseFAQ />
+        {/* 16. Installation Guide */}
+        <AriseInstallationGuide />
 
-      {/* 19. Final Cinematic CTA */}
-      <AriseFinalCTA onOpenDownload={handleOpenDownload} />
+        {/* 17. Sovereign Privacy & Trust */}
+        <ArisePrivacyTrust />
 
-      {/* 20. Obsidian Footer */}
-      <AriseFooter />
+        {/* 18. Accordion FAQ (11 Questions) */}
+        <AriseFAQ />
 
-      {/* Interactive APK Download Modal */}
-      <AriseDownloadModal
-        isOpen={downloadModalOpen}
-        onClose={() => setDownloadModalOpen(false)}
-      />
-    </main>
+        {/* 19. Final Cinematic CTA */}
+        <AriseFinalCTA onOpenDownload={handleOpenDownload} />
+
+        {/* 20. Obsidian Luxe Footer */}
+        <AriseFooter />
+
+        {/* Interactive APK Download Modal */}
+        <AriseDownloadModal
+          isOpen={downloadModalOpen}
+          onClose={() => setDownloadModalOpen(false)}
+        />
+      </main>
+    </SmoothScroll>
   );
 }

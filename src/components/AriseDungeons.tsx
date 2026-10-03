@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Swords } from "lucide-react";
 
 interface DungeonData {
   id: string;
@@ -64,20 +64,21 @@ export default function AriseDungeons() {
   ];
 
   return (
-    <section className="bg-[#000000] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 select-none border-t border-white/[0.08]">
+    <section id="dungeons" className="bg-[#000000] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 select-none border-t border-white/[0.08] relative">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0A84FF]" />
-            <span>04 / DUNGEONS</span>
+            <Swords className="w-3.5 h-3.5" />
+            <span>07 // INSTANCED DUNGEON RAIDS</span>
           </div>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
-            Every day is a dungeon.
+            Every day is a dungeon. <br />
+            <span className="text-[#86868B]">Clear it or face penalty.</span>
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
-            Timed physical gauntlets that test your peak aerobic and anaerobic limits. Clear dungeons to secure massive Mana bounties.
+            Timed physical gauntlets that test your peak aerobic and anaerobic limits. Clear instanced dungeons to secure massive Mana bounties.
           </p>
         </div>
 
@@ -90,7 +91,7 @@ export default function AriseDungeons() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-8 sm:p-9 rounded-3xl bg-[#08090C] border border-white/[0.08] hover:border-white/[0.18] flex flex-col justify-between relative overflow-hidden group shadow-2xl transition-all duration-300"
+              className="p-8 sm:p-9 rounded-[32px] bg-gradient-to-b from-[#12141A] via-[#08090C] to-[#040507] border border-white/[0.1] hover:border-white/[0.22] flex flex-col justify-between relative overflow-hidden group shadow-[0_20px_50px_rgba(0,0,0,0.8)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.95)] transition-all duration-300"
             >
               {/* Subtle Atmospheric Gradient */}
               <div className={`absolute inset-0 bg-gradient-to-b ${d.bgGlow} pointer-events-none`} />
@@ -136,7 +137,7 @@ export default function AriseDungeons() {
                   onClick={() => setActiveDungeon(d.id)}
                   className="w-full py-3.5 rounded-full bg-[#111318] hover:bg-[#F5F5F7] text-[#86868B] hover:text-[#000000] font-sans font-semibold text-xs tracking-tight uppercase flex items-center justify-center gap-2 border border-white/[0.08] hover:border-transparent transition-all duration-200 cursor-pointer"
                 >
-                  <span>{activeDungeon === d.id ? "Dungeon Cleared" : "Enter Dungeon"}</span>
+                  <span>{activeDungeon === d.id ? "Dungeon Cleared ✓" : "Enter Dungeon Raid"}</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </button>
               </div>
