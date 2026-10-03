@@ -51,6 +51,7 @@ export default function AriseHunterCardGenerator() {
       textColor: "text-[#EF4444]",
       starColor: "#EF4444",
       status: "AWAKENED",
+      avatar: "/visuals/rank_s.jpg",
     },
     "A-RANK": {
       color: "#0A84FF",
@@ -60,6 +61,7 @@ export default function AriseHunterCardGenerator() {
       textColor: "text-[#0A84FF]",
       starColor: "#0A84FF",
       status: "ELITE",
+      avatar: "/visuals/rank_a.jpg",
     },
     "B-RANK": {
       color: "#38BDF8",
@@ -69,6 +71,7 @@ export default function AriseHunterCardGenerator() {
       textColor: "text-[#38BDF8]",
       starColor: "#38BDF8",
       status: "ADVANCED",
+      avatar: "/visuals/rank_b.jpg",
     },
     "C-RANK": {
       color: "#10B981",
@@ -78,6 +81,7 @@ export default function AriseHunterCardGenerator() {
       textColor: "text-[#10B981]",
       starColor: "#10B981",
       status: "STABLE",
+      avatar: "/visuals/rank_c.jpg",
     },
     "D-RANK": {
       color: "#F59E0B",
@@ -87,6 +91,7 @@ export default function AriseHunterCardGenerator() {
       textColor: "text-[#F59E0B]",
       starColor: "#F59E0B",
       status: "NOVICE",
+      avatar: "/visuals/rank_d.jpg",
     },
     "E-RANK": {
       color: "#86868B",
@@ -96,6 +101,7 @@ export default function AriseHunterCardGenerator() {
       textColor: "text-[#86868B]",
       starColor: "#86868B",
       status: "INITIATE",
+      avatar: "/visuals/rank_e.jpg",
     },
   };
 
@@ -193,12 +199,20 @@ export default function AriseHunterCardGenerator() {
         ctx.fillRect(avatarX, avatarY, avatarW, avatarH);
       }
 
-      // Dark shadow hunter silhouette aura
-      const shadowGrad = ctx.createRadialGradient(avatarX + 120, avatarY + 150, 20, avatarX + 120, avatarY + 150, 120);
-      shadowGrad.addColorStop(0, "rgba(10, 132, 255, 0.35)");
-      shadowGrad.addColorStop(1, "transparent");
-      ctx.fillStyle = shadowGrad;
-      ctx.fillRect(avatarX, avatarY, avatarW, avatarH);
+      // Try drawing the avatar image onto canvas
+      const avatarImg = new Image();
+      avatarImg.crossOrigin = "anonymous";
+      avatarImg.src = currentRank.avatar;
+      avatarImg.onload = () => {
+        ctx.save();
+        if (ctx.roundRect) {
+          ctx.beginPath();
+          ctx.roundRect(avatarX, avatarY, avatarW, avatarH, 24);
+          ctx.clip();
+        }
+        ctx.drawImage(avatarImg, avatarX, avatarY, avatarW, avatarH);
+        ctx.restore();
+      };
 
       // Monogram in avatar box
       ctx.fillStyle = "#FFFFFF";
@@ -474,13 +488,13 @@ export default function AriseHunterCardGenerator() {
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>08 // SOVEREIGN IDENTITY DOSSIER</span>
+            <span>SOVEREIGN IDENTITY DOSSIER</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:scale-[1.01] hover:text-white transition-transform duration-300 cursor-default">
             Mint Your Hunter Card.
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
-            Type your hunter call-sign below. Your 3D titanium identity card dynamically updates in real time with specular lighting and exports as a high-resolution PNG.
+            Type your hunter call-sign below. Your 3D titanium identity card dynamically updates in real time with custom rank portraits, specular lighting and instant high-resolution PNG export.
           </p>
         </div>
 
@@ -543,23 +557,33 @@ export default function AriseHunterCardGenerator() {
               {/* 2. Main 3-Column Core Body */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
                 
-                {/* Left: Hunter Avatar Box */}
-                <div className="md:col-span-4 rounded-2xl bg-[#0A0D14] border border-[#0A84FF]/40 p-4 relative overflow-hidden flex flex-col justify-between min-h-[260px] sm:min-h-[300px] shadow-[0_0_30px_rgba(10,132,255,0.15)]">
-                  {/* Subtle Background Glow */}
-                  <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#0A84FF]/25 rounded-full blur-[40px] pointer-events-none" />
+                {/* Left: Hunter Avatar Box with Dynamic Rank Portrait */}
+                <div className="md:col-span-4 rounded-2xl bg-[#0A0D14] border border-[#0A84FF]/40 p-4 relative overflow-hidden flex flex-col justify-between min-h-[260px] sm:min-h-[300px] shadow-[0_0_30px_rgba(10,132,255,0.15)] group/avatar">
+                  {/* Generated Rank Avatar Image */}
+                  <img
+                    src={currentRank.avatar}
+                    alt={`${hunterRank} Avatar`}
+                    className="absolute inset-0 w-full h-full object-cover object-center opacity-85 transition-transform duration-500 group-hover/avatar:scale-105"
+                  />
 
-                  {/* Character Silhouette / Monogram Art */}
+                  {/* Gradient Overlay for bottom text clarity */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/95 via-transparent to-[#000000]/30 pointer-events-none" />
+
+                  {/* Character Monogram Art */}
                   <div className="relative z-10 space-y-1">
-                    <div className="w-2 h-2 rounded-full bg-[#0A84FF] shadow-[0_0_8px_#0A84FF]" />
+                    <div
+                      className="w-2.5 h-2.5 rounded-full shadow-[0_0_10px_currentColor] animate-pulse"
+                      style={{ backgroundColor: currentRank.color, color: currentRank.color }}
+                    />
                   </div>
 
                   {/* Bottom KA / HUNTER Label */}
                   <div className="relative z-10 space-y-0.5">
-                    <div className="font-sans font-extrabold text-4xl text-[#FFFFFF] tracking-tight">
+                    <div className="font-sans font-extrabold text-4xl text-[#FFFFFF] tracking-tight drop-shadow-md">
                       {initials}
                     </div>
-                    <div className="font-mono text-[10px] text-[#86868B] uppercase tracking-widest">
-                      HUNTER
+                    <div className="font-mono text-[10px] text-[#A1A1AA] uppercase tracking-widest font-semibold">
+                      {hunterRank} HUNTER
                     </div>
                   </div>
                 </div>
@@ -773,7 +797,7 @@ export default function AriseHunterCardGenerator() {
                 <span>{isDownloading ? "Generating High-Res PNG..." : "Download Hunter Card (PNG)"}</span>
               </button>
               <p className="text-[11px] font-mono text-[#6E6E73] text-center mt-2">
-                1200×680 HD PNG export · Ready for Instagram Stories & Wallpapers.
+                1200×680 HD PNG export with custom rank artwork.
               </p>
             </div>
 

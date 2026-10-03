@@ -76,9 +76,9 @@ export default function AriseQuestSystem() {
             <Target className="w-3.5 h-3.5" />
             <span>06 // DAILY QUEST SYSTEM</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:scale-[1.01] hover:text-white transition-all duration-300 cursor-default">
             Progress isn&apos;t given. <br />
-            <span className="text-[#86868B]">It&apos;s earned daily.</span>
+            <span className="text-[#86868B] hover:text-[#A1A1AA] transition-colors">It&apos;s earned daily.</span>
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             Inspired by the Solo Leveling daily quest framework. Quests dynamically adapt to your personal physiological baseline, pushing you to awaken your true physical ceiling.

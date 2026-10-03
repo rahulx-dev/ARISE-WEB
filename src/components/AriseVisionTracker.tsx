@@ -53,9 +53,9 @@ export default function AriseVisionTracker() {
             <Eye className="w-3.5 h-3.5" />
             <span>04 // COMPUTER VISION ENGINE</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:scale-[1.01] hover:text-white transition-all duration-300 cursor-default">
             Every rep counted. <br />
-            <span className="text-[#86868B]">Zero wearables required.</span>
+            <span className="text-[#86868B] hover:text-[#A1A1AA] transition-colors">Zero wearables required.</span>
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             ARISE uses 60FPS on-device neural vision to analyze skeletal joint angles and form depth in real-time. Zero video leaves your device.

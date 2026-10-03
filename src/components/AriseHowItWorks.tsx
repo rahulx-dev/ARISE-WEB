@@ -32,7 +32,7 @@ export default function AriseHowItWorks() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#0A84FF]" />
             <span>10 / PROTOCOL INITIALIZATION</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:text-white hover:scale-[1.01] transition-all duration-300">
             How it works.
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">

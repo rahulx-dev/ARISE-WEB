@@ -74,12 +74,12 @@ export default function AriseLeaderboard() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#0A84FF]" />
               <span>08 / GLOBAL RANKINGS</span>
             </div>
-            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:text-white hover:scale-[1.01] transition-all duration-300">
               Hunter Leaderboard.
             </h2>
           </div>
           <p className="text-xs font-mono text-[#86868B] max-w-xs">
-            [ Real-time leaderboard synchronizing via sovereign on-device proofs ]
+            Global rankings updated with verified on-device proof hashes.
           </p>
         </div>
 

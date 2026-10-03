@@ -60,9 +60,9 @@ export default function AriseCorePhilosophy() {
           <span className="font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
             CORE PHILOSOPHY
           </span>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight max-w-4xl mx-auto">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight max-w-4xl mx-auto hover:text-white transition-all duration-300 cursor-default">
             Your phone shouldn&apos;t <br />
-            <span className="text-[#86868B]">control your destiny.</span>
+            <span className="text-[#86868B] hover:text-[#A1A1AA] transition-colors">control your destiny.</span>
           </h2>
         </motion.div>
 
@@ -117,17 +117,6 @@ export default function AriseCorePhilosophy() {
             </div>
           </div>
         </motion.div>
-
-        {/* Supporting Affirmation */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-lg sm:text-2xl text-[#86868B] max-w-2xl mx-auto font-normal leading-relaxed"
-        >
-          ARISE transforms passive scrolling into kinetic progression. Every second of screen access is backed by physical proof of effort.
-        </motion.p>
 
       </div>
     </section>

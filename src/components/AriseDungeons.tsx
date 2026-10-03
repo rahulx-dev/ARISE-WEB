@@ -73,9 +73,9 @@ export default function AriseDungeons() {
             <Swords className="w-3.5 h-3.5" />
             <span>07 // INSTANCED DUNGEON RAIDS</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:scale-[1.01] hover:text-white transition-all duration-300 cursor-default">
             Every day is a dungeon. <br />
-            <span className="text-[#86868B]">Clear it or face penalty.</span>
+            <span className="text-[#86868B] hover:text-[#A1A1AA] transition-colors">Clear it or face penalty.</span>
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             Timed physical gauntlets that test your peak aerobic and anaerobic limits. Clear instanced dungeons to secure massive Mana bounties.

@@ -61,7 +61,7 @@ export default function AriseDownloadSection({
             <span className="font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
               OFFICIAL RELEASE V1.0.0
             </span>
-            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7]">
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] hover:text-white hover:scale-[1.01] transition-all duration-300">
               Ready to awaken?
             </h2>
             <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed">

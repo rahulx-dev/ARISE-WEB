@@ -56,9 +56,9 @@ export default function AriseManaEconomy() {
             <Gem className="w-3.5 h-3.5" />
             <span>08 // THE MANA CRUCIBLE</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight">
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:scale-[1.01] hover:text-white transition-all duration-300 cursor-default">
             Mana is your sweat. <br />
-            <span className="text-[#86868B]">Crystallized into currency.</span>
+            <span className="text-[#86868B] hover:text-[#A1A1AA] transition-colors">Crystallized into currency.</span>
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             A transparent proof-of-work energy economy. Real physical calories burned translate into tangible in-app utility and digital assets.
