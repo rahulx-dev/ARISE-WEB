@@ -108,7 +108,7 @@ export default function AriseHunterCardGenerator() {
   const currentRank = rankConfig[hunterRank];
 
   // High-Resolution 1200x680 PNG Card Generator
-  const handleDownloadCard = () => {
+  const handleDownloadCard = async () => {
     setIsDownloading(true);
 
     const canvas = document.createElement("canvas");
@@ -151,7 +151,6 @@ export default function AriseHunterCardGenerator() {
       ctx.fillRect(900, 10, 280, 4);
 
       // 2. Header
-      // ARISE •
       ctx.fillStyle = "#FFFFFF";
       ctx.font = "bold 32px -apple-system, sans-serif";
       ctx.letterSpacing = "6px";
@@ -199,11 +198,16 @@ export default function AriseHunterCardGenerator() {
         ctx.fillRect(avatarX, avatarY, avatarW, avatarH);
       }
 
-      // Try drawing the avatar image onto canvas
-      const avatarImg = new Image();
-      avatarImg.crossOrigin = "anonymous";
-      avatarImg.src = currentRank.avatar;
-      avatarImg.onload = () => {
+      // Preload & Draw Avatar Image before proceeding
+      try {
+        const avatarImg = new Image();
+        avatarImg.crossOrigin = "anonymous";
+        await new Promise((resolve) => {
+          avatarImg.onload = () => resolve(true);
+          avatarImg.onerror = () => resolve(false);
+          avatarImg.src = currentRank.avatar;
+        });
+
         ctx.save();
         if (ctx.roundRect) {
           ctx.beginPath();
@@ -211,8 +215,18 @@ export default function AriseHunterCardGenerator() {
           ctx.clip();
         }
         ctx.drawImage(avatarImg, avatarX, avatarY, avatarW, avatarH);
+        
+        // Gradient overlay to maintain text contrast
+        const imgGrad = ctx.createLinearGradient(avatarX, avatarY, avatarX, avatarY + avatarH);
+        imgGrad.addColorStop(0, "rgba(0,0,0,0.1)");
+        imgGrad.addColorStop(0.6, "transparent");
+        imgGrad.addColorStop(1, "rgba(4,5,8,0.92)");
+        ctx.fillStyle = imgGrad;
+        ctx.fillRect(avatarX, avatarY, avatarW, avatarH);
         ctx.restore();
-      };
+      } catch {
+        // Fallback
+      }
 
       // Monogram in avatar box
       ctx.fillStyle = "#FFFFFF";
