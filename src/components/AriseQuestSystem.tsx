@@ -161,10 +161,6 @@ export default function AriseQuestSystem() {
                   </div>
                 </div>
               </div>
-
-              <div className="text-[11px] font-mono text-[#6E6E73] border-t border-white/[0.08] pt-3">
-                * Real-time calibration. Quest goals scale dynamically with your personal baseline.
-              </div>
             </div>
 
           </div>

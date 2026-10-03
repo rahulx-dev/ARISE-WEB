@@ -3,15 +3,44 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const PHILOSOPHY_WORDS = [
+  {
+    word: "DISTRACTION",
+    sub: "Passive dopamine scrolling",
+    gradient: "from-[#86868B] to-[#EF4444]",
+    glow: "rgba(239, 68, 68, 0.15)",
+  },
+  {
+    word: "DISCIPLINE",
+    sub: "Intentional kinetic effort",
+    gradient: "from-[#0A84FF] to-[#38BDF8]",
+    glow: "rgba(10, 132, 255, 0.2)",
+  },
+  {
+    word: "SOVEREIGNTY",
+    sub: "Reclaiming your focus and time",
+    gradient: "from-[#38BDF8] to-[#FFFFFF]",
+    glow: "rgba(56, 189, 248, 0.2)",
+  },
+  {
+    word: "PROGRESSION",
+    sub: "Every second backed by proof",
+    gradient: "from-[#0A84FF] to-[#60A5FA]",
+    glow: "rgba(10, 132, 255, 0.2)",
+  },
+];
+
 export default function AriseCorePhilosophy() {
-  const [isDiscipline, setIsDiscipline] = useState(false);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsDiscipline((prev) => !prev);
-    }, 3200);
+      setIndex((prev) => (prev + 1) % PHILOSOPHY_WORDS.length);
+    }, 2800);
     return () => clearInterval(interval);
   }, []);
+
+  const current = PHILOSOPHY_WORDS[index];
 
   return (
     <section id="philosophy" className="bg-[#000000] py-36 sm:py-48 px-6 sm:px-8 lg:px-12 text-center select-none overflow-hidden relative border-t border-white/[0.08]">
@@ -20,7 +49,7 @@ export default function AriseCorePhilosophy() {
 
       <div className="max-w-5xl mx-auto space-y-12 relative z-10">
         
-        {/* Core Statement 1 */}
+        {/* Core Statement */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -29,7 +58,7 @@ export default function AriseCorePhilosophy() {
           className="space-y-4"
         >
           <span className="font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            03 // CORE PHILOSOPHY
+            CORE PHILOSOPHY
           </span>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight max-w-4xl mx-auto">
             Your phone shouldn&apos;t <br />
@@ -37,43 +66,56 @@ export default function AriseCorePhilosophy() {
           </h2>
         </motion.div>
 
-        {/* Morphing Word Interaction */}
+        {/* Clean Automatic Morphing Showcase (Zero Clutter Instructions) */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="py-6"
+          className="py-4"
         >
-          <button
-            onClick={() => setIsDiscipline(!isDiscipline)}
-            className="inline-flex flex-col items-center justify-center p-8 sm:p-12 rounded-[32px] bg-gradient-to-b from-[#12141A] to-[#08090C] border border-white/[0.12] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] hover:border-white/[0.2] transition-all cursor-pointer group"
+          <div
+            className="inline-flex flex-col items-center justify-center px-12 sm:px-20 py-12 sm:py-16 rounded-[40px] bg-gradient-to-b from-[#11141D] via-[#080A0E] to-[#020305] border border-white/[0.12] shadow-[0_30px_90px_-20px_rgba(0,0,0,0.95)] transition-all duration-700 relative overflow-hidden"
+            style={{
+              boxShadow: `0 30px 90px -20px ${current.glow}, inset 0 1px 1px rgba(255, 255, 255, 0.15)`,
+            }}
           >
-            <span className="text-xs font-mono uppercase tracking-widest text-[#6E6E73] mb-4">
-              THE METAMORPHOSIS // CLICK TO SHIFT
-            </span>
-            <div className="h-16 sm:h-20 flex items-center justify-center overflow-hidden">
+            {/* Ambient subtle backlight glow */}
+            <div
+              className="absolute inset-0 opacity-25 blur-3xl pointer-events-none transition-all duration-700"
+              style={{ backgroundColor: current.glow }}
+            />
+
+            <div className="h-16 sm:h-24 flex items-center justify-center overflow-hidden relative z-10">
               <AnimatePresence mode="wait">
                 <motion.span
-                  key={isDiscipline ? "discipline" : "distraction"}
-                  initial={{ opacity: 0, y: 25, filter: "blur(4px)" }}
+                  key={current.word}
+                  initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -25, filter: "blur(4px)" }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className={`font-sans font-bold text-4xl sm:text-6xl tracking-tight uppercase ${
-                    isDiscipline
-                      ? "bg-gradient-to-r from-[#0A84FF] to-[#38BDF8] bg-clip-text text-transparent"
-                      : "bg-gradient-to-r from-[#86868B] to-[#EF4444] bg-clip-text text-transparent"
-                  }`}
+                  exit={{ opacity: 0, y: -30, filter: "blur(6px)" }}
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                  className={`font-sans font-extrabold text-5xl sm:text-7xl lg:text-8xl tracking-tight uppercase bg-gradient-to-r ${current.gradient} bg-clip-text text-transparent`}
                 >
-                  {isDiscipline ? "DISCIPLINE" : "DISTRACTION"}
+                  {current.word}
                 </motion.span>
               </AnimatePresence>
             </div>
-            <span className="text-xs font-mono text-[#86868B] mt-3 group-hover:text-white transition-colors">
-              [ Tap to Toggle Sovereign State ]
-            </span>
-          </button>
+
+            <div className="h-6 mt-3 overflow-hidden relative z-10">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={current.sub}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4 }}
+                  className="text-xs sm:text-sm font-mono text-[#86868B] block tracking-wide"
+                >
+                  {current.sub}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+          </div>
         </motion.div>
 
         {/* Supporting Affirmation */}
@@ -84,7 +126,7 @@ export default function AriseCorePhilosophy() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg sm:text-2xl text-[#86868B] max-w-2xl mx-auto font-normal leading-relaxed"
         >
-          ARISE transforms passive scrolling into kinetic power. Every second of screen time is backed by physical proof of effort.
+          ARISE transforms passive scrolling into kinetic progression. Every second of screen access is backed by physical proof of effort.
         </motion.p>
 
       </div>

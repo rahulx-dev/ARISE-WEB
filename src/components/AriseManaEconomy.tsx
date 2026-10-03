@@ -95,14 +95,11 @@ export default function AriseManaEconomy() {
             <div className="text-center space-y-1 relative z-10">
               <span className="font-mono text-xs text-[#0A84FF] font-bold uppercase tracking-widest flex items-center justify-center gap-1.5">
                 <Sparkles className="w-3 h-3" />
-                MANA CRYSTAL CORE
+                MANA CRYSTAL
               </span>
               <div className="font-sans font-bold text-2xl text-[#F5F5F7]">
                 1 Verified Rep = 0.5 Mana
               </div>
-              <p className="text-xs text-[#6E6E73] max-w-xs font-mono">
-                Cryptographically signed on-device upon physical rep completion
-              </p>
             </div>
           </div>
 
