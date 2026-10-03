@@ -1,106 +1,105 @@
 "use client";
 
 import React, { useState } from "react";
-import NexusNavbar from "@/components/nexus/NexusNavbar";
-import NexusHero from "@/components/nexus/NexusHero";
-import HeroVideoShowcase from "@/components/HeroVideoShowcase";
-import NexusMarquee from "@/components/nexus/NexusMarquee";
-import NexusCapabilities from "@/components/nexus/NexusCapabilities";
-import DoomscrollVsAriseComparison from "@/components/DoomscrollVsAriseComparison";
-import NexusWork from "@/components/nexus/NexusWork";
-import NexusStatsBanner from "@/components/NexusStatsBanner";
-import DailyQuestBoard from "@/components/DailyQuestBoard";
-import NexusManifesto from "@/components/nexus/NexusManifesto";
-import NexusTeam from "@/components/nexus/NexusTeam";
-import NexusTestimonials from "@/components/nexus/NexusTestimonials";
-import NexusPricing from "@/components/nexus/NexusPricing";
-import NexusFAQ from "@/components/nexus/NexusFAQ";
-import NexusContactCTA from "@/components/nexus/NexusContactCTA";
-import NexusFooter from "@/components/nexus/NexusFooter";
-import DownloadModal from "@/components/DownloadModal";
-import CashoutModal from "@/components/CashoutModal";
+import AriseNavbar from "@/components/AriseNavbar";
+import AriseHero from "@/components/AriseHero";
+import AriseLiveMetrics from "@/components/AriseLiveMetrics";
+import AriseCorePhilosophy from "@/components/AriseCorePhilosophy";
+import AriseVisionTracker from "@/components/AriseVisionTracker";
+import AriseFocusShield from "@/components/AriseFocusShield";
+import AriseQuestSystem from "@/components/AriseQuestSystem";
+import AriseDungeons from "@/components/AriseDungeons";
+import AriseManaEconomy from "@/components/AriseManaEconomy";
+import AriseShadowSprint from "@/components/AriseShadowSprint";
+import AriseFocusSanctuary from "@/components/AriseFocusSanctuary";
+import AriseHunterProfile from "@/components/AriseHunterProfile";
+import AriseLeaderboard from "@/components/AriseLeaderboard";
+import AriseHunterLicense from "@/components/AriseHunterLicense";
+import AriseHowItWorks from "@/components/AriseHowItWorks";
+import AriseDownloadSection from "@/components/AriseDownloadSection";
+import AriseInstallationGuide from "@/components/AriseInstallationGuide";
+import ArisePrivacyTrust from "@/components/ArisePrivacyTrust";
+import AriseFAQ from "@/components/AriseFAQ";
+import AriseFinalCTA from "@/components/AriseFinalCTA";
+import AriseFooter from "@/components/AriseFooter";
+import AriseDownloadModal from "@/components/AriseDownloadModal";
 
 export default function Home() {
   const [downloadModalOpen, setDownloadModalOpen] = useState(false);
-  const [cashoutModalOpen, setCashoutModalOpen] = useState(false);
-  const [cashoutCrystals, setCashoutCrystals] = useState(2450);
 
   const handleOpenDownload = () => {
     setDownloadModalOpen(true);
   };
 
-  const handleOpenCashout = (crystals?: number) => {
-    setCashoutCrystals(crystals || 2450);
-    setCashoutModalOpen(true);
-  };
-
   return (
-    <main className="relative min-h-screen bg-ink-950 text-mist-100 selection:bg-signal selection:text-ink-950 overflow-x-hidden font-body">
-      {/* 01. Sticky / Floating Nexus Header */}
-      <NexusNavbar
-        onOpenDownload={handleOpenDownload}
-        onOpenCashout={() => handleOpenCashout(2450)}
-      />
+    <main className="relative min-h-screen bg-[#000000] text-[#F5F5F7] font-sans selection:bg-[#0A84FF]/30 selection:text-[#FFFFFF] overflow-x-hidden">
+      {/* 00. Top Navigation */}
+      <AriseNavbar onOpenDownload={handleOpenDownload} />
 
-      {/* 02. Impact Nexus Hero Section */}
-      <NexusHero onOpenDownload={handleOpenDownload} />
+      {/* 01. Cinematic Apple Hardware Hero */}
+      <AriseHero onOpenDownload={handleOpenDownload} />
 
-      {/* 02.5 Full-Width Product Showcase Video */}
-      <HeroVideoShowcase />
+      {/* 02. Social Proof / Live Metrics */}
+      <AriseLiveMetrics />
 
-      {/* 03. Infinite Scrolling Brand Logos & System Marquee */}
-      <NexusMarquee />
+      {/* 03. Core Philosophy & Text Morphing */}
+      <AriseCorePhilosophy />
 
-      {/* 04. Bento Capabilities / 8 Core Features Grid */}
-      <NexusCapabilities />
+      {/* 04. Feature 01 — AI Vision Tracking */}
+      <AriseVisionTracker />
 
-      {/* 04.5 Interactive Feature: Doomscroll vs ARISE Matrix */}
-      <section id="guardian" className="px-6 sm:px-8 lg:px-12 py-12 relative z-10 max-w-7xl mx-auto">
-        <DoomscrollVsAriseComparison />
-      </section>
+      {/* 05. Feature 02 — Focus Shield (App Blocker Toll) */}
+      <AriseFocusShield />
 
-      {/* 05. Selected Case Studies & 3D Proof Cards */}
-      <NexusWork />
+      {/* 06. Feature 03 — Daily Quests & Dynamic Level Slider */}
+      <AriseQuestSystem />
 
-      {/* 06. Electric Signal Stats & Metrics Banner */}
-      <NexusStatsBanner />
+      {/* 07. Feature 04 — Dungeons */}
+      <AriseDungeons />
 
-      {/* 06.5 Interactive Feature: Daily Quest Log & System Notification */}
-      <section id="rpg-system" className="px-6 sm:px-8 lg:px-12 py-16 relative z-10 max-w-7xl mx-auto">
-        <DailyQuestBoard />
-      </section>
+      {/* 08. Mana Economy & Animated Crystal */}
+      <AriseManaEconomy />
 
-      {/* 07. Studio Philosophy & System Manifesto */}
-      <NexusManifesto />
+      {/* 09. Feature 05 — Shadow Sprint (GPS Running) */}
+      <AriseShadowSprint />
 
-      {/* 08. Core Architects & Guardians with 3D Flip */}
-      <NexusTeam />
+      {/* 10. Feature 06 — Focus Sanctuary (Audio Player) */}
+      <AriseFocusSanctuary />
 
-      {/* 09. Verified Hunter Testimonials Carousel */}
-      <NexusTestimonials />
+      {/* 11. Digital Hunter Profile */}
+      <AriseHunterProfile />
 
-      {/* 10. Transparent Hunter Passes & Pricing */}
-      <NexusPricing onSelectPlan={handleOpenDownload} />
+      {/* 12. Live Global Hunter Leaderboard */}
+      <AriseLeaderboard />
 
-      {/* 11. Interactive FAQ Accordion */}
-      <NexusFAQ />
+      {/* 13. Shareable Hunter License */}
+      <AriseHunterLicense />
 
-      {/* 12. Final Enrollment & APK Download Portal */}
-      <NexusContactCTA onOpenDownload={handleOpenDownload} />
+      {/* 14. How It Works (3 Steps) */}
+      <AriseHowItWorks />
 
-      {/* 13. Studio Footer with Global Clocks (SF, London, Mumbai) */}
-      <NexusFooter />
+      {/* 15. Download Section & System Video Tour */}
+      <AriseDownloadSection onOpenDownload={handleOpenDownload} />
 
-      {/* Interactive Modals */}
-      <DownloadModal
+      {/* 16. Installation Guide */}
+      <AriseInstallationGuide />
+
+      {/* 17. Sovereign Privacy & Trust */}
+      <ArisePrivacyTrust />
+
+      {/* 18. Accordion FAQ (11 Questions) */}
+      <AriseFAQ />
+
+      {/* 19. Final Cinematic CTA */}
+      <AriseFinalCTA onOpenDownload={handleOpenDownload} />
+
+      {/* 20. Obsidian Footer */}
+      <AriseFooter />
+
+      {/* Interactive APK Download Modal */}
+      <AriseDownloadModal
         isOpen={downloadModalOpen}
         onClose={() => setDownloadModalOpen(false)}
-      />
-
-      <CashoutModal
-        isOpen={cashoutModalOpen}
-        onClose={() => setCashoutModalOpen(false)}
-        initialCrystals={cashoutCrystals}
       />
     </main>
   );

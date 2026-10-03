@@ -3,33 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #050508;
-  --background-secondary: #080812;
-  --surface: #0c0c14;
-  --surface-elevated: #12122e;
-  --border-hairline: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(232, 255, 71, 0.35);
-  --text-primary: #f0f0f8;
-  --text-secondary: #a6a9be;
-  --text-muted: #6f748b;
-  --accent-primary: #e8ff47;
-  --accent-secondary: #9aaeff;
-  --accent-warm: #ff6b4a;
-}
-
-.dark {
-  --background: #050508;
-  --background-secondary: #080812;
-  --surface: #0c0c14;
-  --surface-elevated: #12122e;
-  --border-hairline: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(232, 255, 71, 0.35);
-  --text-primary: #f0f0f8;
-  --text-secondary: #a6a9be;
-  --text-muted: #6f748b;
-  --accent-primary: #e8ff47;
-  --accent-secondary: #9aaeff;
-  --accent-warm: #ff6b4a;
+  --background: #000000;
+  --surface: #08090c;
+  --surface-card: #111318;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --text-primary: #f5f5f7;
+  --text-secondary: #86868b;
+  --text-muted: #6e6e73;
+  --accent-blue: #0a84ff;
+  --accent-red: #ef4444;
 }
 
 * {
@@ -38,142 +21,59 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #050508;
+  background-color: #000000;
+  color: #f5f5f7;
 }
 
 body {
-  color: #f0f0f8;
-  background-color: #050508;
+  background-color: #000000;
+  color: #f5f5f7;
   overflow-x: hidden;
   min-height: 100vh;
-  font-family: 'Cabinet Grotesk', var(--font-sans), sans-serif;
-  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth Theme Transition for Background and Surface Only */
-body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* GPU Hardware Acceleration for Animated Layers */
-.gpu-layer {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  will-change: transform;
-}
-
-/* Offscreen Rendering Optimization */
-.content-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: 800px;
-}
-
-/* Modern View Transition Animation */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 380ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Apple & Linear Hairline Surface Cards */
-.hairline-card {
-  background-color: var(--surface);
-  border: 1px solid var(--border-hairline);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.dark .hairline-card {
-  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.6);
-}
-
-.light .hairline-card {
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
-}
-
-.hairline-card:hover {
-  border-color: var(--border-strong);
-}
-
-/* Subtle Physical Hardware Bezel */
-.hardware-chassis {
-  background: linear-gradient(145deg, #13171c, #0e1115, #050607);
-  box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.10),
-    0 30px 70px -20px rgba(0, 0, 0, 0.9),
-    0 0 35px -15px rgba(154, 174, 255, 0.08);
-}
-
-/* Refined Typography Gradients */
-.hero-gradient-text {
-  background: linear-gradient(180deg, #f5f5f2 30%, #a6a9ae 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Minimal Lenis Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.2);
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.4);
-}
-
-/* Lenis smooth scroll */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-/* Glass Galaxy Button Styles (Sol Glass Refraction) */
-.glass-galaxy-pill {
-  position: relative;
-  background: rgba(10, 12, 16, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 9999px;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.7), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+/* Apple Hardware Card Surface */
+.apple-card {
+  background: #08090c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-galaxy-pill:hover {
-  border-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 10px 30px -5px rgba(154, 174, 255, 0.35), 0 0 20px 0 rgba(112, 214, 255, 0.2), inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
-  transform: translateY(-1px);
+.apple-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
 }
 
-.glass-galaxy-lens {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  border-top-left-radius: 9999px;
-  border-top-right-radius: 9999px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.05) 70%, transparent 100%);
-  pointer-events: none;
+/* Subtle Titanium / Hardware Chassis */
+.hardware-bezel {
+  background: linear-gradient(145deg, #13151b, #090a0e);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Editorial Minimal Typography */
+.editorial-title {
+  letter-spacing: -0.035em;
+  line-height: 0.96;
+}
+
+/* Minimal Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

@@ -1,0 +1,127 @@
+"use client";
+
+import React, { useState } from "react";
+import { Download } from "lucide-react";
+import { resolveCloudinaryVideoUrl } from "@/lib/videoUrl";
+
+interface AriseDownloadSectionProps {
+  onOpenDownload: () => void;
+}
+
+export default function AriseDownloadSection({
+  onOpenDownload,
+}: AriseDownloadSectionProps) {
+  const [videoLang, setVideoLang] = useState<"en" | "hi">("en");
+
+  const englishVideo = resolveCloudinaryVideoUrl(
+    "https://player.cloudinary.com/embed/?cloud_name=idadrqss&public_id=erasio_Smartphone_advertisement_for_ARISE_1080p_20260915165523-upscaled-2x"
+  );
+  const hindiVideo = resolveCloudinaryVideoUrl(
+    "https://player.cloudinary.com/embed/?cloud_name=idadrqss&public_id=erasio_Smartphone_advertisement_for_ARISE_1080p_20260915165523-upscaled-2x"
+  );
+
+  return (
+    <section id="download" className="bg-[#000000] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 select-none border-t border-white/[0.08]">
+      <div className="max-w-7xl mx-auto space-y-20">
+        
+        {/* Top Huge Download CTA Banner */}
+        <div className="p-10 sm:p-16 rounded-[36px] bg-[#08090C] border border-white/[0.12] text-center space-y-8 relative overflow-hidden shadow-[0_30px_70px_-20px_rgba(0,0,0,0.95)]">
+          {/* Subtle Ambient Blue Flare */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#0A84FF]/10 rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="max-w-2xl mx-auto space-y-4 relative z-10">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
+              OFFICIAL RELEASE V1.0.0
+            </span>
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7]">
+              Ready to awaken?
+            </h2>
+            <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed">
+              Your next level starts outside the screen. Download the official APK and start earning your screen time.
+            </p>
+          </div>
+
+          {/* Action CTAs */}
+          <div className="flex flex-wrap items-center justify-center gap-4 relative z-10 pt-2">
+            <button
+              onClick={onOpenDownload}
+              className="px-9 py-4 rounded-full bg-[#F5F5F7] hover:bg-white text-[#000000] font-sans font-semibold text-sm tracking-tight transition-all duration-200 hover:scale-[1.02] shadow-[0_4px_25px_rgba(255,255,255,0.2)] flex items-center gap-2.5 cursor-pointer"
+            >
+              <Download className="w-4 h-4" />
+              <span>DOWNLOAD ARISE APK</span>
+            </button>
+
+            <a
+              href="#install-guide"
+              className="px-7 py-4 rounded-full bg-[#111318] hover:bg-[#181B22] border border-white/[0.08] text-[#86868B] hover:text-[#F5F5F7] font-medium text-sm tracking-tight transition-colors cursor-pointer"
+            >
+              VIEW INSTALL GUIDE
+            </a>
+          </div>
+
+          {/* Technical Hash Information */}
+          <div className="pt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-[#6E6E73] relative z-10">
+            <span>Android 8+ Compatible</span>
+            <span>•</span>
+            <span>Stable Release v1.0.0</span>
+            <span>•</span>
+            <span>File Size: ~48 MB</span>
+            <span>•</span>
+            <span className="text-[#86868B]">SHA-256: 8f4e2b9c7a10...</span>
+          </div>
+        </div>
+
+        {/* Video 2: Embedded System Walkthrough / Tutorial Video */}
+        <div className="p-8 sm:p-12 rounded-3xl bg-[#08090C] border border-white/[0.08] space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <span className="font-mono text-xs uppercase tracking-wider text-[#0A84FF]">
+                VIDEO SHOWCASE //
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#F5F5F7]">
+                System Walkthrough & Tour
+              </h3>
+            </div>
+
+            {/* Language Selector Tabs */}
+            <div className="flex items-center gap-1 bg-[#000000] p-1.5 rounded-xl border border-white/[0.08] font-mono text-xs">
+              <button
+                onClick={() => setVideoLang("en")}
+                className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
+                  videoLang === "en"
+                    ? "bg-[#F5F5F7] text-[#000000] font-bold"
+                    : "text-[#86868B] hover:text-[#F5F5F7]"
+                }`}
+              >
+                English Tour
+              </button>
+              <button
+                onClick={() => setVideoLang("hi")}
+                className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
+                  videoLang === "hi"
+                    ? "bg-[#F5F5F7] text-[#000000] font-bold"
+                    : "text-[#86868B] hover:text-[#F5F5F7]"
+                }`}
+              >
+                हिन्दी टूर
+              </button>
+            </div>
+          </div>
+
+          {/* Video Player Container */}
+          <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-[#000000] border border-white/[0.08] shadow-2xl">
+            <video
+              key={videoLang}
+              src={videoLang === "en" ? englishVideo : hindiVideo}
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}

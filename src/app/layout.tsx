@@ -1,59 +1,49 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono, Cormorant_Garamond } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import SmoothScroll from "@/components/SmoothScroll";
-import BackgroundEffects from "@/components/BackgroundEffects";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800"],
 });
 
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
-  title: "ARISE — Build Discipline. Earn Your Time. | AI Hunter System",
+  title: "ARISE — Turn Real Life Into Progression",
   description:
-    "The world's first AI-powered hunter system. Burn calories to unlock locked apps, complete daily quests with real-time camera tracking, and convert discipline into real wealth.",
+    "ARISE is a gamified fitness and focus ecosystem that turns real-world effort into progression, quests and rewards.",
   keywords: [
     "ARISE",
-    "Solo Leveling App",
-    "AI Workout Tracker",
-    "BlazePose",
+    "Real-Life Progression",
+    "AI Vision Tracker",
+    "Focus Shield",
     "App Blocker",
-    "Discipline Gamification",
-    "Mana Crystals",
-    "Earn While Working Out",
+    "Daily Quests",
+    "Mana Economy",
+    "Solo Leveling Fitness",
   ],
-  authors: [{ name: "ARISE Hunter System" }],
+  authors: [{ name: "ARISE Technologies" }],
   openGraph: {
-    title: "ARISE — Build Discipline. Earn Your Time.",
+    title: "ARISE — Turn Real Life Into Progression",
     description:
-      "The world's first AI-powered hunter system. Burn calories to unlock locked apps, complete daily quests with real-time camera tracking, and convert discipline into real wealth.",
+      "ARISE is a gamified fitness and focus ecosystem that turns real-world effort into progression, quests and rewards.",
     type: "website",
     locale: "en_US",
     siteName: "ARISE",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ARISE — Build Discipline. Earn Your Time.",
+    title: "ARISE — Turn Real Life Into Progression",
     description:
-      "The world's first AI-powered hunter system. Burn calories to unlock locked apps, complete daily quests with real-time camera tracking, and convert discipline into real wealth.",
+      "ARISE is a gamified fitness and focus ecosystem that turns real-world effort into progression, quests and rewards.",
   },
   icons: {
     icon: "/favicon.png",
@@ -63,12 +53,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050607",
+  themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
 };
-
-import CustomCursor from "@/components/CustomCursor";
 
 export default function RootLayout({
   children,
@@ -76,32 +64,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark scroll-smooth">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className="dark scroll-smooth">
       <body
-        className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} ${jetbrainsMono.variable} font-sans antialiased bg-[#050508] text-[#F0F0F8] selection:bg-[#E8FF47] selection:text-[#050508]`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-[#000000] text-[#F5F5F7] selection:bg-[#0A84FF]/30 selection:text-[#FFFFFF] overflow-x-hidden`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <CustomCursor />
-          <BackgroundEffects />
-          <SmoothScroll>
-            {children}
-          </SmoothScroll>
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );
