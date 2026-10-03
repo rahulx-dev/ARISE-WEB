@@ -16,7 +16,17 @@ export default function AriseVisionTracker() {
     if (!video) return;
 
     video.muted = true;
-    video.play().catch(() => {});
+    video.playsInline = true;
+    video.autoplay = true;
+    video.loop = true;
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        video.muted = true;
+        video.play().catch(() => {});
+      });
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -26,7 +36,7 @@ export default function AriseVisionTracker() {
           video.pause();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
     observer.observe(video);
@@ -51,7 +61,7 @@ export default function AriseVisionTracker() {
           </p>
         </div>
 
-        {/* Cinematic Hardware Display Frame with Skeleton HUD */}
+        {/* Seamless Hardware Display Bezel with Autoplaying Video */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +72,7 @@ export default function AriseVisionTracker() {
           {/* Inner Video Screen Container */}
           <div className="relative w-full aspect-video sm:h-[580px] rounded-2xl sm:rounded-[28px] overflow-hidden bg-[#000000] flex items-center justify-center">
             
-            {/* Live Product Video */}
+            {/* Seamless Autoplaying Video (No Browser Controls) */}
             <video
               ref={videoRef}
               src={videoUrl}
@@ -71,7 +81,7 @@ export default function AriseVisionTracker() {
               muted
               playsInline
               preload="auto"
-              className="w-full h-full object-cover object-center opacity-85"
+              className="w-full h-full object-cover object-center opacity-90 pointer-events-none"
             />
 
             {/* Subtle Gradient Edge Fades */}
@@ -93,7 +103,7 @@ export default function AriseVisionTracker() {
                 </div>
               </div>
 
-              {/* Center Biomechanical Joint Overlay Crosshairs */}
+              {/* Center Biomechanical Crosshair */}
               <div className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
                 <div className="w-48 h-48 border border-dashed border-[#0A84FF]/30 rounded-full flex items-center justify-center">
                   <div className="w-2 h-2 rounded-full bg-[#0A84FF]" />
@@ -131,7 +141,7 @@ export default function AriseVisionTracker() {
           </div>
         </motion.div>
 
-        {/* 3 Exercise Modes Supported */}
+        {/* 3 Supported Core Exercises */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 font-sans">
           <div className="p-6 rounded-2xl bg-[#08090C] border border-white/[0.08] space-y-2">
             <span className="font-mono text-[11px] text-[#0A84FF] font-semibold uppercase">EXERCISE // 01</span>

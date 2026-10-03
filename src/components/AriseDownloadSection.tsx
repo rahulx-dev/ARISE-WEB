@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { Download } from "lucide-react";
 import { resolveCloudinaryVideoUrl } from "@/lib/videoUrl";
 
@@ -11,14 +11,42 @@ interface AriseDownloadSectionProps {
 export default function AriseDownloadSection({
   onOpenDownload,
 }: AriseDownloadSectionProps) {
-  const [videoLang, setVideoLang] = useState<"en" | "hi">("en");
+  const videoUrl = resolveCloudinaryVideoUrl(
+    "https://player.cloudinary.com/embed/?cloud_name=idadrqss&public_id=erasio_Smartphone_advertisement_for_ARISE_1080p_20260915165523-upscaled-2x"
+  );
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const englishVideo = resolveCloudinaryVideoUrl(
-    "https://player.cloudinary.com/embed/?cloud_name=idadrqss&public_id=erasio_Smartphone_advertisement_for_ARISE_1080p_20260915165523-upscaled-2x"
-  );
-  const hindiVideo = resolveCloudinaryVideoUrl(
-    "https://player.cloudinary.com/embed/?cloud_name=idadrqss&public_id=erasio_Smartphone_advertisement_for_ARISE_1080p_20260915165523-upscaled-2x"
-  );
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+    video.autoplay = true;
+    video.loop = true;
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        video.muted = true;
+        video.play().catch(() => {});
+      });
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="download" className="bg-[#000000] py-28 sm:py-36 px-6 sm:px-8 lg:px-12 select-none border-t border-white/[0.08]">
@@ -71,53 +99,36 @@ export default function AriseDownloadSection({
           </div>
         </div>
 
-        {/* Video 2: Embedded System Walkthrough / Tutorial Video */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#08090C] border border-white/[0.08] space-y-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        {/* Video 2: Autoplaying Seamless Hardware Showcase (No Browser Controls) */}
+        <div className="p-8 sm:p-12 rounded-3xl bg-[#08090C] border border-white/[0.08] space-y-6">
+          <div className="flex items-center justify-between">
             <div className="space-y-1">
               <span className="font-mono text-xs uppercase tracking-wider text-[#0A84FF]">
-                VIDEO SHOWCASE //
+                SYSTEM CINEMATIC //
               </span>
               <h3 className="text-2xl sm:text-3xl font-bold text-[#F5F5F7]">
-                System Walkthrough & Tour
+                Product Showcase Tour
               </h3>
             </div>
-
-            {/* Language Selector Tabs */}
-            <div className="flex items-center gap-1 bg-[#000000] p-1.5 rounded-xl border border-white/[0.08] font-mono text-xs">
-              <button
-                onClick={() => setVideoLang("en")}
-                className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
-                  videoLang === "en"
-                    ? "bg-[#F5F5F7] text-[#000000] font-bold"
-                    : "text-[#86868B] hover:text-[#F5F5F7]"
-                }`}
-              >
-                English Tour
-              </button>
-              <button
-                onClick={() => setVideoLang("hi")}
-                className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
-                  videoLang === "hi"
-                    ? "bg-[#F5F5F7] text-[#000000] font-bold"
-                    : "text-[#86868B] hover:text-[#F5F5F7]"
-                }`}
-              >
-                हिन्दी टूर
-              </button>
+            <div className="font-mono text-xs text-[#86868B]">
+              1080P · 60 FPS
             </div>
           </div>
 
-          {/* Video Player Container */}
+          {/* Video Player Frame with Gradient Fade */}
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-[#000000] border border-white/[0.08] shadow-2xl">
             <video
-              key={videoLang}
-              src={videoLang === "en" ? englishVideo : hindiVideo}
-              controls
+              ref={videoRef}
+              src={videoUrl}
+              autoPlay
+              loop
+              muted
               playsInline
-              preload="metadata"
-              className="w-full h-full object-cover object-center"
+              preload="auto"
+              className="w-full h-full object-cover object-center pointer-events-none"
             />
+            {/* Subtle Gradient Edge Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/60 via-transparent to-[#000000]/40 pointer-events-none" />
           </div>
         </div>
 

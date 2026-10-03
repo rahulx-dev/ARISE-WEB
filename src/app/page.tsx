@@ -12,9 +12,9 @@ import AriseDungeons from "@/components/AriseDungeons";
 import AriseManaEconomy from "@/components/AriseManaEconomy";
 import AriseShadowSprint from "@/components/AriseShadowSprint";
 import AriseFocusSanctuary from "@/components/AriseFocusSanctuary";
+import AriseHunterCardGenerator from "@/components/AriseHunterCardGenerator";
 import AriseHunterProfile from "@/components/AriseHunterProfile";
 import AriseLeaderboard from "@/components/AriseLeaderboard";
-import AriseHunterLicense from "@/components/AriseHunterLicense";
 import AriseHowItWorks from "@/components/AriseHowItWorks";
 import AriseDownloadSection from "@/components/AriseDownloadSection";
 import AriseInstallationGuide from "@/components/AriseInstallationGuide";
@@ -45,7 +45,7 @@ export default function Home() {
       {/* 03. Core Philosophy & Text Morphing */}
       <AriseCorePhilosophy />
 
-      {/* 04. Feature 01 — AI Vision Tracking */}
+      {/* 04. Feature 01 — AI Vision Tracking (Video 1 Autoplay) */}
       <AriseVisionTracker />
 
       {/* 05. Feature 02 — Focus Shield (App Blocker Toll) */}
@@ -66,19 +66,19 @@ export default function Home() {
       {/* 10. Feature 06 — Focus Sanctuary (Audio Player) */}
       <AriseFocusSanctuary />
 
-      {/* 11. Digital Hunter Profile */}
+      {/* 11. Interactive Hunter Card Generator (Real-Time Name + PNG Download) */}
+      <AriseHunterCardGenerator />
+
+      {/* 12. Digital Hunter Profile Dossier */}
       <AriseHunterProfile />
 
-      {/* 12. Live Global Hunter Leaderboard */}
+      {/* 13. Live Global Hunter Leaderboard */}
       <AriseLeaderboard />
-
-      {/* 13. Shareable Hunter License */}
-      <AriseHunterLicense />
 
       {/* 14. How It Works (3 Steps) */}
       <AriseHowItWorks />
 
-      {/* 15. Download Section & System Video Tour */}
+      {/* 15. Download Section & System Video Tour (Video 2 Autoplay) */}
       <AriseDownloadSection onOpenDownload={handleOpenDownload} />
 
       {/* 16. Installation Guide */}
