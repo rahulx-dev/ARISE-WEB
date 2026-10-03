@@ -180,20 +180,19 @@ export default function AriseHunterCardGenerator() {
         ctx.fillText(m.val, xPos, 440);
       });
 
-      // 9. Bottom Encrypted Verification Box
+      // 9. Bottom Clean Verification
       ctx.fillStyle = "rgba(255, 255, 255, 0.03)";
-      ctx.fillRect(60, 510, 1080, 190);
+      ctx.fillRect(60, 520, 1080, 170);
       ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
-      ctx.strokeRect(60, 510, 1080, 190);
+      ctx.strokeRect(60, 520, 1080, 170);
 
       ctx.fillStyle = "#86868B";
-      ctx.font = "18px monospace";
-      ctx.fillText("ON-DEVICE NEURAL RECOGNITION ENCRYPTED // ARISE SYSTEM KERNEL v4.2.9", 100, 565);
+      ctx.font = "20px -apple-system, sans-serif";
+      ctx.fillText("ARISE HUNTER VERIFICATION // LEVEL 24 ACTIVE", 100, 580);
       
       ctx.fillStyle = "#6E6E73";
-      ctx.font = "15px monospace";
-      ctx.fillText("HASH: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", 100, 610);
-      ctx.fillText(`ISSUED: ${new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} · LEVEL 24 · SYSTEM RECOGNIZED`, 100, 650);
+      ctx.font = "16px monospace";
+      ctx.fillText(`ISSUED: ${new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} · 100% ON-DEVICE ENCRYPTED`, 100, 630);
 
       // Trigger Direct Download
       const dataUrl = canvas.toDataURL("image/png");

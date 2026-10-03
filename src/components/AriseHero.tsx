@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, Download, Flame, Shield, Sparkles, Zap, Activity, Cpu, Radio } from "lucide-react";
+import { ArrowDown, Download, Flame, Shield, Sparkles, Zap } from "lucide-react";
 
 interface AriseHeroProps {
   onOpenDownload: () => void;
@@ -47,20 +47,6 @@ export default function AriseHero({ onOpenDownload }: AriseHeroProps) {
     >
       {/* Cinematic Dark Luxe Volumetric Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[550px] bg-gradient-to-b from-[#0A84FF]/[0.08] via-[#0A84FF]/[0.02] to-transparent rounded-full blur-[170px] pointer-events-none -z-10" />
-
-      {/* Cybernetic Subtle Top Telemetry Bar */}
-      <div className="max-w-7xl w-full flex items-center justify-between font-mono text-[10px] text-[#86868B] mb-8 pb-3 border-b border-white/[0.05] tracking-widest uppercase">
-        <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#0A84FF] animate-pulse" />
-          <span>SYS_KERNEL // v4.2.9</span>
-          <span className="text-white/20 hidden sm:inline">|</span>
-          <span className="text-white/60 hidden sm:inline">AI VISION ARMED</span>
-        </div>
-        <div className="flex items-center gap-4 text-[#86868B]">
-          <span className="flex items-center gap-1"><Cpu className="w-3 h-3 text-[#0A84FF]" /> NPU: ACTIVE</span>
-          <span className="flex items-center gap-1"><Radio className="w-3 h-3 text-emerald-400" /> SYNC: REALTIME</span>
-        </div>
-      </div>
 
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10">
         
@@ -136,32 +122,6 @@ export default function AriseHero({ onOpenDownload }: AriseHeroProps) {
         >
           {/* Volumetric Radial Ambient Aura */}
           <div className="absolute w-80 h-80 bg-[#0A84FF]/20 rounded-full blur-[120px] pointer-events-none -z-10 group-hover:bg-[#0A84FF]/25 transition-all duration-700" />
-
-          {/* Floating Live Telemetry Badge Top-Right */}
-          <motion.div
-            animate={{ y: [-4, 4, -4] }}
-            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-            className="absolute -top-6 -right-4 z-30 hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-[#08090C]/90 backdrop-blur-xl border border-[#0A84FF]/30 shadow-[0_10px_25px_rgba(0,0,0,0.8)] text-xs font-mono"
-          >
-            <Activity className="w-3.5 h-3.5 text-[#0A84FF] animate-pulse" />
-            <div className="flex flex-col">
-              <span className="text-[9px] text-[#86868B] uppercase">Pose Accuracy</span>
-              <span className="text-white font-bold tracking-wider">99.8% AI 60FPS</span>
-            </div>
-          </motion.div>
-
-          {/* Floating Quest Badge Bottom-Left */}
-          <motion.div
-            animate={{ y: [4, -4, 4] }}
-            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
-            className="absolute -bottom-6 -left-6 z-30 hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-[#08090C]/90 backdrop-blur-xl border border-white/[0.12] shadow-[0_10px_25px_rgba(0,0,0,0.8)] text-xs font-mono"
-          >
-            <div className="w-2 h-2 rounded-full bg-emerald-400" />
-            <div className="flex flex-col">
-              <span className="text-[9px] text-[#86868B] uppercase">Daily Gate Toll</span>
-              <span className="text-[#F5F5F7] font-semibold">+150 XP EARNED</span>
-            </div>
-          </motion.div>
 
           {/* Precision Titanium Hardware Phone Chassis */}
           <div className="w-[325px] sm:w-[355px] rounded-[50px] p-3 bg-gradient-to-b from-[#1E222D] via-[#0E1017] to-[#08090C] border border-white/[0.14] shadow-[0_35px_80px_-15px_rgba(0,0,0,0.95),0_0_0_1px_rgba(255,255,255,0.06),inset_0_1px_1px_rgba(255,255,255,0.2)] relative overflow-hidden">

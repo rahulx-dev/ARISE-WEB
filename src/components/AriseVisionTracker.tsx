@@ -88,29 +88,19 @@ export default function AriseVisionTracker() {
             {/* Subtle Gradient Edge Fades */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/90 via-transparent to-[#000000]/60 pointer-events-none" />
 
-            {/* Technical Cyberpunk HUD Overlay Elements */}
+            {/* Clean Apple HUD Overlay Elements */}
             <div className="absolute inset-0 p-6 sm:p-10 flex flex-col justify-between pointer-events-none">
               
               {/* Top HUD Bar */}
               <div className="flex items-center justify-between">
-                <div className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[#08090C]/85 border border-[#0A84FF]/30 backdrop-blur-xl font-mono text-[11px] text-[#F5F5F7] shadow-xl">
+                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#08090C]/85 border border-[#0A84FF]/30 backdrop-blur-xl font-mono text-[11px] text-[#F5F5F7] shadow-xl">
                   <span className="w-2 h-2 rounded-full bg-[#0A84FF] animate-pulse" />
-                  <span className="font-semibold uppercase tracking-wider">NEURAL RECOGNITION: ACTIVE</span>
+                  <span className="font-semibold uppercase tracking-wider">AI POSE TRACKING</span>
                 </div>
 
-                <div className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#08090C]/85 border border-white/[0.1] backdrop-blur-xl font-mono text-[11px] text-[#86868B] shadow-xl">
+                <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#08090C]/85 border border-white/[0.1] backdrop-blur-xl font-mono text-[11px] text-[#86868B] shadow-xl">
                   <Cpu className="w-3.5 h-3.5 text-[#0A84FF]" />
-                  <span>ON-DEVICE NPU // 0 CLOUD LATENCY</span>
-                </div>
-              </div>
-
-              {/* Center Biomechanical Crosshair Grid */}
-              <div className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
-                <div className="w-56 h-56 border border-dashed border-[#0A84FF]/25 rounded-full flex items-center justify-center relative">
-                  <div className="w-2 h-2 rounded-full bg-[#0A84FF] shadow-[0_0_10px_#0A84FF]" />
-                  <div className="absolute -top-3 font-mono text-[9px] text-[#0A84FF]/70 tracking-widest uppercase">
-                    JOINT_ANGLE_LOCK
-                  </div>
+                  <span>ON-DEVICE ONLY</span>
                 </div>
               </div>
 
@@ -122,7 +112,7 @@ export default function AriseVisionTracker() {
                 </div>
 
                 <div>
-                  <span className="font-mono text-[10px] text-[#86868B] uppercase tracking-wider block">BIOMECHANIC FORM</span>
+                  <span className="font-mono text-[10px] text-[#86868B] uppercase tracking-wider block">FORM</span>
                   <div className="flex items-center gap-1.5 mt-0.5">
                     <CheckCircle2 className="w-4 h-4 text-[#0A84FF]" />
                     <span className="font-sans font-bold text-sm sm:text-base text-[#F5F5F7]">PRISTINE</span>
@@ -130,12 +120,12 @@ export default function AriseVisionTracker() {
                 </div>
 
                 <div>
-                  <span className="font-mono text-[10px] text-[#86868B] uppercase tracking-wider block">DEPTH ACCURACY</span>
+                  <span className="font-mono text-[10px] text-[#86868B] uppercase tracking-wider block">ACCURACY</span>
                   <span className="font-mono font-bold text-lg sm:text-xl text-[#0A84FF]">94.2%</span>
                 </div>
 
                 <div>
-                  <span className="font-mono text-[10px] text-[#86868B] uppercase tracking-wider block">EXERCISE MODE</span>
+                  <span className="font-mono text-[10px] text-[#86868B] uppercase tracking-wider block">EXERCISE</span>
                   <span className="font-mono font-medium text-xs sm:text-sm text-[#F5F5F7]">PUSH-UPS</span>
                 </div>
               </div>

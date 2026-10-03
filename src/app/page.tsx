@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import SmoothScroll from "@/components/SmoothScroll";
 import Arise3DBackground from "@/components/Arise3DBackground";
-import AriseScrollytellingHUD from "@/components/AriseScrollytellingHUD";
 import AriseNavbar from "@/components/AriseNavbar";
 import AriseHero from "@/components/AriseHero";
 import AriseLiveMetrics from "@/components/AriseLiveMetrics";
@@ -39,9 +38,6 @@ export default function Home() {
       <main className="relative min-h-screen bg-[#000000] text-[#F5F5F7] font-sans selection:bg-[#0A84FF]/30 selection:text-[#FFFFFF] overflow-x-hidden">
         {/* Interactive 3D Cosmic Depth Background */}
         <Arise3DBackground />
-
-        {/* Scrollytelling Telemetry HUD Dock (Right Side) */}
-        <AriseScrollytellingHUD />
 
         {/* 00. Top Navigation (Apple Minimalist Frosted Glass) */}
         <AriseNavbar onOpenDownload={handleOpenDownload} />
