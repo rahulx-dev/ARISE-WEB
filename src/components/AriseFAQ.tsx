@@ -64,10 +64,6 @@ export default function AriseFAQ() {
         
         {/* Section Header */}
         <div className="text-center space-y-4">
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0A84FF]" />
-            <span>FREQUENTLY ANSWERED</span>
-          </div>
           <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Frequently Answered.
           </h1>

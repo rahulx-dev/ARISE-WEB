@@ -57,11 +57,6 @@ export default function AriseHero({ onOpenDownload }: AriseHeroProps) {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7 space-y-8 text-left"
         >
-          {/* Small Restrained Monospace Pill */}
-          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#08090C] border border-white/[0.1] text-[11px] font-mono uppercase tracking-widest text-[#86868B] shadow-inner">
-            <span className="w-2 h-2 rounded-full bg-[#0A84FF] shadow-[0_0_8px_#0A84FF]" />
-            <span className="text-white font-medium">The Real-World Progression Engine</span>
-          </div>
 
           {/* Main Headline with Luxe Metallic Typography */}
           <h1 data-h1-cursor className="text-5xl sm:text-7xl lg:text-[5.8rem] font-bold tracking-tighter leading-[0.94] max-w-2xl cursor-default select-none">

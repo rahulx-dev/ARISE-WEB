@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Play, Pause, Headphones, Radio } from "lucide-react";
+import { Play, Pause, Radio } from "lucide-react";
 
 type AudioTrack = "alpha" | "gamma" | "brown";
 
@@ -114,10 +114,6 @@ export default function AriseFocusSanctuary() {
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <Headphones className="w-3.5 h-3.5" />
-            <span>FOCUS SANCTUARY ACOUSTICS</span>
-          </div>
           <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Silence the world. <br />
             <span className="text-[#86868B]">Binaural Neural Audio.</span>

@@ -58,9 +58,6 @@ export default function AriseDownloadSection({
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#0A84FF]/10 rounded-full blur-[100px] pointer-events-none" />
 
           <div className="max-w-2xl mx-auto space-y-4 relative z-10">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-              OFFICIAL RELEASE V1.0.0
-            </span>
             <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] cursor-default select-none">
               Ready to awaken?
             </h1>

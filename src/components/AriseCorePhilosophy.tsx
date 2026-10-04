@@ -57,9 +57,6 @@ export default function AriseCorePhilosophy() {
           transition={{ duration: 0.8 }}
           className="space-y-4"
         >
-          <span className="font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            CORE PHILOSOPHY
-          </span>
           <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight max-w-4xl mx-auto cursor-default select-none">
             Your phone shouldn&apos;t <br />
             <span className="text-[#86868B]">control your destiny.</span>

@@ -16,10 +16,6 @@ export default function AriseFinalCTA({ onOpenDownload }: AriseFinalCTAProps) {
       <div className="max-w-4xl mx-auto space-y-10 relative z-10">
         
         <div className="space-y-4">
-          <span className="font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            THE AWAKENING
-          </span>
-          
           <h1 data-h1-cursor className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tighter text-[#F5F5F7] leading-none uppercase cursor-default select-none">
             LEVEL UP <br />
             <span className="text-[#86868B]">YOUR REAL LIFE.</span>

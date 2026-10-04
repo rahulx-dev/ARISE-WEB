@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { MapPin, Navigation } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 export default function AriseShadowSprint() {
   return (
@@ -10,10 +10,6 @@ export default function AriseShadowSprint() {
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <Navigation className="w-3.5 h-3.5" />
-            <span>SHADOW SPRINT TELEMETRY</span>
-          </div>
           <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Move for real. <br />
             <span className="text-[#86868B]">GPS & Cadence Tracking.</span>

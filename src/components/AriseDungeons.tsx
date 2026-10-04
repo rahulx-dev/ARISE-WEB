@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Swords } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 interface DungeonData {
   id: string;
@@ -69,10 +69,6 @@ export default function AriseDungeons() {
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <Swords className="w-3.5 h-3.5" />
-            <span>INSTANCED DUNGEON RAIDS</span>
-          </div>
           <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Every day is a dungeon. <br />
             <span className="text-[#86868B]">Clear it or face penalty.</span>

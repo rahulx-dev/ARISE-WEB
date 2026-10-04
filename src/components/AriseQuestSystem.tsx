@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, CheckCircle2, Target } from "lucide-react";
+import { Sparkles, CheckCircle2 } from "lucide-react";
 
 interface LevelPreset {
   level: number;
@@ -72,10 +72,6 @@ export default function AriseQuestSystem() {
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <Target className="w-3.5 h-3.5" />
-            <span>DAILY QUEST SYSTEM</span>
-          </div>
           <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Progress isn&apos;t given. <br />
             <span className="text-[#86868B]">It&apos;s earned daily.</span>

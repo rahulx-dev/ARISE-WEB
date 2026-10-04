@@ -5,7 +5,6 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Arise3DBackground from "@/components/Arise3DBackground";
 import AriseNavbar from "@/components/AriseNavbar";
 import AriseHero from "@/components/AriseHero";
-import AriseLiveMetrics from "@/components/AriseLiveMetrics";
 import AriseCorePhilosophy from "@/components/AriseCorePhilosophy";
 import AriseVisionTracker from "@/components/AriseVisionTracker";
 import AriseFocusShield from "@/components/AriseFocusShield";
@@ -49,10 +48,7 @@ export default function Home() {
         {/* 01. Cinematic Apple Hardware Hero with 3D Specular Parallax */}
         <AriseHero onOpenDownload={handleOpenDownload} />
 
-        {/* 02. Social Proof / Live Metrics */}
-        <AriseLiveMetrics />
-
-        {/* 03. Core Philosophy & Text Morphing */}
+        {/* 02. Core Philosophy & Text Morphing */}
         <AriseCorePhilosophy />
 
         {/* 04. Feature 01 — AI Vision Tracking (Video 1 Autoplay Seamless) */}

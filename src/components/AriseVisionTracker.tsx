@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { resolveCloudinaryVideoUrl } from "@/lib/videoUrl";
-import { CheckCircle2, Eye, Cpu } from "lucide-react";
+import { CheckCircle2, Cpu } from "lucide-react";
 
 export default function AriseVisionTracker() {
   const videoUrl = resolveCloudinaryVideoUrl(
@@ -49,10 +49,6 @@ export default function AriseVisionTracker() {
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <Eye className="w-3.5 h-3.5" />
-            <span>COMPUTER VISION ENGINE</span>
-          </div>
           <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Every rep counted. <br />
             <span className="text-[#86868B]">Zero wearables required.</span>

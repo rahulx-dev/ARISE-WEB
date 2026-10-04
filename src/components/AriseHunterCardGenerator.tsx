@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Download, Sparkles, Copy, Check, ShieldCheck, Flame, Gem } from "lucide-react";
+import { Download, Copy, Check, ShieldCheck, Flame, Gem } from "lucide-react";
 import confetti from "canvas-confetti";
 
 export default function AriseHunterCardGenerator() {
@@ -500,10 +500,6 @@ export default function AriseHunterCardGenerator() {
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>SOVEREIGN IDENTITY DOSSIER</span>
-          </div>
           <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Mint Your Hunter Card.
           </h1>

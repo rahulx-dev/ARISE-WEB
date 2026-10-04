@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Smartphone, Gift, Palette, Sparkles, Gem } from "lucide-react";
+import { Smartphone, Gift, Palette, Sparkles } from "lucide-react";
 
 export default function AriseManaEconomy() {
   const economySteps = [
@@ -52,10 +52,6 @@ export default function AriseManaEconomy() {
         
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            <Gem className="w-3.5 h-3.5" />
-            <span>THE MANA CRUCIBLE</span>
-          </div>
           <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Mana is your sweat. <br />
             <span className="text-[#86868B]">Crystallized into currency.</span>
