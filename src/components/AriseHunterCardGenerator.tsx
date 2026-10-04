@@ -6,7 +6,7 @@ import { Download, Check, Copy } from "lucide-react";
 import confetti from "canvas-confetti";
 
 export default function AriseHunterCardGenerator() {
-  // Default name removed as requested by user; starts empty with sleek placeholder
+  // Default name removed as requested; starts clean with placeholder
   const [hunterName, setHunterName] = useState("");
   const [hunterRank, setHunterRank] = useState<"S-RANK" | "A-RANK" | "B-RANK" | "C-RANK" | "D-RANK" | "E-RANK">("A-RANK");
   const [copiedId, setCopiedId] = useState(false);
@@ -47,7 +47,7 @@ export default function AriseHunterCardGenerator() {
     setTimeout(() => setCopiedId(false), 2000);
   };
 
-  // 6 Ranks - Exactly 1 Designated Image Each (B, C, D use user's uploaded images!)
+  // 6 Ranks: Each rank has designated avatar + designated photorealistic 3D Chrome Banner Image!
   const ranksConfig = {
     "S-RANK": {
       letter: "S",
@@ -58,6 +58,7 @@ export default function AriseHunterCardGenerator() {
       textColor: "text-[#EF4444]",
       borderColor: "border-[#EF4444]",
       avatar: "/visuals/rank_s.jpg", // S-Rank Shadow Monarch
+      bannerImg: "/visuals/rank_banner_s.jpg", // 3D Chrome 'S' Totem Banner
       role: "SHADOW MONARCH",
       roleShort: "SHADOW MONARCH",
       level: "85",
@@ -68,7 +69,6 @@ export default function AriseHunterCardGenerator() {
       xpPercent: "92%",
       xpRatio: 0.92,
       mission: "Sovereign of the Dead.",
-      bgGrad: "from-[#2A0D14] via-[#15070A] to-[#040203]",
       barGrad: "from-[#EF4444] to-[#F87171]",
     },
     "A-RANK": {
@@ -80,6 +80,7 @@ export default function AriseHunterCardGenerator() {
       textColor: "text-[#00E5FF]",
       borderColor: "border-[#00E5FF]",
       avatar: "/visuals/rank_a.jpg", // A-Rank Reference Hunter
+      bannerImg: "/visuals/rank_banner_a.jpg", // 3D Chrome 'A' Totem Banner
       role: "VOID BLADE",
       roleShort: "VOID BLADE",
       level: "28",
@@ -90,7 +91,6 @@ export default function AriseHunterCardGenerator() {
       xpPercent: "56%",
       xpRatio: 0.56,
       mission: "Stronger Than Yesterday.",
-      bgGrad: "from-[#0E2442] via-[#0A1728] to-[#04070D]",
       barGrad: "from-[#0070F3] to-[#00E5FF]",
     },
     "B-RANK": {
@@ -101,7 +101,8 @@ export default function AriseHunterCardGenerator() {
       glowColor: "rgba(56, 189, 248, 0.45)",
       textColor: "text-[#38BDF8]",
       borderColor: "border-[#38BDF8]",
-      avatar: "/visuals/female_hunter_shadow.jpg", // User Ref 3: Blue Lightning Shadow Girl
+      avatar: "/visuals/female_hunter_shadow.jpg", // User Ref 3: Blue Lightning Girl
+      bannerImg: "/visuals/rank_banner_b.jpg", // 3D Chrome 'B' Totem Banner
       role: "LIGHTNING VALKYRIE",
       roleShort: "LIGHTNING VALKYRIE",
       level: "22",
@@ -112,7 +113,6 @@ export default function AriseHunterCardGenerator() {
       xpPercent: "52%",
       xpRatio: 0.52,
       mission: "Swift as Lightning.",
-      bgGrad: "from-[#0C243B] via-[#071727] to-[#03080F]",
       barGrad: "from-[#0284C7] to-[#38BDF8]",
     },
     "C-RANK": {
@@ -124,6 +124,7 @@ export default function AriseHunterCardGenerator() {
       textColor: "text-[#F43F5E]",
       borderColor: "border-[#F43F5E]",
       avatar: "/visuals/female_hunter_crimson.jpg", // User Ref 1: Crimson Blade Girl
+      bannerImg: "/visuals/rank_banner_c.jpg", // 3D Chrome 'C' Totem Banner
       role: "CRIMSON SOVEREIGN",
       roleShort: "CRIMSON BLADE",
       level: "16",
@@ -134,7 +135,6 @@ export default function AriseHunterCardGenerator() {
       xpPercent: "42%",
       xpRatio: 0.42,
       mission: "Carve the Path in Blood.",
-      bgGrad: "from-[#2A0E1A] via-[#16070E] to-[#050204]",
       barGrad: "from-[#E11D48] to-[#FB7185]",
     },
     "D-RANK": {
@@ -146,6 +146,7 @@ export default function AriseHunterCardGenerator() {
       textColor: "text-[#F59E0B]",
       borderColor: "border-[#F59E0B]",
       avatar: "/visuals/bloodred_commander.jpg", // User Ref 2: Bloodred Knight Igris
+      bannerImg: "/visuals/rank_banner_d.jpg", // 3D Chrome 'D' Totem Banner
       role: "BLOODRED KNIGHT",
       roleShort: "BLOOD KNIGHT",
       level: "10",
@@ -156,7 +157,6 @@ export default function AriseHunterCardGenerator() {
       xpPercent: "37%",
       xpRatio: 0.37,
       mission: "Unbreakable Resolve.",
-      bgGrad: "from-[#2A1C08] via-[#160E04] to-[#040301]",
       barGrad: "from-[#D97706] to-[#FBBF24]",
     },
     "E-RANK": {
@@ -168,6 +168,7 @@ export default function AriseHunterCardGenerator() {
       textColor: "text-[#A1A1AA]",
       borderColor: "border-[#A1A1AA]",
       avatar: "/visuals/rank_e.jpg", // E-Rank Initiate
+      bannerImg: "/visuals/rank_banner_e.jpg", // 3D Chrome 'E' Totem Banner
       role: "SHADOW INITIATE",
       roleShort: "SHADOW INITIATE",
       level: "04",
@@ -178,14 +179,13 @@ export default function AriseHunterCardGenerator() {
       xpPercent: "24%",
       xpRatio: 0.24,
       mission: "The Awakening Begins.",
-      bgGrad: "from-[#1C1F26] via-[#0F1116] to-[#030406]",
       barGrad: "from-[#71717A] to-[#D4D4D8]",
     },
   };
 
   const currentRank = ranksConfig[hunterRank];
 
-  // High-Resolution 100% Same-to-Same PNG Download
+  // High-Resolution 100% Same-to-Same PNG Download for ALL Ranks
   const handleDownloadCard = async () => {
     setIsDownloading(true);
 
@@ -283,7 +283,7 @@ export default function AriseHunterCardGenerator() {
         // Fallback
       }
 
-      // 3. Middle Unified Glass HUD Panel (Seamless color blending, covers base text cleanly)
+      // 3. Middle Unified Glass HUD Panel (Blue tick removed, clean custom name)
       const hudX = 394;
       const hudY = 114;
       const hudW = 352;
@@ -321,29 +321,11 @@ export default function AriseHunterCardGenerator() {
       ctx.font = "bold 10px monospace";
       ctx.fillText(hunterId, hudX + 86, hudY + 24);
 
-      // Hunter Name
+      // Hunter Name (Clean, without blue tick as requested)
       const activeName = displayName || "HUNTER_AWAKENED";
       ctx.fillStyle = "#FFFFFF";
       ctx.font = "bold 28px -apple-system, sans-serif";
       ctx.fillText(activeName, hudX + 14, hudY + 62);
-
-      // Blue Verified Badge Circle
-      const nWidth = ctx.measureText(activeName).width;
-      const bx = hudX + 14 + nWidth + 10;
-      const by = hudY + 52;
-      ctx.fillStyle = "#0095FF";
-      ctx.beginPath();
-      ctx.arc(bx + 8, by, 9, 0, Math.PI * 2);
-      ctx.fill();
-
-      // White checkmark
-      ctx.strokeStyle = "#FFFFFF";
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(bx + 5, by);
-      ctx.lineTo(bx + 7.5, by + 3);
-      ctx.lineTo(bx + 11.5, by - 2);
-      ctx.stroke();
 
       // Subtitle: Diamond + Role • Rank HUNTER
       ctx.fillStyle = currentRank.color;
@@ -500,77 +482,37 @@ export default function AriseHunterCardGenerator() {
       ctx.fillText(currentRank.mission, hudX + 58, misY + 38);
       ctx.restore();
 
-      // 4. Right 3D Chrome Rank Totem Banner with V-Ribbon Cut
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(772, 95);
-      ctx.lineTo(964, 95);
-      ctx.lineTo(964, 442);
-      ctx.lineTo(868, 478);
-      ctx.lineTo(772, 442);
-      ctx.closePath();
-      ctx.clip();
+      // 4. Right 3D Chrome Rank Totem Banner (Drawn directly from high-res image asset!)
+      try {
+        const rkImg = new Image();
+        rkImg.crossOrigin = "anonymous";
+        await new Promise((resolve) => {
+          rkImg.onload = () => resolve(true);
+          rkImg.onerror = () => resolve(false);
+          rkImg.src = currentRank.bannerImg;
+        });
 
-      const rkGrad = ctx.createLinearGradient(772, 95, 964, 478);
-      rkGrad.addColorStop(0, "#0E2442");
-      rkGrad.addColorStop(0.3, "#0A1728");
-      rkGrad.addColorStop(0.7, "#050912");
-      rkGrad.addColorStop(1, "#020408");
-      ctx.fillStyle = rkGrad;
-      ctx.fill();
+        // Exact right banner coords: x: 772, y: 95, w: 192, h: 384
+        ctx.save();
+        if (ctx.roundRect) {
+          ctx.beginPath();
+          ctx.roundRect(772, 95, 192, 384, 14);
+          ctx.clip();
+        }
+        ctx.drawImage(rkImg, 772, 95, 192, 384);
+        ctx.restore();
 
-      // Frost flare
-      const frost = ctx.createRadialGradient(868, 220, 10, 868, 220, 120);
-      frost.addColorStop(0, currentRank.color + "33");
-      frost.addColorStop(1, "transparent");
-      ctx.fillStyle = frost;
-      ctx.fillRect(772, 95, 192, 383);
-
-      ctx.strokeStyle = currentRank.color;
-      ctx.lineWidth = 2.5;
-      ctx.stroke();
-
-      // Top star
-      ctx.fillStyle = "#FFFFFF";
-      ctx.textAlign = "center";
-      ctx.font = "18px sans-serif";
-      ctx.fillText("✧", 868, 128);
-
-      // Giant 3D Chrome Faceted Letter
-      ctx.fillStyle = "#FFFFFF";
-      ctx.shadowColor = currentRank.color;
-      ctx.shadowBlur = 18;
-      ctx.font = "900 84px -apple-system, sans-serif";
-      ctx.fillText(currentRank.letter, 868, 242);
-      ctx.shadowBlur = 0;
-
-      // Inner Star
-      ctx.fillStyle = currentRank.color;
-      ctx.font = "16px sans-serif";
-      ctx.fillText("✦", 868, 268);
-
-      // Rank Title
-      ctx.fillStyle = currentRank.color;
-      ctx.font = "bold 26px -apple-system, sans-serif";
-      ctx.letterSpacing = "2px";
-      ctx.fillText(hunterRank, 868, 308);
-
-      // Status
-      ctx.fillStyle = "#828F9E";
-      ctx.font = "bold 11px monospace";
-      ctx.letterSpacing = "2.5px";
-      ctx.fillText(currentRank.status, 868, 332);
-
-      // Vertical Creed
-      ctx.fillStyle = "#5E6977";
-      ctx.font = "9px monospace";
-      ctx.letterSpacing = "2px";
-      ctx.fillText("DISCIPLINE", 868, 380);
-      ctx.fillText("PROGRESS", 868, 396);
-      ctx.fillText("FREEDOM", 868, 412);
-
-      ctx.restore();
-      ctx.textAlign = "left";
+        // Rank edge glow
+        ctx.strokeStyle = currentRank.color;
+        ctx.lineWidth = 2;
+        if (ctx.roundRect) {
+          ctx.beginPath();
+          ctx.roundRect(772, 95, 192, 384, 14);
+          ctx.stroke();
+        }
+      } catch {
+        // fallback
+      }
 
       // Trigger Download
       const dataUrl = canvas.toDataURL("image/png");
@@ -615,7 +557,7 @@ export default function AriseHunterCardGenerator() {
           </p>
         </div>
 
-        {/* 1. The Majestic 16:9 Card with Enhanced Color Blending */}
+        {/* 1. The Majestic 16:9 Card with Enhanced Color Blending & Photorealistic 3D Chrome Banner */}
         <div className="w-full flex justify-center perspective-[1500px]">
           <motion.div
             ref={cardRef}
@@ -723,7 +665,7 @@ export default function AriseHunterCardGenerator() {
               />
             </div>
 
-            {/* Middle Section: UNIFIED SEAMLESS GLASS HUD (Fixed glitch: completely covers underlying static text with smooth dark obsidian blending!) */}
+            {/* Middle Section: UNIFIED SEAMLESS GLASS HUD (Clean name without blue tick, smooth dark obsidian blending!) */}
             <div
               style={{
                 left: "38.5%",
@@ -752,11 +694,11 @@ export default function AriseHunterCardGenerator() {
                 </button>
               </div>
 
-              {/* Hunter Name Row: Crisp bold white text with blue verified badge (or sleek placeholder if empty) */}
+              {/* Hunter Name Row: Clean, bold, crisp white typography (Blue tick removed as requested!) */}
               <div className="space-y-0.5">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center">
                   {displayName ? (
-                    <span className="font-sans font-black text-xl sm:text-2xl text-white tracking-tight truncate max-w-[210px] drop-shadow-sm">
+                    <span className="font-sans font-black text-xl sm:text-2xl text-white tracking-tight truncate max-w-[240px] drop-shadow-sm">
                       {displayName}
                     </span>
                   ) : (
@@ -764,10 +706,6 @@ export default function AriseHunterCardGenerator() {
                       YOUR CALL-SIGN
                     </span>
                   )}
-                  {/* Verified Blue Checkmark Badge */}
-                  <span className="flex-shrink-0 w-4 h-4 rounded-full bg-[#0095FF] flex items-center justify-center text-white shadow-[0_0_8px_rgba(0,149,255,0.7)]">
-                    <Check className="w-2.5 h-2.5 stroke-[3]" />
-                  </span>
                 </div>
 
                 {/* Subtitle: ✦ Role • Rank HUNTER */}
@@ -869,44 +807,27 @@ export default function AriseHunterCardGenerator() {
 
             </div>
 
-            {/* Right 3D Chrome Rank Totem Banner with V-Ribbon Bottom Cut */}
+            {/* Right 3D Chrome Rank Totem Banner (100% Photorealistic Artwork for ALL 6 Ranks!) */}
             <div
               style={{
                 left: "75.4%",
                 top: "16.8%",
                 width: "18.8%",
                 height: "68.2%",
-                clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 24px), 50% 100%, 0 calc(100% - 24px))",
-                borderColor: currentRank.color,
-                boxShadow: `0 0 30px ${currentRank.color}33`,
+                boxShadow: `0 0 25px ${currentRank.color}35`,
               }}
-              className={`absolute z-10 bg-gradient-to-b ${currentRank.bgGrad} border-x border-t shadow-2xl p-2 sm:p-3 flex flex-col justify-between items-center text-center transition-all duration-500`}
+              className="absolute z-10 rounded-xl overflow-hidden border border-white/10 transition-all duration-500 group/totem"
             >
-              <div className="text-white/80 text-xs">✧</div>
-              <div className="my-auto space-y-0.5">
-                <motion.div
-                  key={hunterRank}
-                  animate={{ scale: [0.95, 1.03, 1] }}
-                  transition={{ duration: 0.4 }}
-                  className="font-black text-5xl sm:text-6xl tracking-tighter bg-gradient-to-b from-white via-[#D1E4F7] to-[#547391] bg-clip-text text-transparent drop-shadow-[0_4px_16px_rgba(255,255,255,0.4)]"
-                >
-                  {currentRank.letter}
-                </motion.div>
-                <div className="text-xs transition-colors duration-500" style={{ color: currentRank.color }}>✦</div>
-              </div>
-              <div className="space-y-0.5 pb-2">
-                <div className={`font-sans font-extrabold text-base sm:text-lg tracking-wider ${currentRank.textColor} transition-colors duration-500`}>
-                  {hunterRank}
-                </div>
-                <div className="font-mono text-[8px] sm:text-[9px] text-[#828F9E] uppercase tracking-widest font-bold">
-                  {currentRank.status}
-                </div>
-              </div>
-              <div className="font-mono text-[6px] sm:text-[7px] text-[#5E6977] uppercase tracking-[0.2em] space-y-0.5 pb-2">
-                <div>DISCIPLINE</div>
-                <div>PROGRESS</div>
-                <div>FREEDOM</div>
-              </div>
+              <img
+                src={currentRank.bannerImg}
+                alt={`${hunterRank} 3D Chrome Totem Banner`}
+                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/totem:scale-105"
+              />
+              {/* Rank color edge glow */}
+              <div
+                className="absolute inset-0 pointer-events-none rounded-xl border transition-colors duration-500"
+                style={{ borderColor: `${currentRank.color}55` }}
+              />
             </div>
 
             {/* 3D Dynamic Specular Light Glare reflecting cursor */}
@@ -955,7 +876,7 @@ export default function AriseHunterCardGenerator() {
             </div>
           </div>
 
-          {/* Row 2: Call-Sign Input (Glitch Fixed: Default name removed, live reactive binding) */}
+          {/* Row 2: Call-Sign Input (Clean, without blue tick) */}
           <div className="space-y-2">
             <label className="block font-mono text-xs text-[#828F9E] uppercase tracking-wider">
               Hunter Call-Sign (Live Updates On Card)
