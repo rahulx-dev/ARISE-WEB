@@ -6,7 +6,8 @@ import { Download, Check, Copy } from "lucide-react";
 import confetti from "canvas-confetti";
 
 export default function AriseHunterCardGenerator() {
-  const [hunterName, setHunterName] = useState("Karan_Awakened");
+  // Default name removed as requested by user; starts empty with sleek placeholder
+  const [hunterName, setHunterName] = useState("");
   const [hunterRank, setHunterRank] = useState<"S-RANK" | "A-RANK" | "B-RANK" | "C-RANK" | "D-RANK" | "E-RANK">("A-RANK");
   const [copiedId, setCopiedId] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
@@ -16,8 +17,13 @@ export default function AriseHunterCardGenerator() {
   const [mouseCoord, setMouseCoord] = useState({ x: 50, y: 50 });
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const hunterId = `#KA${(hunterName.length * 137).toString().padStart(5, "0").slice(0, 5) || "01918"}`;
-  const initials = (hunterName || "KA").replace(/[^a-zA-Z]/g, "").slice(0, 2).toUpperCase() || "KA";
+  const displayName = hunterName.trim();
+  const hunterId = `#KA${((displayName || "ARISE").length * 137).toString().padStart(5, "0").slice(0, 5)}`;
+  
+  // Dynamic Monogram Initials
+  const initials = displayName
+    ? (displayName.replace(/[^a-zA-Z]/g, "").slice(0, 2).toUpperCase() || "AR")
+    : `${hunterRank.charAt(0)}R`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -41,7 +47,7 @@ export default function AriseHunterCardGenerator() {
     setTimeout(() => setCopiedId(false), 2000);
   };
 
-  // 6 Ranks - Exactly 1 Designated Image Each (B, C, D use user's 3 reference images!)
+  // 6 Ranks - Exactly 1 Designated Image Each (B, C, D use user's uploaded images!)
   const ranksConfig = {
     "S-RANK": {
       letter: "S",
@@ -179,7 +185,7 @@ export default function AriseHunterCardGenerator() {
 
   const currentRank = ranksConfig[hunterRank];
 
-  // High-Resolution 100% Same-to-Same PNG Download for ALL Ranks
+  // High-Resolution 100% Same-to-Same PNG Download
   const handleDownloadCard = async () => {
     setIsDownloading(true);
 
@@ -277,69 +283,97 @@ export default function AriseHunterCardGenerator() {
         // Fallback
       }
 
-      // 3. Middle Content Area Overlays
-      // Clear middle name area with background color
-      ctx.fillStyle = "#06080F";
-      ctx.fillRect(398, 142, 340, 44);
+      // 3. Middle Unified Glass HUD Panel (Seamless color blending, covers base text cleanly)
+      const hudX = 394;
+      const hudY = 114;
+      const hudW = 352;
+      const hudH = 365;
+
+      ctx.save();
+      const hudGrad = ctx.createLinearGradient(hudX, hudY, hudX, hudY + hudH);
+      hudGrad.addColorStop(0, "#080B14");
+      hudGrad.addColorStop(0.5, "#06080F");
+      hudGrad.addColorStop(1, "#03050A");
+      ctx.fillStyle = hudGrad;
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(hudX, hudY, hudW, hudH, 16);
+        ctx.fill();
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      } else {
+        ctx.fillRect(hudX, hudY, hudW, hudH);
+      }
+
+      // Hunter ID & Copy badge
+      ctx.fillStyle = "#828F9E";
+      ctx.font = "10px monospace";
+      ctx.fillText("HUNTER ID", hudX + 14, hudY + 24);
+
+      ctx.fillStyle = "#121722";
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(hudX + 80, hudY + 11, 88, 18, 5);
+        ctx.fill();
+      }
+      ctx.fillStyle = "#E4E8F0";
+      ctx.font = "bold 10px monospace";
+      ctx.fillText(hunterId, hudX + 86, hudY + 24);
 
       // Hunter Name
+      const activeName = displayName || "HUNTER_AWAKENED";
       ctx.fillStyle = "#FFFFFF";
-      ctx.font = "bold 34px -apple-system, sans-serif";
-      ctx.fillText(hunterName || "Karan_Awakened", 402, 175);
+      ctx.font = "bold 28px -apple-system, sans-serif";
+      ctx.fillText(activeName, hudX + 14, hudY + 62);
 
       // Blue Verified Badge Circle
-      const nWidth = ctx.measureText(hunterName || "Karan_Awakened").width;
-      const bx = 402 + nWidth + 12;
-      const by = 163;
+      const nWidth = ctx.measureText(activeName).width;
+      const bx = hudX + 14 + nWidth + 10;
+      const by = hudY + 52;
       ctx.fillStyle = "#0095FF";
       ctx.beginPath();
-      ctx.arc(bx + 9, by, 10, 0, Math.PI * 2);
+      ctx.arc(bx + 8, by, 9, 0, Math.PI * 2);
       ctx.fill();
 
       // White checkmark
       ctx.strokeStyle = "#FFFFFF";
-      ctx.lineWidth = 2.2;
+      ctx.lineWidth = 2;
       ctx.beginPath();
-      ctx.moveTo(bx + 6, by);
-      ctx.lineTo(bx + 8.5, by + 3.5);
-      ctx.lineTo(bx + 13.5, by - 2.5);
+      ctx.moveTo(bx + 5, by);
+      ctx.lineTo(bx + 7.5, by + 3);
+      ctx.lineTo(bx + 11.5, by - 2);
       ctx.stroke();
 
       // Subtitle: Diamond + Role • Rank HUNTER
-      ctx.fillStyle = "#06080F";
-      ctx.fillRect(398, 190, 340, 22);
-
       ctx.fillStyle = currentRank.color;
-      ctx.font = "12px sans-serif";
-      ctx.fillText("✦", 402, 204);
+      ctx.font = "11px sans-serif";
+      ctx.fillText("✦", hudX + 14, hudY + 86);
 
       ctx.font = "bold 11px monospace";
-      ctx.fillText(`${currentRank.role}  •  ${hunterRank} HUNTER`, 418, 204);
+      ctx.fillText(`${currentRank.role}  •  ${hunterRank} HUNTER`, hudX + 28, hudY + 86);
 
       // Level & XP Numbers
-      ctx.fillStyle = "#06080F";
-      ctx.fillRect(398, 230, 340, 24);
-
       ctx.fillStyle = "#828F9E";
       ctx.font = "10px monospace";
-      ctx.fillText("LEVEL", 402, 246);
+      ctx.fillText("LEVEL", hudX + 14, hudY + 120);
 
       ctx.fillStyle = "#FFFFFF";
-      ctx.font = "bold 26px -apple-system, sans-serif";
-      ctx.fillText(currentRank.level, 446, 248);
+      ctx.font = "bold 24px -apple-system, sans-serif";
+      ctx.fillText(currentRank.level, hudX + 54, hudY + 122);
 
       ctx.fillStyle = "#717B8A";
-      ctx.font = "11px monospace";
-      ctx.fillText(currentRank.xpText, 510, 246);
+      ctx.font = "10px monospace";
+      ctx.fillText(currentRank.xpText, hudX + 110, hudY + 120);
 
       ctx.fillStyle = "#E4E8F0";
-      ctx.font = "bold 11px monospace";
-      ctx.fillText(currentRank.xpPercent, 690, 246);
+      ctx.font = "bold 10px monospace";
+      ctx.fillText(currentRank.xpPercent, hudX + hudW - 44, hudY + 120);
 
       // XP Progress Bar
-      const barX = 402;
-      const barY = 260;
-      const barW = 330;
+      const barX = hudX + 14;
+      const barY = hudY + 132;
+      const barW = hudW - 28;
       const barH = 10;
 
       ctx.fillStyle = "#0E131E";
@@ -364,87 +398,107 @@ export default function AriseHunterCardGenerator() {
         ctx.fillRect(barX, barY, activeBarW, barH);
       }
 
-      // Telemetry Pods
+      // Telemetry Pods (Row of 3 equal pods)
+      const podY = hudY + 154;
+      const podW = 102;
+      const podH = 82;
+
       // Pod 1 Streak
       ctx.fillStyle = "#0A0D15";
-      ctx.fillRect(402, 290, 102, 80);
-      ctx.strokeStyle = "rgba(255,255,255,0.08)";
-      ctx.strokeRect(402, 290, 102, 80);
-
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(hudX + 14, podY, podW, podH, 12);
+        ctx.fill();
+      }
       ctx.fillStyle = "#FF3B30";
       ctx.font = "18px sans-serif";
-      ctx.fillText("🔥", 412, 325);
+      ctx.fillText("🔥", hudX + 24, podY + 34);
 
       ctx.fillStyle = "#FFFFFF";
-      ctx.font = "bold 20px -apple-system, sans-serif";
-      ctx.fillText(currentRank.streak, 444, 320);
+      ctx.font = "bold 18px -apple-system, sans-serif";
+      ctx.fillText(currentRank.streak, hudX + 54, podY + 30);
 
       ctx.fillStyle = "#828F9E";
       ctx.font = "8px monospace";
-      ctx.fillText("DAYS", 444, 332);
-      ctx.fillText("STREAK", 444, 350);
+      ctx.fillText("DAYS", hudX + 54, podY + 42);
+      ctx.fillText("STREAK", hudX + 24, podY + 68);
 
       // Pod 2 Mana
+      const pod2X = hudX + 14 + podW + 10;
       ctx.fillStyle = "#0A0D15";
-      ctx.fillRect(514, 290, 106, 80);
-      ctx.strokeRect(514, 290, 106, 80);
-
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(pod2X, podY, podW, podH, 12);
+        ctx.fill();
+      }
       ctx.fillStyle = currentRank.color;
       ctx.font = "16px sans-serif";
-      ctx.fillText("🧬", 522, 325);
+      ctx.fillText("🧬", pod2X + 10, podY + 34);
 
       ctx.fillStyle = "#FFFFFF";
-      ctx.font = "bold 16px -apple-system, sans-serif";
-      ctx.fillText(currentRank.mana, 546, 320);
+      ctx.font = "bold 14px -apple-system, sans-serif";
+      ctx.fillText(currentRank.mana, pod2X + 34, podY + 30);
 
       ctx.fillStyle = "#828F9E";
       ctx.font = "8px monospace";
-      ctx.fillText("MANA", 546, 334);
+      ctx.fillText("MANA", pod2X + 10, podY + 68);
 
       // Equalizer bars
       ctx.fillStyle = currentRank.color;
       [4, 9, 13, 7, 11].forEach((h, i) => {
-        ctx.fillRect(546 + i * 7, 360 - h, 3.5, h);
+        ctx.fillRect(pod2X + 56 + i * 7, podY + 68 - h, 3.5, h);
       });
 
       // Pod 3 Crystals
+      const pod3X = pod2X + podW + 10;
       ctx.fillStyle = "#0A0D15";
-      ctx.fillRect(630, 290, 102, 80);
-      ctx.strokeRect(630, 290, 102, 80);
-
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(pod3X, podY, podW, podH, 12);
+        ctx.fill();
+      }
       ctx.fillStyle = currentRank.color;
       ctx.font = "16px sans-serif";
-      ctx.fillText("💎", 638, 325);
+      ctx.fillText("💎", pod3X + 10, podY + 34);
 
       ctx.fillStyle = "#FFFFFF";
-      ctx.font = "bold 16px -apple-system, sans-serif";
-      ctx.fillText(currentRank.crystals, 660, 320);
+      ctx.font = "bold 14px -apple-system, sans-serif";
+      ctx.fillText(currentRank.crystals, pod3X + 34, podY + 30);
 
       ctx.fillStyle = "#828F9E";
       ctx.font = "8px monospace";
-      ctx.fillText("CRYSTALS", 660, 334);
+      ctx.fillText("CRYSTALS", pod3X + 10, podY + 68);
 
       [6, 12, 5, 10, 14].forEach((h, i) => {
-        ctx.fillRect(660 + i * 7, 360 - h, 3.5, h);
+        ctx.fillRect(pod3X + 56 + i * 7, podY + 68 - h, 3.5, h);
       });
 
       // Current Mission Capsule
+      const misY = hudY + 252;
+      const misW = hudW - 28;
+      const misH = 50;
+
       ctx.fillStyle = "#090D15";
-      ctx.fillRect(402, 385, 330, 48);
-      ctx.strokeStyle = "rgba(255,255,255,0.1)";
-      ctx.strokeRect(402, 385, 330, 48);
+      if (ctx.roundRect) {
+        ctx.beginPath();
+        ctx.roundRect(hudX + 14, misY, misW, misH, 12);
+        ctx.fill();
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+        ctx.stroke();
+      }
 
       ctx.strokeStyle = currentRank.color;
       ctx.lineWidth = 1.5;
-      ctx.strokeRect(412, 396, 24, 24);
+      ctx.strokeRect(hudX + 24, misY + 13, 24, 24);
 
       ctx.fillStyle = "#828F9E";
       ctx.font = "8px monospace";
-      ctx.fillText("CURRENT MISSION", 446, 404);
+      ctx.fillText("CURRENT MISSION", hudX + 58, misY + 22);
 
       ctx.fillStyle = "#FFFFFF";
       ctx.font = "bold 12px -apple-system, sans-serif";
-      ctx.fillText(currentRank.mission, 446, 420);
+      ctx.fillText(currentRank.mission, hudX + 58, misY + 38);
+      ctx.restore();
 
       // 4. Right 3D Chrome Rank Totem Banner with V-Ribbon Cut
       ctx.save();
@@ -522,7 +576,7 @@ export default function AriseHunterCardGenerator() {
       const dataUrl = canvas.toDataURL("image/png");
       const a = document.createElement("a");
       a.href = dataUrl;
-      a.download = `ARISE_${hunterRank}_Hunter_Card_${(hunterName || "Hunter").replace(/\s+/g, "_")}.png`;
+      a.download = `ARISE_${hunterRank}_Hunter_Card_${(displayName || "Hunter").replace(/\s+/g, "_")}.png`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -541,11 +595,11 @@ export default function AriseHunterCardGenerator() {
   return (
     <section id="hunter-card" className="bg-[#000000] py-20 sm:py-28 px-4 sm:px-6 lg:px-8 select-none border-t border-white/[0.08] relative overflow-hidden">
       
-      {/* Dynamic Background Ambient Aura in current Rank's color */}
+      {/* Dynamic Background Ambient Aura - Smoothly Blended in current Rank's signature color */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[450px] blur-[160px] pointer-events-none rounded-full transition-colors duration-700"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[950px] h-[500px] blur-[170px] pointer-events-none rounded-full transition-all duration-700"
         style={{
-          background: `radial-gradient(circle, ${currentRank.color}15 0%, transparent 70%)`,
+          background: `radial-gradient(circle, ${currentRank.color}18 0%, ${currentRank.color}05 50%, transparent 75%)`,
         }}
       />
 
@@ -561,7 +615,7 @@ export default function AriseHunterCardGenerator() {
           </p>
         </div>
 
-        {/* 1. The Majestic 16:9 Card (100% SAME-TO-SAME FOR ALL RANKS) */}
+        {/* 1. The Majestic 16:9 Card with Enhanced Color Blending */}
         <div className="w-full flex justify-center perspective-[1500px]">
           <motion.div
             ref={cardRef}
@@ -571,42 +625,44 @@ export default function AriseHunterCardGenerator() {
               transform: `rotateX(${cardRotate.x}deg) rotateY(${cardRotate.y}deg)`,
               transition: "transform 0.12s ease-out",
             }}
-            className="w-full max-w-4xl aspect-[1024/564] rounded-[28px] relative overflow-hidden shadow-[0_30px_90px_-20px_rgba(0,0,0,0.98),0_0_60px_rgba(0,229,255,0.12)] border border-white/[0.18] cursor-grab active:cursor-grabbing group select-none"
+            className="w-full max-w-4xl aspect-[1024/564] rounded-[28px] relative overflow-hidden shadow-[0_30px_90px_-20px_rgba(0,0,0,0.98),0_0_60px_rgba(0,229,255,0.12)] border border-white/[0.18] cursor-grab active:cursor-grabbing group select-none transition-shadow duration-500"
           >
-            {/* The Authentic 100% Base Reference Card Image Chassis */}
+            {/* Base Reference Card Chassis */}
             <img
               src="/visuals/hunter_card_reference.jpg"
               alt="ARISE Hunter Card Chassis"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             />
 
-            {/* Dynamic Corner LEDs glowing in Current Rank Color */}
+            {/* Corner LED Accents - Seamlessly Colored to Active Rank */}
             <div
-              className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 pointer-events-none transition-colors duration-500 z-10"
-              style={{ borderColor: currentRank.color, filter: `drop-shadow(0 0 8px ${currentRank.color})` }}
+              className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 pointer-events-none transition-all duration-500 z-20"
+              style={{ borderColor: currentRank.color, filter: `drop-shadow(0 0 10px ${currentRank.color})` }}
             />
             <div
-              className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 pointer-events-none transition-colors duration-500 z-10"
-              style={{ borderColor: currentRank.color, filter: `drop-shadow(0 0 8px ${currentRank.color})` }}
+              className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 pointer-events-none transition-all duration-500 z-20"
+              style={{ borderColor: currentRank.color, filter: `drop-shadow(0 0 10px ${currentRank.color})` }}
             />
             <div
-              className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 pointer-events-none transition-colors duration-500 z-10"
-              style={{ borderColor: currentRank.color, filter: `drop-shadow(0 0 8px ${currentRank.color})` }}
+              className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 pointer-events-none transition-all duration-500 z-20"
+              style={{ borderColor: currentRank.color, filter: `drop-shadow(0 0 10px ${currentRank.color})` }}
             />
             <div
-              className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 pointer-events-none transition-colors duration-500 z-10"
-              style={{ borderColor: currentRank.color, filter: `drop-shadow(0 0 8px ${currentRank.color})` }}
+              className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 pointer-events-none transition-all duration-500 z-20"
+              style={{ borderColor: currentRank.color, filter: `drop-shadow(0 0 10px ${currentRank.color})` }}
             />
 
-            {/* Dynamic Left Avatar Frame Overlay (Loads 1 Designated Image per Rank!) */}
+            {/* Left Avatar Frame (1 Designated Image per Rank!) */}
             <div
               style={{
                 left: "5.6%",
                 top: "16.8%",
                 width: "30.8%",
                 height: "68.2%",
+                borderColor: currentRank.color,
+                boxShadow: `0 0 25px ${currentRank.color}25`,
               }}
-              className="absolute rounded-xl overflow-hidden bg-[#070A11] z-10 flex flex-col justify-between p-3 border shadow-lg transition-all duration-500"
+              className="absolute rounded-xl overflow-hidden bg-[#070A11] z-10 flex flex-col justify-between p-3 border transition-all duration-500"
             >
               {/* Avatar Image for this Rank */}
               <img
@@ -615,16 +671,16 @@ export default function AriseHunterCardGenerator() {
                 className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
 
-              {/* Contrast Vignette Gradient */}
+              {/* Seamless Contrast Vignette Gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#04070D]/95 via-transparent to-[#04070D]/40 pointer-events-none" />
 
               {/* Cybernetic Angled Corner Brackets */}
               <div
-                className="absolute top-1.5 left-1.5 w-3.5 h-3.5 border-t-2 border-l-2 pointer-events-none"
+                className="absolute top-1.5 left-1.5 w-3.5 h-3.5 border-t-2 border-l-2 pointer-events-none transition-colors duration-500"
                 style={{ borderColor: currentRank.color }}
               />
               <div
-                className="absolute bottom-1.5 right-1.5 w-3.5 h-3.5 border-b-2 border-r-2 pointer-events-none"
+                className="absolute bottom-1.5 right-1.5 w-3.5 h-3.5 border-b-2 border-r-2 pointer-events-none transition-colors duration-500"
                 style={{ borderColor: currentRank.color }}
               />
 
@@ -638,13 +694,13 @@ export default function AriseHunterCardGenerator() {
                 </div>
               </div>
 
-              {/* Bottom KA Monogram & Quote */}
+              {/* Bottom Monogram & Quote */}
               <div className="relative z-10 space-y-0.5">
                 <div className="font-sans font-black text-3xl sm:text-4xl text-[#FFFFFF] tracking-tight drop-shadow-md">
                   {initials}
                 </div>
                 <div
-                  className="font-mono text-[9px] uppercase tracking-widest font-bold"
+                  className="font-mono text-[9px] uppercase tracking-widest font-bold transition-colors duration-500"
                   style={{ color: currentRank.color }}
                 >
                   {hunterRank} HUNTER
@@ -662,181 +718,156 @@ export default function AriseHunterCardGenerator() {
 
               {/* Bottom-Right Rank Triangle Badge */}
               <div
-                className="absolute bottom-2.5 right-2.5 z-10 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[11px]"
+                className="absolute bottom-2.5 right-2.5 z-10 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[11px] transition-colors duration-500"
                 style={{ borderBottomColor: currentRank.color, filter: `drop-shadow(0 0 6px ${currentRank.color})` }}
               />
             </div>
 
-            {/* Middle Section: Live Custom Name & Verified Badge */}
+            {/* Middle Section: UNIFIED SEAMLESS GLASS HUD (Fixed glitch: completely covers underlying static text with smooth dark obsidian blending!) */}
             <div
               style={{
-                left: "39.5%",
-                top: "25.2%",
+                left: "38.5%",
+                top: "16.8%",
+                width: "34.5%",
+                height: "68.2%",
+                boxShadow: `inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px ${currentRank.color}15`,
               }}
-              className="absolute z-10 flex items-center gap-2 bg-[#06080F]/90 px-2 py-0.5 rounded-lg border border-white/5"
+              className="absolute z-10 rounded-2xl bg-gradient-to-b from-[#070A12]/95 via-[#05070E]/90 to-[#030509]/95 backdrop-blur-[8px] border border-white/[0.08] p-3 flex flex-col justify-between transition-all duration-500"
             >
-              <span className="font-sans font-black text-xl sm:text-2xl text-white tracking-tight">
-                {hunterName || "Karan_Awakened"}
-              </span>
-              <span className="w-4 h-4 rounded-full bg-[#0095FF] flex items-center justify-center text-white shadow-[0_0_8px_rgba(0,149,255,0.7)]">
-                <Check className="w-2.5 h-2.5 stroke-[3]" />
-              </span>
-            </div>
-
-            {/* Subtitle: ✦ Role • Rank HUNTER */}
-            <div
-              style={{
-                left: "39.5%",
-                top: "33.5%",
-                color: currentRank.color,
-              }}
-              className="absolute z-10 flex items-center gap-1.5 font-mono text-[10px] sm:text-xs font-semibold bg-[#06080F]/90 px-2 py-0.5 rounded-md"
-            >
-              <span>✦</span>
-              <span>{currentRank.role}</span>
-              <span>•</span>
-              <span>{hunterRank} HUNTER</span>
-            </div>
-
-            {/* Level & XP Row */}
-            <div
-              style={{
-                left: "39.5%",
-                top: "41.5%",
-                width: "33.5%",
-              }}
-              className="absolute z-10 flex items-baseline justify-between font-mono text-[10px] sm:text-xs bg-[#06080F]/90 px-2 py-0.5 rounded-md"
-            >
-              <div className="flex items-baseline gap-1">
-                <span className="text-[#828F9E] text-[9px]">LEVEL</span>
-                <span className="text-white font-extrabold text-base sm:text-lg">{currentRank.level}</span>
-              </div>
-              <span className="text-[9px] text-[#717B8A]">{currentRank.xpText}</span>
-              <span className="text-[9px] text-[#E4E8F0] font-bold">{currentRank.xpPercent}</span>
-            </div>
-
-            {/* XP Capsule Progress Bar */}
-            <div
-              style={{
-                left: "39.5%",
-                top: "48.2%",
-                width: "33.5%",
-              }}
-              className="absolute z-10 h-2 sm:h-2.5 bg-[#0E131E] rounded-full overflow-hidden p-0.5 border border-white/10"
-            >
-              <div
-                className={`h-full rounded-full transition-all duration-500 bg-gradient-to-r ${currentRank.barGrad}`}
-                style={{
-                  width: currentRank.xpPercent,
-                  boxShadow: `0 0 10px ${currentRank.color}`,
-                }}
-              />
-            </div>
-
-            {/* Telemetry Pod 1: Streak */}
-            <div
-              style={{
-                left: "39.5%",
-                top: "54.5%",
-                width: "10.4%",
-                height: "16.5%",
-              }}
-              className="absolute z-10 p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-[#0A0D15]/95 border border-white/[0.08] font-mono flex flex-col justify-between"
-            >
-              <div className="flex items-center gap-1">
-                <span className="text-xs sm:text-sm">🔥</span>
-                <div>
-                  <div className="text-xs sm:text-sm font-extrabold text-white leading-none">{currentRank.streak}</div>
-                  <div className="text-[7px] text-[#828F9E]">DAYS</div>
+              {/* Top Row: Hunter ID & 1-Click Copy */}
+              <div className="flex items-center justify-between font-mono text-[9px] text-[#828F9E]">
+                <div className="flex items-center gap-1.5">
+                  <span>HUNTER ID</span>
+                  <span className="px-1.5 py-0.5 rounded bg-white/[0.06] text-[#E4E8F0] font-bold border border-white/5">
+                    {hunterId}
+                  </span>
                 </div>
-              </div>
-              <div className="text-[7px] sm:text-[8px] text-[#828F9E] uppercase tracking-wider">STREAK</div>
-            </div>
-
-            {/* Telemetry Pod 2: Mana + Equalizer Bars */}
-            <div
-              style={{
-                left: "51%",
-                top: "54.5%",
-                width: "10.4%",
-                height: "16.5%",
-              }}
-              className="absolute z-10 p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-[#0A0D15]/95 border border-white/[0.08] font-mono flex flex-col justify-between"
-            >
-              <div>
-                <div className="text-[10px] sm:text-xs font-extrabold text-white leading-none">{currentRank.mana}</div>
-                <div className="text-[7px] text-[#828F9E] uppercase tracking-wider pt-0.5">MANA</div>
-              </div>
-              {/* Equalizer frequency bars in Rank Color */}
-              <div className="flex items-end gap-0.5 h-2.5 pt-0.5">
-                <div className="w-1 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: currentRank.color }} />
-                <div className="w-1 h-2.5 rounded-full animate-pulse delay-75" style={{ backgroundColor: currentRank.color }} />
-                <div className="w-1 h-1 rounded-full animate-pulse delay-150" style={{ backgroundColor: currentRank.color }} />
-                <div className="w-1 h-2 rounded-full animate-pulse" style={{ backgroundColor: currentRank.color }} />
-              </div>
-            </div>
-
-            {/* Telemetry Pod 3: Crystals + Equalizer Bars */}
-            <div
-              style={{
-                left: "62.6%",
-                top: "54.5%",
-                width: "10.4%",
-                height: "16.5%",
-              }}
-              className="absolute z-10 p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-[#0A0D15]/95 border border-white/[0.08] font-mono flex flex-col justify-between"
-            >
-              <div>
-                <div className="text-[10px] sm:text-xs font-extrabold text-white leading-none">{currentRank.crystals}</div>
-                <div className="text-[7px] text-[#828F9E] uppercase tracking-wider pt-0.5">CRYSTALS</div>
-              </div>
-              <div className="flex items-end gap-0.5 h-2.5 pt-0.5">
-                <div className="w-1 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: currentRank.color }} />
-                <div className="w-1 h-1 rounded-full animate-pulse delay-75" style={{ backgroundColor: currentRank.color }} />
-                <div className="w-1 h-2 rounded-full animate-pulse delay-150" style={{ backgroundColor: currentRank.color }} />
-                <div className="w-1 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: currentRank.color }} />
-              </div>
-            </div>
-
-            {/* Current Mission Capsule */}
-            <div
-              style={{
-                left: "39.5%",
-                top: "73.2%",
-                width: "33.5%",
-                height: "9.5%",
-              }}
-              className="absolute z-10 px-2 sm:px-3 rounded-lg sm:rounded-xl bg-[#090D15]/95 border border-white/[0.1] flex items-center justify-between"
-            >
-              <div className="flex items-center gap-2">
-                <div
-                  className="w-5 h-5 rounded border flex items-center justify-center text-[10px] font-bold shadow"
-                  style={{ borderColor: currentRank.color, color: currentRank.color }}
+                <button
+                  onClick={handleCopyId}
+                  className="text-[#828F9E] hover:text-white flex items-center gap-1 cursor-pointer transition-colors px-1 py-0.5 rounded hover:bg-white/5"
+                  title="Copy Hunter ID"
                 >
-                  🛡️
+                  {copiedId ? <Check className="w-2.5 h-2.5 text-emerald-400" /> : <Copy className="w-2.5 h-2.5" />}
+                  <span>{copiedId ? "Copied" : "COPY"}</span>
+                </button>
+              </div>
+
+              {/* Hunter Name Row: Crisp bold white text with blue verified badge (or sleek placeholder if empty) */}
+              <div className="space-y-0.5">
+                <div className="flex items-center gap-2">
+                  {displayName ? (
+                    <span className="font-sans font-black text-xl sm:text-2xl text-white tracking-tight truncate max-w-[210px] drop-shadow-sm">
+                      {displayName}
+                    </span>
+                  ) : (
+                    <span className="font-sans font-extrabold text-lg sm:text-xl text-white/35 italic tracking-wider">
+                      YOUR CALL-SIGN
+                    </span>
+                  )}
+                  {/* Verified Blue Checkmark Badge */}
+                  <span className="flex-shrink-0 w-4 h-4 rounded-full bg-[#0095FF] flex items-center justify-center text-white shadow-[0_0_8px_rgba(0,149,255,0.7)]">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
+                  </span>
                 </div>
-                <div>
-                  <div className="font-mono text-[7px] text-[#828F9E] uppercase tracking-wider">CURRENT MISSION</div>
-                  <div className="font-sans font-bold text-[9px] sm:text-xs text-white truncate max-w-[170px] sm:max-w-[220px]">
-                    {currentRank.mission}
+
+                {/* Subtitle: ✦ Role • Rank HUNTER */}
+                <div
+                  className="flex items-center gap-1.5 font-mono text-[9px] sm:text-[10px] font-semibold transition-colors duration-500"
+                  style={{ color: currentRank.color }}
+                >
+                  <span>✦</span>
+                  <span className="truncate">{currentRank.role}</span>
+                  <span>•</span>
+                  <span>{hunterRank} HUNTER</span>
+                </div>
+              </div>
+
+              {/* Level & XP Progress Section */}
+              <div className="space-y-1">
+                <div className="flex items-baseline justify-between font-mono text-[9px] sm:text-[10px]">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-[#828F9E] text-[8px]">LEVEL</span>
+                    <span className="text-white font-extrabold text-sm sm:text-base">{currentRank.level}</span>
+                  </div>
+                  <span className="text-[8px] text-[#717B8A]">{currentRank.xpText}</span>
+                  <span className="text-[8px] text-[#E4E8F0] font-bold">{currentRank.xpPercent}</span>
+                </div>
+                {/* Glowing Capsule Bar */}
+                <div className="w-full h-2 bg-[#0E131E] rounded-full overflow-hidden p-0.5 border border-white/10">
+                  <div
+                    className={`h-full rounded-full transition-all duration-500 bg-gradient-to-r ${currentRank.barGrad}`}
+                    style={{
+                      width: currentRank.xpPercent,
+                      boxShadow: `0 0 10px ${currentRank.color}`,
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* 3 Telemetry Pods (Streak, Mana, Crystals) */}
+              <div className="grid grid-cols-3 gap-1.5 font-mono">
+                {/* Pod 1: Streak */}
+                <div className="p-1.5 rounded-lg bg-[#0A0D15]/90 border border-white/[0.08] flex flex-col justify-between">
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs">🔥</span>
+                    <div>
+                      <div className="text-xs font-extrabold text-white leading-none">{currentRank.streak}</div>
+                      <div className="text-[6px] text-[#828F9E]">DAYS</div>
+                    </div>
+                  </div>
+                  <div className="text-[7px] text-[#828F9E] uppercase tracking-wider pt-1">STREAK</div>
+                </div>
+
+                {/* Pod 2: Mana */}
+                <div className="p-1.5 rounded-lg bg-[#0A0D15]/90 border border-white/[0.08] flex flex-col justify-between">
+                  <div>
+                    <div className="text-[10px] font-extrabold text-white leading-none truncate">{currentRank.mana}</div>
+                    <div className="text-[6px] text-[#828F9E] uppercase tracking-wider pt-0.5">MANA</div>
+                  </div>
+                  {/* Equalizer Frequency Bars */}
+                  <div className="flex items-end gap-0.5 h-2 pt-0.5">
+                    <div className="w-0.5 h-1 rounded-full animate-pulse" style={{ backgroundColor: currentRank.color }} />
+                    <div className="w-0.5 h-2 rounded-full animate-pulse delay-75" style={{ backgroundColor: currentRank.color }} />
+                    <div className="w-0.5 h-1.5 rounded-full animate-pulse delay-150" style={{ backgroundColor: currentRank.color }} />
+                    <div className="w-0.5 h-2 rounded-full animate-pulse" style={{ backgroundColor: currentRank.color }} />
+                  </div>
+                </div>
+
+                {/* Pod 3: Crystals */}
+                <div className="p-1.5 rounded-lg bg-[#0A0D15]/90 border border-white/[0.08] flex flex-col justify-between">
+                  <div>
+                    <div className="text-[10px] font-extrabold text-white leading-none truncate">{currentRank.crystals}</div>
+                    <div className="text-[6px] text-[#828F9E] uppercase tracking-wider pt-0.5">CRYSTALS</div>
+                  </div>
+                  <div className="flex items-end gap-0.5 h-2 pt-0.5">
+                    <div className="w-0.5 h-2 rounded-full animate-pulse" style={{ backgroundColor: currentRank.color }} />
+                    <div className="w-0.5 h-1.5 rounded-full animate-pulse delay-75" style={{ backgroundColor: currentRank.color }} />
+                    <div className="w-0.5 h-2 rounded-full animate-pulse delay-150" style={{ backgroundColor: currentRank.color }} />
+                    <div className="w-0.5 h-1 rounded-full animate-pulse" style={{ backgroundColor: currentRank.color }} />
                   </div>
                 </div>
               </div>
-              <span className="text-[#828F9E] text-xs font-bold">&gt;</span>
-            </div>
 
-            {/* Click-to-copy Hunter ID Trigger Button right over ID position */}
-            <button
-              onClick={handleCopyId}
-              style={{
-                left: "48%",
-                top: "21.5%",
-              }}
-              title="Click to copy Hunter ID"
-              className="absolute z-20 w-16 h-5 cursor-pointer opacity-0 hover:opacity-100 bg-[#00E5FF]/20 rounded border border-[#00E5FF] flex items-center justify-center text-[9px] font-mono text-white transition-opacity"
-            >
-              {copiedId ? "COPIED!" : "COPY"}
-            </button>
+              {/* Current Mission Capsule */}
+              <div className="p-1.5 px-2 rounded-lg bg-[#080B12] border border-white/[0.08] flex items-center justify-between">
+                <div className="flex items-center gap-1.5 truncate">
+                  <div
+                    className="w-4 h-4 rounded border flex items-center justify-center text-[9px] font-bold flex-shrink-0"
+                    style={{ borderColor: currentRank.color, color: currentRank.color }}
+                  >
+                    🛡️
+                  </div>
+                  <div className="truncate">
+                    <div className="font-mono text-[6px] text-[#828F9E] uppercase tracking-wider leading-none">CURRENT MISSION</div>
+                    <div className="font-sans font-bold text-[9px] text-white truncate max-w-[170px]">
+                      {currentRank.mission}
+                    </div>
+                  </div>
+                </div>
+                <span className="text-[#828F9E] text-[10px] font-bold flex-shrink-0 ml-1">&gt;</span>
+              </div>
+
+            </div>
 
             {/* Right 3D Chrome Rank Totem Banner with V-Ribbon Bottom Cut */}
             <div
@@ -861,10 +892,10 @@ export default function AriseHunterCardGenerator() {
                 >
                   {currentRank.letter}
                 </motion.div>
-                <div className="text-xs" style={{ color: currentRank.color }}>✦</div>
+                <div className="text-xs transition-colors duration-500" style={{ color: currentRank.color }}>✦</div>
               </div>
               <div className="space-y-0.5 pb-2">
-                <div className={`font-sans font-extrabold text-base sm:text-lg tracking-wider ${currentRank.textColor}`}>
+                <div className={`font-sans font-extrabold text-base sm:text-lg tracking-wider ${currentRank.textColor} transition-colors duration-500`}>
                   {hunterRank}
                 </div>
                 <div className="font-mono text-[8px] sm:text-[9px] text-[#828F9E] uppercase tracking-widest font-bold">
@@ -897,7 +928,7 @@ export default function AriseHunterCardGenerator() {
               <label className="block font-mono text-xs text-[#828F9E] uppercase tracking-wider">
                 Select Hunter Rank Tier
               </label>
-              <span className="font-mono text-[10px]" style={{ color: currentRank.color }}>
+              <span className="font-mono text-[10px] transition-colors duration-500" style={{ color: currentRank.color }}>
                 {currentRank.role}
               </span>
             </div>
@@ -924,7 +955,7 @@ export default function AriseHunterCardGenerator() {
             </div>
           </div>
 
-          {/* Row 2: Call-Sign Input */}
+          {/* Row 2: Call-Sign Input (Glitch Fixed: Default name removed, live reactive binding) */}
           <div className="space-y-2">
             <label className="block font-mono text-xs text-[#828F9E] uppercase tracking-wider">
               Hunter Call-Sign (Live Updates On Card)
@@ -934,9 +965,9 @@ export default function AriseHunterCardGenerator() {
                 type="text"
                 value={hunterName}
                 onChange={(e) => setHunterName(e.target.value)}
-                maxLength={24}
-                placeholder="e.g. Karan_Awakened"
-                className="flex-1 px-4 py-3 rounded-xl bg-[#05070A] border border-white/[0.12] text-[#F5F5F7] font-mono text-sm outline-none focus:border-[#00E5FF] transition-colors"
+                maxLength={20}
+                placeholder="Type your call-sign (e.g. Karan_Awakened)..."
+                className="flex-1 px-4 py-3 rounded-xl bg-[#05070A] border border-white/[0.12] text-[#F5F5F7] font-mono text-sm outline-none focus:border-[#00E5FF] transition-colors placeholder:text-white/25"
               />
               <button
                 onClick={handleCopyId}
