@@ -20,7 +20,7 @@ export default function AriseHunterCardGenerator() {
   const displayName = hunterName.trim();
   const hunterId = `#KA${((displayName || "ARISE").length * 137).toString().padStart(5, "0").slice(0, 5)}`;
   
-  // Dynamic Monogram Initials
+  // Dynamic Monogram Initials from user's typed name (fallback to rank initials if empty)
   const initials = displayName
     ? (displayName.replace(/[^a-zA-Z]/g, "").slice(0, 2).toUpperCase() || "AR")
     : `${hunterRank.charAt(0)}R`;
@@ -205,7 +205,7 @@ export default function AriseHunterCardGenerator() {
       });
       ctx.drawImage(baseImg, 0, 0, 1024, 564);
 
-      // 2. Draw Left Avatar Frame with this Rank's designated Image
+      // 2. Draw Left Avatar Frame with this Rank's designated Image & Authentic Chamfer Frame
       try {
         const avImg = new Image();
         avImg.crossOrigin = "anonymous";
@@ -215,69 +215,116 @@ export default function AriseHunterCardGenerator() {
           avImg.src = currentRank.avatar;
         });
 
-        // Left avatar box coords: x: 58, y: 96, w: 314, h: 383
+        const avX = 58;
+        const avY = 96;
+        const avW = 314;
+        const avH = 383;
+
         ctx.save();
         ctx.beginPath();
-        ctx.rect(58, 96, 314, 383);
+        ctx.rect(avX, avY, avW, avH);
         ctx.clip();
-        ctx.drawImage(avImg, 58, 96, 314, 383);
+        ctx.drawImage(avImg, avX, avY, avW, avH);
 
-        // Contrast vignette
-        const vig = ctx.createLinearGradient(58, 96, 58, 479);
-        vig.addColorStop(0, "rgba(0,0,0,0.35)");
-        vig.addColorStop(0.5, "transparent");
-        vig.addColorStop(1, "rgba(4,7,13,0.94)");
+        // Contrast vignette: bottom 50% fades to obsidian
+        const vig = ctx.createLinearGradient(avX, avY + avH * 0.5, avX, avY + avH);
+        vig.addColorStop(0, "transparent");
+        vig.addColorStop(0.5, "rgba(2,4,8,0.75)");
+        vig.addColorStop(1, "rgba(2,4,8,0.96)");
         ctx.fillStyle = vig;
-        ctx.fillRect(58, 96, 314, 383);
+        ctx.fillRect(avX, avY, avW, avH);
+
+        // Top subtle shadow
+        const topVig = ctx.createLinearGradient(avX, avY, avX, avY + 60);
+        topVig.addColorStop(0, "rgba(2,4,8,0.6)");
+        topVig.addColorStop(1, "transparent");
+        ctx.fillStyle = topVig;
+        ctx.fillRect(avX, avY, avW, 60);
 
         // Top-Left Class badge in avatar
         ctx.fillStyle = currentRank.color;
         ctx.font = "12px sans-serif";
-        ctx.fillText("✦", 76, 120);
+        ctx.fillText("✦", avX + 18, avY + 24);
 
         ctx.fillStyle = "#FFFFFF";
         ctx.font = "bold 9px monospace";
-        ctx.fillText(currentRank.roleShort.split(" ")[0] || "VOID", 92, 116);
-        ctx.fillText(currentRank.roleShort.split(" ")[1] || "BLADE", 92, 126);
+        ctx.fillText(currentRank.roleShort.split(" ")[0] || "VOID", avX + 34, avY + 20);
+        ctx.fillText(currentRank.roleShort.split(" ")[1] || "BLADE", avX + 34, avY + 30);
         ctx.fillStyle = "#828F9E";
-        ctx.fillText("CLASS", 92, 136);
+        ctx.fillText("CLASS", avX + 34, avY + 40);
 
         // Monogram in avatar
         ctx.fillStyle = "#FFFFFF";
         ctx.font = "900 48px -apple-system, sans-serif";
-        ctx.fillText(initials, 80, 390);
+        ctx.fillText(initials, avX + 22, avY + avH - 74);
+
+        // Triangular Rank Insignia
+        ctx.fillStyle = currentRank.color;
+        ctx.beginPath();
+        ctx.moveTo(avX + avW - 80, avY + avH - 75);
+        ctx.lineTo(avX + avW - 70, avY + avH - 96);
+        ctx.lineTo(avX + avW - 60, avY + avH - 75);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = "#FFFFFF";
+        ctx.font = "bold 8px monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(hunterRank.split("-")[0], avX + avW - 70, avY + avH - 64);
+        ctx.textAlign = "left";
 
         // Rank label
         ctx.fillStyle = currentRank.color;
         ctx.font = "bold 11px monospace";
         ctx.letterSpacing = "1.5px";
-        ctx.fillText(`${hunterRank} HUNTER`, 82, 412);
+        ctx.fillText(`${hunterRank} HUNTER`, avX + 24, avY + avH - 52);
 
         // Quote & signature
         ctx.fillStyle = "#828F9E";
         ctx.font = "italic 8px monospace";
-        ctx.fillText('"DISCIPLINE TURNS POTENTIAL INTO REALITY."', 82, 432);
+        ctx.fillText('"DISCIPLINE TURNS POTENTIAL INTO REALITY."', avX + 24, avY + avH - 32);
+
+        // Handwritten signature stroke
+        ctx.strokeStyle = "rgba(255,255,255,0.85)";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(avX + 205, avY + avH - 32);
+        ctx.bezierCurveTo(avX + 218, avY + avH - 42, avX + 226, avY + avH - 26, avX + 242, avY + avH - 36);
+        ctx.bezierCurveTo(avX + 252, avY + avH - 44, avX + 265, avY + avH - 28, avX + 282, avY + avH - 34);
+        ctx.stroke();
 
         ctx.restore();
 
-        // Cybernetic border in rank color
+        // Inner neon double border
         ctx.strokeStyle = currentRank.color;
         ctx.lineWidth = 2;
-        ctx.strokeRect(58, 96, 314, 383);
+        ctx.strokeRect(avX + 3, avY + 3, avW - 6, avH - 6);
 
-        // Corner angled brackets
+        // Outer chassis border
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(avX, avY, avW, avH);
+
+        // Top-left chamfer notch
+        ctx.strokeStyle = currentRank.color;
         ctx.lineWidth = 3.5;
         ctx.beginPath();
-        ctx.moveTo(58, 122);
-        ctx.lineTo(58, 96);
-        ctx.lineTo(84, 96);
+        ctx.moveTo(avX, avY + 24);
+        ctx.lineTo(avX, avY);
+        ctx.lineTo(avX + 24, avY);
         ctx.stroke();
 
+        // Bottom-right electric angled LED bracket
+        ctx.fillStyle = currentRank.color;
+        ctx.shadowColor = currentRank.color;
+        ctx.shadowBlur = 12;
         ctx.beginPath();
-        ctx.moveTo(346, 479);
-        ctx.lineTo(372, 479);
-        ctx.lineTo(372, 453);
-        ctx.stroke();
+        ctx.moveTo(avX + avW, avY + avH - 28);
+        ctx.lineTo(avX + avW, avY + avH);
+        ctx.lineTo(avX + avW - 28, avY + avH);
+        ctx.closePath();
+        ctx.fill();
+        ctx.shadowBlur = 0;
 
       } catch {
         // Fallback
@@ -594,75 +641,110 @@ export default function AriseHunterCardGenerator() {
               style={{ borderColor: currentRank.color, filter: `drop-shadow(0 0 10px ${currentRank.color})` }}
             />
 
-            {/* Left Avatar Frame (1 Designated Image per Rank!) */}
+            {/* Left Avatar Frame (100% Matches media_1791088648199.png with chamfered sci-fi chassis & electric angled LED tab) */}
             <div
               style={{
                 left: "5.6%",
                 top: "16.8%",
                 width: "30.8%",
                 height: "68.2%",
-                borderColor: currentRank.color,
-                boxShadow: `0 0 25px ${currentRank.color}25`,
+                boxShadow: `0 0 30px ${currentRank.color}25, inset 0 0 20px rgba(0,0,0,0.85)`,
               }}
-              className="absolute rounded-xl overflow-hidden bg-[#070A11] z-10 flex flex-col justify-between p-3 border transition-all duration-500"
+              className="absolute rounded-2xl overflow-hidden bg-[#070A11] z-10 flex flex-col justify-between p-3.5 border border-white/20 transition-all duration-500 group/avatar"
             >
               {/* Avatar Image for this Rank */}
               <img
                 src={currentRank.avatar}
                 alt={`${hunterRank} Avatar`}
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover/avatar:scale-105"
               />
 
-              {/* Seamless Contrast Vignette Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#04070D]/95 via-transparent to-[#04070D]/40 pointer-events-none" />
-
-              {/* Cybernetic Angled Corner Brackets */}
+              {/* Inner Cybernetic Neon Double Border */}
               <div
-                className="absolute top-1.5 left-1.5 w-3.5 h-3.5 border-t-2 border-l-2 pointer-events-none transition-colors duration-500"
+                className="absolute inset-1 rounded-xl border-2 pointer-events-none transition-colors duration-500"
+                style={{
+                  borderColor: `${currentRank.color}85`,
+                  boxShadow: `inset 0 0 14px ${currentRank.color}35, 0 0 14px ${currentRank.color}35`,
+                }}
+              />
+
+              {/* Seamless Bottom Obsidian Contrast Vignette (Fades character into deep black base) */}
+              <div className="absolute inset-x-0 bottom-0 h-[52%] bg-gradient-to-t from-[#020408] via-[#020408]/85 via-40% to-transparent pointer-events-none" />
+
+              {/* Top Subtle Vignette */}
+              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#020408]/60 to-transparent pointer-events-none" />
+
+              {/* Top-Left Cybernetic Chamfer Notch */}
+              <div
+                className="absolute top-1 left-1 w-4 h-4 border-t-2 border-l-2 pointer-events-none transition-colors duration-500"
                 style={{ borderColor: currentRank.color }}
               />
-              <div
-                className="absolute bottom-1.5 right-1.5 w-3.5 h-3.5 border-b-2 border-r-2 pointer-events-none transition-colors duration-500"
-                style={{ borderColor: currentRank.color }}
-              />
 
-              {/* Top-Left Class Badge */}
-              <div className="relative z-10 flex items-start gap-1 font-mono text-[8px] uppercase leading-tight drop-shadow">
-                <span style={{ color: currentRank.color }}>✦</span>
+              {/* Bottom-Right Electric Neon LED Angled Tab (Exact match of reference image!) */}
+              <div className="absolute bottom-0 right-0 w-8 h-8 pointer-events-none flex items-end justify-end overflow-hidden z-20">
+                <div
+                  className="w-8 h-3.5 rotate-[-45deg] translate-x-2 translate-y-2 shadow-lg transition-colors duration-500"
+                  style={{
+                    backgroundColor: currentRank.color,
+                    boxShadow: `0 0 14px ${currentRank.color}`,
+                  }}
+                />
+              </div>
+
+              {/* Top-Left Class Badge (Dynamic Text) */}
+              <div className="relative z-10 flex items-start gap-1.5 font-mono text-[9px] uppercase leading-tight drop-shadow-md">
+                <span className="text-xs transition-colors duration-500" style={{ color: currentRank.color }}>✦</span>
                 <div>
-                  <div className="font-bold text-white">{currentRank.roleShort.split(" ")[0] || "VOID"}</div>
-                  <div className="font-bold text-white">{currentRank.roleShort.split(" ")[1] || "BLADE"}</div>
-                  <div className="text-[#828F9E]">CLASS</div>
+                  <div className="font-extrabold text-white tracking-wide">{currentRank.roleShort.split(" ")[0] || "VOID"}</div>
+                  <div className="font-extrabold text-white tracking-wide">{currentRank.roleShort.split(" ")[1] || "BLADE"}</div>
+                  <div className="text-[#828F9E] text-[8px] font-semibold tracking-wider">CLASS</div>
                 </div>
               </div>
 
-              {/* Bottom Monogram & Quote */}
-              <div className="relative z-10 space-y-0.5">
-                <div className="font-sans font-black text-3xl sm:text-4xl text-[#FFFFFF] tracking-tight drop-shadow-md">
-                  {initials}
+              {/* Bottom Dynamic Monogram, Rank & Quote (Text adapts dynamically to user's typed name!) */}
+              <div className="relative z-10 space-y-1">
+                <div className="flex items-end justify-between pr-2">
+                  <div className="font-sans font-black text-4xl sm:text-5xl text-[#FFFFFF] tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
+                    {initials}
+                  </div>
+
+                  {/* Triangular Rank Insignia Crest in Rank Color */}
+                  <div className="flex flex-col items-center pb-1">
+                    <div
+                      className="w-0 h-0 border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-b-[12px] transition-colors duration-500"
+                      style={{
+                        borderBottomColor: currentRank.color,
+                        filter: `drop-shadow(0 0 8px ${currentRank.color})`,
+                      }}
+                    />
+                    <span
+                      className="font-mono text-[7px] font-black uppercase tracking-wider pt-0.5"
+                      style={{ color: currentRank.color }}
+                    >
+                      {hunterRank.split("-")[0]}
+                    </span>
+                  </div>
                 </div>
+
+                {/* Rank Label */}
                 <div
-                  className="font-mono text-[9px] uppercase tracking-widest font-bold transition-colors duration-500"
+                  className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-extrabold transition-colors duration-500 drop-shadow"
                   style={{ color: currentRank.color }}
                 >
                   {hunterRank} HUNTER
                 </div>
-                <div className="pt-1 flex items-center justify-between border-t border-white/[0.1]">
-                  <div className="font-mono italic text-[7px] text-[#828F9E] leading-tight">
+
+                {/* Quote & Signature */}
+                <div className="pt-1.5 flex items-center justify-between border-t border-white/[0.12]">
+                  <div className="font-mono italic text-[7.5px] sm:text-[8px] text-[#828F9E] leading-tight max-w-[150px]">
                     &quot;DISCIPLINE TURNS POTENTIAL INTO REALITY.&quot;
                   </div>
-                  {/* Handwritten Signature SVG */}
-                  <svg viewBox="0 0 50 16" className="w-10 h-4 stroke-white/80 fill-none stroke-[1.4] opacity-80">
+                  {/* Authentic Signature Stroke */}
+                  <svg viewBox="0 0 50 16" className="w-11 h-4 stroke-white/85 fill-none stroke-[1.5] opacity-85 ml-1 flex-shrink-0 drop-shadow">
                     <path d="M2 11 C8 3, 12 14, 18 7 C23 2, 28 12, 34 5 C39 2, 43 9, 48 4" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
               </div>
-
-              {/* Bottom-Right Rank Triangle Badge */}
-              <div
-                className="absolute bottom-2.5 right-2.5 z-10 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[11px] transition-colors duration-500"
-                style={{ borderBottomColor: currentRank.color, filter: `drop-shadow(0 0 6px ${currentRank.color})` }}
-              />
             </div>
 
             {/* Middle Section: UNIFIED SEAMLESS GLASS HUD (Clean name without blue tick, smooth dark obsidian blending!) */}
