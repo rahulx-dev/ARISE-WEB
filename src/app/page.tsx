@@ -25,6 +25,7 @@ import AriseFAQ from "@/components/AriseFAQ";
 import AriseFinalCTA from "@/components/AriseFinalCTA";
 import AriseFooter from "@/components/AriseFooter";
 import AriseDownloadModal from "@/components/AriseDownloadModal";
+import AriseHeadingCursor from "@/components/AriseHeadingCursor";
 
 export default function Home() {
   const [downloadModalOpen, setDownloadModalOpen] = useState(false);
@@ -38,6 +39,9 @@ export default function Home() {
       <main className="relative min-h-screen bg-[#000000] text-[#F5F5F7] font-sans selection:bg-[#0A84FF]/30 selection:text-[#FFFFFF] overflow-x-hidden">
         {/* Interactive 3D Cosmic Depth Background */}
         <Arise3DBackground />
+
+        {/* Dynamic Magnetic H1 Cursor Spotlight */}
+        <AriseHeadingCursor />
 
         {/* 00. Top Navigation (Apple Minimalist Frosted Glass) */}
         <AriseNavbar onOpenDownload={handleOpenDownload} />

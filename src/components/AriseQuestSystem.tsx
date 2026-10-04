@@ -74,12 +74,12 @@ export default function AriseQuestSystem() {
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
             <Target className="w-3.5 h-3.5" />
-            <span>06 // DAILY QUEST SYSTEM</span>
+            <span>DAILY QUEST SYSTEM</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:scale-[1.01] hover:text-white transition-all duration-300 cursor-default">
+          <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Progress isn&apos;t given. <br />
-            <span className="text-[#86868B] hover:text-[#A1A1AA] transition-colors">It&apos;s earned daily.</span>
-          </h2>
+            <span className="text-[#86868B]">It&apos;s earned daily.</span>
+          </h1>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             Inspired by the Solo Leveling daily quest framework. Quests dynamically adapt to your personal physiological baseline, pushing you to awaken your true physical ceiling.
           </p>
@@ -92,7 +92,7 @@ export default function AriseQuestSystem() {
           <div className="space-y-4">
             <div className="flex items-center justify-between text-xs font-mono text-[#86868B]">
               <span>SELECT HUNTER TIER</span>
-              <span className="text-[#0A84FF] font-bold">TIER 0{current.level} {"//"} {current.rankCode}</span>
+              <span className="text-[#0A84FF] font-bold">LEVEL {current.level} · {current.rankCode}</span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

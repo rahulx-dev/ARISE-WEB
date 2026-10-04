@@ -66,11 +66,11 @@ export default function AriseFAQ() {
         <div className="text-center space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0A84FF]" />
-            <span>13 / FREQUENTLY ANSWERED</span>
+            <span>FREQUENTLY ANSWERED</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:text-white hover:scale-[1.01] transition-all duration-300">
+          <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Frequently Answered.
-          </h2>
+          </h1>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed">
             Essential information regarding permissions, security architecture, and system mechanics.
           </p>

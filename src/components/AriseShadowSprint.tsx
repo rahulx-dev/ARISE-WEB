@@ -12,12 +12,12 @@ export default function AriseShadowSprint() {
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
             <Navigation className="w-3.5 h-3.5" />
-            <span>09 // SHADOW SPRINT TELEMETRY</span>
+            <span>SHADOW SPRINT TELEMETRY</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:scale-[1.01] hover:text-white transition-all duration-300 cursor-default">
+          <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Move for real. <br />
-            <span className="text-[#86868B] hover:text-[#A1A1AA] transition-colors">GPS & Cadence Tracking.</span>
-          </h2>
+            <span className="text-[#86868B]">GPS & Cadence Tracking.</span>
+          </h1>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             Outdoor distance runs, cadence pacing, and elevation splits. Validated through local device GPS and accelerometer sensors.
           </p>
@@ -57,7 +57,7 @@ export default function AriseShadowSprint() {
             {/* Bottom Current Location Tag */}
             <div className="relative z-10 flex items-center gap-2 text-xs font-mono text-[#86868B]">
               <MapPin className="w-3.5 h-3.5 text-[#0A84FF]" />
-              <span>OUTDOOR INTERVAL // SECTOR 04</span>
+              <span>OUTDOOR INTERVAL</span>
             </div>
           </div>
 

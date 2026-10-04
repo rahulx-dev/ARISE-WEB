@@ -63,13 +63,13 @@ export default function AriseHero({ onOpenDownload }: AriseHeroProps) {
             <span className="text-white font-medium">The Real-World Progression Engine</span>
           </div>
 
-          {/* Main Headline with Luxe Metallic Gradient & Hover Effect */}
-          <h1 className="text-5xl sm:text-7xl lg:text-[5.8rem] font-bold tracking-tighter leading-[0.94] max-w-2xl group/title cursor-default">
-            <span className="bg-gradient-to-b from-white via-[#F5F5F7] to-[#86868B] group-hover/title:from-white group-hover/title:via-[#93C5FD] group-hover/title:to-white bg-clip-text text-transparent transition-all duration-500">
+          {/* Main Headline with Luxe Metallic Typography */}
+          <h1 data-h1-cursor className="text-5xl sm:text-7xl lg:text-[5.8rem] font-bold tracking-tighter leading-[0.94] max-w-2xl cursor-default select-none">
+            <span className="bg-gradient-to-b from-white via-[#F5F5F7] to-[#A1A1A6] bg-clip-text text-transparent">
               Your real life.
             </span>
             <br />
-            <span className="bg-gradient-to-b from-[#86868B] via-[#6E6E73] to-[#3A3A3C] group-hover/title:from-[#A1A1AA] group-hover/title:via-[#E2E8F0] group-hover/title:to-[#86868B] bg-clip-text text-transparent transition-all duration-500">
+            <span className="bg-gradient-to-b from-[#A1A1A6] via-[#86868B] to-[#48484A] bg-clip-text text-transparent">
               Now has levels.
             </span>
           </h1>

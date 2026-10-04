@@ -17,13 +17,13 @@ export default function AriseFinalCTA({ onOpenDownload }: AriseFinalCTAProps) {
         
         <div className="space-y-4">
           <span className="font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
-            ARISE SYSTEM // THE AWAKENING
+            THE AWAKENING
           </span>
           
-          <h2 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tighter text-[#F5F5F7] leading-none uppercase hover:text-white hover:scale-[1.01] transition-all duration-300">
+          <h1 data-h1-cursor className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tighter text-[#F5F5F7] leading-none uppercase cursor-default select-none">
             LEVEL UP <br />
-            <span className="text-[#86868B] hover:text-[#A1A1A6] transition-colors">YOUR REAL LIFE.</span>
-          </h2>
+            <span className="text-[#86868B]">YOUR REAL LIFE.</span>
+          </h1>
         </div>
 
         <p className="text-base sm:text-lg text-[#86868B] max-w-lg mx-auto font-normal leading-relaxed">

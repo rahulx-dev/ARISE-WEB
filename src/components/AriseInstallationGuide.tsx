@@ -34,11 +34,11 @@ export default function AriseInstallationGuide() {
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0A84FF]" />
-            <span>11 / INSTALLATION PROTOCOL</span>
+            <span>INSTALLATION PROTOCOL</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:text-white hover:scale-[1.01] transition-all duration-300">
+          <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Installation Guide.
-          </h2>
+          </h1>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             Clean, native Android installation without bloatware or unnecessary background services.
           </p>
@@ -48,18 +48,16 @@ export default function AriseInstallationGuide() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((s, idx) => (
             <motion.div
-              key={s.step}
+              key={s.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-8 sm:p-9 rounded-3xl bg-[#08090C] border border-white/[0.08] space-y-6 flex flex-col justify-between"
+              className="p-8 sm:p-9 rounded-3xl bg-[#08090C] border border-white/[0.08] hover:border-white/[0.18] transition-all space-y-6 flex flex-col justify-between"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-[#0A84FF] font-bold">
-                    {s.step}
-                  </span>
+                  <div className="w-2 h-2 rounded-full bg-[#0A84FF]" />
                   <div className="p-2.5 rounded-xl bg-white/[0.04]">
                     {s.icon}
                   </div>

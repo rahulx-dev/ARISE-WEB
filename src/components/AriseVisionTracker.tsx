@@ -51,12 +51,12 @@ export default function AriseVisionTracker() {
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
             <Eye className="w-3.5 h-3.5" />
-            <span>04 // COMPUTER VISION ENGINE</span>
+            <span>COMPUTER VISION ENGINE</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:scale-[1.01] hover:text-white transition-all duration-300 cursor-default">
+          <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Every rep counted. <br />
-            <span className="text-[#86868B] hover:text-[#A1A1AA] transition-colors">Zero wearables required.</span>
-          </h2>
+            <span className="text-[#86868B]">Zero wearables required.</span>
+          </h1>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             ARISE uses 60FPS on-device neural vision to analyze skeletal joint angles and form depth in real-time. Zero video leaves your device.
           </p>
@@ -138,19 +138,19 @@ export default function AriseVisionTracker() {
         {/* 3 Supported Core Exercises */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 font-sans">
           <div className="p-7 rounded-3xl bg-[#08090C] border border-white/[0.08] hover:border-white/[0.18] transition-all space-y-3">
-            <span className="font-mono text-[11px] text-[#0A84FF] font-semibold uppercase tracking-wider">EXERCISE // 01</span>
+            <span className="font-mono text-[11px] text-[#0A84FF] font-semibold uppercase tracking-wider">PUSH-UPS</span>
             <h3 className="text-xl font-bold text-[#F5F5F7]">Push-ups & Chest Depth</h3>
             <p className="text-xs text-[#86868B] leading-relaxed">Verifies elbow flexion and chest drop angle to confirm full biomechanical range of motion.</p>
           </div>
 
           <div className="p-7 rounded-3xl bg-[#08090C] border border-white/[0.08] hover:border-white/[0.18] transition-all space-y-3">
-            <span className="font-mono text-[11px] text-[#0A84FF] font-semibold uppercase tracking-wider">EXERCISE // 02</span>
+            <span className="font-mono text-[11px] text-[#0A84FF] font-semibold uppercase tracking-wider">SQUATS</span>
             <h3 className="text-xl font-bold text-[#F5F5F7]">Squats & Hip Clearance</h3>
             <p className="text-xs text-[#86868B] leading-relaxed">Tracks knee-to-hip trajectory ensuring parallel depth without spine curvature.</p>
           </div>
 
           <div className="p-7 rounded-3xl bg-[#08090C] border border-white/[0.08] hover:border-white/[0.18] transition-all space-y-3">
-            <span className="font-mono text-[11px] text-[#0A84FF] font-semibold uppercase tracking-wider">EXERCISE // 03</span>
+            <span className="font-mono text-[11px] text-[#0A84FF] font-semibold uppercase tracking-wider">SIT-UPS</span>
             <h3 className="text-xl font-bold text-[#F5F5F7]">Sit-ups & Core Tension</h3>
             <p className="text-xs text-[#86868B] leading-relaxed">Calculates torso elevation angle from rest to peak contraction in real time.</p>
           </div>

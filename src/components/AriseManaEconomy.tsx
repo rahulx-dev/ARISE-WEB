@@ -54,12 +54,12 @@ export default function AriseManaEconomy() {
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
             <Gem className="w-3.5 h-3.5" />
-            <span>08 // THE MANA CRUCIBLE</span>
+            <span>THE MANA CRUCIBLE</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:scale-[1.01] hover:text-white transition-all duration-300 cursor-default">
+          <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Mana is your sweat. <br />
-            <span className="text-[#86868B] hover:text-[#A1A1AA] transition-colors">Crystallized into currency.</span>
-          </h2>
+            <span className="text-[#86868B]">Crystallized into currency.</span>
+          </h1>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             A transparent proof-of-work energy economy. Real physical calories burned translate into tangible in-app utility and digital assets.
           </p>
@@ -108,12 +108,10 @@ export default function AriseManaEconomy() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {economySteps.map((step) => (
                 <div
-                  key={step.step}
+                  key={step.label}
                   className="p-6 rounded-3xl bg-[#08090C] border border-white/[0.08] hover:border-white/[0.18] transition-all space-y-2"
                 >
-                  <span className="font-mono text-xs text-[#0A84FF] font-bold block">
-                    PHASE {step.step}
-                  </span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#0A84FF]" />
                   <h3 className="font-sans font-bold text-lg text-[#F5F5F7]">
                     {step.label}
                   </h3>

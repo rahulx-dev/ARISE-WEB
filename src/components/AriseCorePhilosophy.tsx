@@ -60,10 +60,10 @@ export default function AriseCorePhilosophy() {
           <span className="font-mono text-xs uppercase tracking-widest text-[#0A84FF]">
             CORE PHILOSOPHY
           </span>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight max-w-4xl mx-auto hover:text-white transition-all duration-300 cursor-default">
+          <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight max-w-4xl mx-auto cursor-default select-none">
             Your phone shouldn&apos;t <br />
-            <span className="text-[#86868B] hover:text-[#A1A1AA] transition-colors">control your destiny.</span>
-          </h2>
+            <span className="text-[#86868B]">control your destiny.</span>
+          </h1>
         </motion.div>
 
         {/* Clean Automatic Morphing Showcase (Zero Clutter Instructions) */}

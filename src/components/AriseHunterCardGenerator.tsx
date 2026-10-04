@@ -504,9 +504,9 @@ export default function AriseHunterCardGenerator() {
             <Sparkles className="w-3.5 h-3.5" />
             <span>SOVEREIGN IDENTITY DOSSIER</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight hover:scale-[1.01] hover:text-white transition-transform duration-300 cursor-default">
+          <h1 data-h1-cursor className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F7] leading-tight cursor-default select-none">
             Mint Your Hunter Card.
-          </h2>
+          </h1>
           <p className="text-base sm:text-lg text-[#86868B] font-normal leading-relaxed max-w-2xl">
             Type your hunter call-sign below. Your 3D titanium identity card dynamically updates in real time with custom rank portraits, specular lighting and instant high-resolution PNG export.
           </p>
